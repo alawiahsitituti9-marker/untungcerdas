@@ -251,7 +251,7 @@ Untuk soal dengan harga satuan (L4-01, L4-03, L4-04), segmen HB/HJ menyimpan `ni
 |---|---|---|
 | Kode siswa | 10 karakter setelah normalisasi; pola §2.1 | "Kode terdiri dari MS dan 8 huruf/angka." |
 | Rupiah | Bilangan bulat ≥ 0; titik ribuan diabaikan; maksimal 10.000.000 | "Tulis angka saja, contoh 20000." |
-| Persen | Angka 0–100; koma atau titik desimal; maksimal 2 angka desimal; toleransi ±0,01 | "Tulis angka persennya, contoh 25 atau 12,5." |
+| Persen | Angka 0–10.000 (persen untung bisa lebih dari 100%, dan kesalahan seperti 1.400% di L4-03 harus tetap terbaca untuk diagnosis); koma atau titik desimal; maksimal 4 angka desimal; toleransi benar ±0,01 | "Tulis angka persennya, contoh 25 atau 12,5." |
 | Pilihan | Harus salah satu pilihan | (tombol tidak aktif sebelum memilih) |
 
 Validasi format dilakukan di frontend. Validasi tipe dan rentang diulang oleh constraint database (§4).

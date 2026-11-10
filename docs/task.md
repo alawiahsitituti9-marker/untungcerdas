@@ -40,7 +40,7 @@ Hanya dimulai setelah A-05, D-01, D-02, dan D-06 disetujui.
 | DV-01 | Inisialisasi proyek Vite, struktur folder, token CSS | P1 | D-06 | `npm run dev` berjalan; struktur sesuai architecture.md §8 | 1 · ✅ selesai 11 November 2026 |
 | DV-02 | Proyek Supabase, migrasi skema + RLS | P1 | D-06 | Uji RLS: siswa A tidak bisa membaca data siswa B | 1 |
 | DV-03 | Skrip pembuatan akun dan kode siswa | P1 | DV-02 | Menghasilkan CSV kode; akun bisa login | 1 |
-| DV-04 | Logika `hitung.js`, `format.js`, `diagnosis.js` + uji unit | P1 | DV-01 | Semua uji lulus; D1–D5 dikenali | 2 |
+| DV-04 | Logika `hitung.js`, `format.js`, `diagnosis.js` + uji unit | P1 | DV-01 | Semua uji lulus; D1–D5 dikenali | 2 · ✅ selesai 11 November 2026 (93 uji lulus) |
 | DV-05 | F01 Login + sesi + keluar | P1 | DV-02, DV-03 | KFN-01, KFN-02 | 2 |
 | DV-06 | Kerangka navigasi + F02 Beranda | P1 | DV-05 | KFN-03 | 2 |
 | DV-07 | F03 Materi + F04 Kartu Rumus + gambar 2D berlabel harga | P1 | DV-06, D-03 | KFN-04 sampai KFN-06 | 3 |
