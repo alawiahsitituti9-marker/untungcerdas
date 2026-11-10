@@ -1,0 +1,19 @@
+# Dependensi dan hasil build
+node_modules/
+dist/
+coverage/
+
+# Rahasia: jangan pernah di-commit (AGENTS.md §7)
+.env
+.env.*
+!.env.example
+
+# Dokumen wawancara memuat foto dan nama panggilan informan.
+# Tidak dimasukkan ke git untuk menjaga kerahasiaan informan (AGENTS.md §3).
+referensi/
+
+# Lain-lain
+.DS_Store
+Thumbs.db
+*.log
+.vscode/

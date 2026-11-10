@@ -1,0 +1,41 @@
+/*
+ * Token desain MathSave (design.md §11–13).
+ * Setiap warna punya makna tetap dan selalu disertai teks atau ikon (KNF-06).
+ */
+:root {
+  /* Permukaan dan teks */
+  --latar: #ffffff;
+  --permukaan: #f4f6f8;
+  --garis: #d9e0e6;
+  --teks: #1f2933;
+  --teks-redup: #52606d;
+
+  /* Aksi utama */
+  --aksi: #0f766e;
+  --aksi-teks: #ffffff;
+
+  /* Warna bermakna */
+  --hb: #1d4ed8;        /* harga beli, label "Beli" */
+  --hj: #c2410c;        /* harga jual, label "Jual" */
+  --untung: #15803d;    /* ikon ▲ + kata "Untung" */
+  --rugi: #b91c1c;      /* ikon ▼ + kata "Rugi" */
+  --ditanya: #7c3aed;   /* garis bawah + label "Ditanya" */
+  --petunjuk: #fef3c7;  /* latar petunjuk */
+
+  /* Tipografi: fonta sistem, tanpa unduhan (design.md §12) */
+  --fonta: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
+  --ukuran-isi: 16px;
+  --ukuran-keterangan: 14px;
+  --ukuran-judul: 20px;
+  --ukuran-judul-halaman: 24px;
+  --ukuran-rumus: 18px;
+  --tinggi-baris: 1.5;
+
+  /* Tata letak (design.md §13) */
+  --lebar-maks: 480px;
+  --margin-samping: 16px;
+  --sentuh-min: 44px;
+  --tinggi-tombol: 48px;
+  --jarak: 8px;
+  --sudut: 12px;
+}

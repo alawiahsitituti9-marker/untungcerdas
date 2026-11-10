@@ -1,0 +1,89 @@
+/* Gaya dasar MathSave: mobile-first 360 px, satu kolom (design.md §13). */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--latar);
+  color: var(--teks);
+  font-family: var(--fonta);
+  font-size: var(--ukuran-isi);
+  line-height: var(--tinggi-baris);
+}
+
+#root {
+  max-width: var(--lebar-maks);
+  min-height: 100dvh;
+  margin: 0 auto;
+  padding: 0 var(--margin-samping);
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.25;
+  margin: 0 0 var(--jarak);
+}
+
+h1 {
+  font-size: var(--ukuran-judul-halaman);
+}
+
+h2 {
+  font-size: var(--ukuran-judul);
+}
+
+p {
+  margin: 0 0 var(--jarak);
+  max-width: 60ch;
+}
+
+button {
+  font: inherit;
+  min-height: var(--sentuh-min);
+  cursor: pointer;
+}
+
+.tombol-utama {
+  display: block;
+  width: 100%;
+  min-height: var(--tinggi-tombol);
+  border: 0;
+  border-radius: var(--sudut);
+  background: var(--aksi);
+  color: var(--aksi-teks);
+  font-weight: 600;
+}
+
+.tombol-utama:focus-visible,
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--hb);
+  outline-offset: 2px;
+}
+
+.angka {
+  font-variant-numeric: tabular-nums;
+}
+
+.teks-redup {
+  color: var(--teks-redup);
+  font-size: var(--ukuran-keterangan);
+}
+
+/* Animasi hanya bila bermakna, dan dimatikan jika pengguna memintanya (KNF-05). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
