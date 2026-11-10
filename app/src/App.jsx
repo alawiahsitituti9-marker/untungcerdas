@@ -1,10 +1,53 @@
-// Kerangka sementara (DV-01). Rute dan halaman dibuat di DV-05 dan DV-06.
-export default function App() {
+import { useState } from 'react';
+import { BrowserRouter, Routes, Route, Navigate, Outlet, useNavigate } from 'react-router-dom';
+import NavBawah from './komponen/NavBawah.jsx';
+import Masuk from './halaman/Masuk.jsx';
+import Beranda from './halaman/Beranda.jsx';
+import DaftarMateri from './halaman/DaftarMateri.jsx';
+import PilihLevel from './halaman/PilihLevel.jsx';
+import Progres from './halaman/Progres.jsx';
+import Simulasi from './halaman/Simulasi.jsx';
+import CobaPenanda from './halaman/CobaPenanda.jsx';
+import { sesiSaatIni, keluar as keluarLayanan } from './layanan/auth.js';
+
+// Halaman yang membutuhkan sesi. `denganNav` = tampilkan tab bawah;
+// halaman mode fokus (Simulasi, Soal, Materi) tanpa tab bawah (design.md §5).
+function Terlindung({ sesi, setSesi, denganNav }) {
+  const navigasi = useNavigate();
+  if (!sesi) return <Navigate to="/masuk" replace />;
+  const keluar = async () => {
+    await keluarLayanan();
+    setSesi(null);
+    navigasi('/masuk', { replace: true });
+  };
   return (
-    <main style={{ paddingTop: 48 }}>
-      <h1>MathSave</h1>
-      <p>Belajar persentase untung dan rugi.</p>
-      <p className="teks-redup">Aplikasi sedang dibangun.</p>
-    </main>
+    <>
+      <Outlet context={{ sesi, keluar }} />
+      {denganNav && <NavBawah />}
+    </>
+  );
+}
+
+export default function App() {
+  const [sesi, setSesi] = useState(() => sesiSaatIni());
+  const lindungi = { sesi, setSesi };
+
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/masuk" element={sesi ? <Navigate to="/" replace /> : <Masuk onMasuk={setSesi} />} />
+        <Route element={<Terlindung {...lindungi} denganNav />}>
+          <Route index element={<Beranda />} />
+          <Route path="materi" element={<DaftarMateri />} />
+          <Route path="latihan" element={<PilihLevel />} />
+          <Route path="progres" element={<Progres />} />
+        </Route>
+        <Route element={<Terlindung {...lindungi} />}>
+          <Route path="simulasi" element={<Simulasi />} />
+          <Route path="latihan/tandai" element={<CobaPenanda />} />
+        </Route>
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
   );
 }

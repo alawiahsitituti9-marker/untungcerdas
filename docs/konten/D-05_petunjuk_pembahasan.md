@@ -139,6 +139,8 @@ Pada Level 1–3, siswa menjawab per langkah, sehingga langkah yang salah langsu
 | ② Konsep | Harga saat **membeli** adalah harga beli. Harga saat **menjual** adalah harga jual. |
 | ③ Petunjuk | Baca lagi soalnya. Cari kata "membeli" dan "dijual". |
 
+**D5 pada Langkah 1 (Penanda Informasi)**: unsur ① memakai kata "tandai": *"Harga beli dan harga jual yang kamu tandai belum tepat."* Unsur ③ memakai kata kunci per soal (§2.3): *"Cari kata kunci di soal. "{kata_HB}" menunjuk harga beli. "{kata_HJ}" menunjuk harga jual."* (disetujui 11 November 2026)
+
 **D6 — Kesalahan lain**
 
 | Unsur | Teks |
@@ -146,6 +148,14 @@ Pada Level 1–3, siswa menjawab per langkah, sehingga langkah yang salah langsu
 | ① Bagian | Jawabanmu belum tepat di **Langkah {n}**. |
 | ② Konsep | (Kartu Rumus yang sesuai dengan langkah tersebut) |
 | ③ Petunjuk | (Petunjuk tingkat 3 untuk langkah tersebut; di Level 4 memakai teks §2.2 tingkat 3) |
+
+**D6 pada Langkah 1: hanya "Ditanya" yang belum tepat** (disetujui 11 November 2026)
+
+| Unsur | Teks |
+|---|---|
+| ① Bagian | Jawabanmu belum tepat di Langkah 1. |
+| ② Konsep | Tandai juga kalimat yang ditanyakan. |
+| ③ Petunjuk | Kalimat tanya biasanya ada di akhir soal. |
 
 **Langkah 7 (Periksa) salah, Level 1–3**
 
@@ -233,3 +243,4 @@ Soal cek cepat hanya memberi satu pembahasan singkat, lalu siswa boleh mencoba l
 2. Petunjuk dan pembahasan berbentuk templat dengan angka otomatis. **Disetujui.**
 3. Alur dua kali kesempatan (petunjuk → coba lagi → penyelesaian lengkap). **Disetujui.**
 4. Tidak ada kalimat yang diminta diubah.
+5. Tambahan teks pembahasan Langkah 1 (D5 "tandai" dan D6 "Ditanya"). **Disetujui** 11 November 2026.

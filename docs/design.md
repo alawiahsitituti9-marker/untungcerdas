@@ -431,5 +431,5 @@ Kartu "mengapa dibagi harga beli" (M5) memakai penjelasan konseptual sederhana: 
 ## 16. Desain Simulasi Jual Beli (F07)
 
 - **Mode bebas:** siswa menggeser HB dan HJ (Rp10.000–Rp200.000, kelipatan Rp5.000). Hasil (jenis, besar, persen) dan rumus terisi berubah langsung.
-- **Mode tantangan** (3 tantangan): "Buat pedagang untung 25%", "Buat pedagang rugi 10%", "HB tetap Rp80.000. Berapa HJ agar untung Rp20.000?". Siswa mengatur slider lalu menekan "Cek". Tantangan ini melatih penalaran dan penafsiran, bukan rumus kebalikan formal.
+- **Mode tantangan** (3 tantangan; titik awal T1 = HB Rp40.000, T2 = HB Rp50.000, T3 = HB Rp80.000 terkunci, sehingga cukup menggeser harga jual. Keputusan 11 November 2026): "Buat pedagang untung 25%", "Buat pedagang rugi 10%", "HB tetap Rp80.000. Berapa HJ agar untung Rp20.000?". Siswa mengatur slider lalu menekan "Cek". Tantangan ini melatih penalaran dan penafsiran, bukan rumus kebalikan formal.
 - Hasil memakai `BatangBanding`: batang HB dan HJ, dengan selisih diarsir hijau (untung) atau merah (rugi).

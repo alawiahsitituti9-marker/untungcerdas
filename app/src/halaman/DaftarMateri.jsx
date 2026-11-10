@@ -1,0 +1,40 @@
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { muatMateri } from '../layanan/konten.js';
+
+// P03 Daftar Materi (design.md §3, F03). Kartu materi dibuat di DV-07.
+export default function DaftarMateri() {
+  const [materi, setMateri] = useState(null);
+  const [galat, setGalat] = useState('');
+
+  useEffect(() => {
+    muatMateri().then((d) => setMateri(d.materi)).catch((e) => setGalat(e.message));
+  }, []);
+
+  return (
+    <main className="halaman">
+      <h1>Materi</h1>
+      {galat && <p className="pesan-galat" role="alert">{galat}</p>}
+      {!materi && !galat && <p className="teks-redup">Memuat…</p>}
+      {materi && (
+        <ul className="daftar">
+          {materi.map((m) => (
+            <li key={m.id}>
+              <div className="baris-daftar" aria-disabled="true">
+                <span>
+                  {m.id} {m.judul}
+                  {m.opsional && ' (pilihan)'}
+                  <small>{m.ringkas}</small>
+                </span>
+                <small>Segera</small>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+      <ul className="daftar">
+        <li><Link className="baris-daftar" to="/simulasi">Simulasi Jual Beli<span aria-hidden="true">›</span></Link></li>
+      </ul>
+    </main>
+  );
+}

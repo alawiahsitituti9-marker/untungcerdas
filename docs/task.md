@@ -41,16 +41,16 @@ Hanya dimulai setelah A-05, D-01, D-02, dan D-06 disetujui.
 | DV-02 | Proyek Supabase, migrasi skema + RLS | P1 | D-06 | Uji RLS: siswa A tidak bisa membaca data siswa B | 1 |
 | DV-03 | Skrip pembuatan akun dan kode siswa | P1 | DV-02 | Menghasilkan CSV kode; akun bisa login | 1 |
 | DV-04 | Logika `hitung.js`, `format.js`, `diagnosis.js` + uji unit | P1 | DV-01 | Semua uji lulus; D1–D5 dikenali | 2 · ✅ selesai 11 November 2026 (93 uji lulus) |
-| DV-05 | F01 Login + sesi + keluar | P1 | DV-02, DV-03 | KFN-01, KFN-02 | 2 |
-| DV-06 | Kerangka navigasi + F02 Beranda | P1 | DV-05 | KFN-03 | 2 |
+| DV-05 | F01 Login + sesi + keluar | P1 | DV-02, DV-03 | KFN-01, KFN-02 | 2 · 🔶 sebagian: halaman Masuk + mode uji tanpa server; login Supabase menunggu DV-02 |
+| DV-06 | Kerangka navigasi + F02 Beranda | P1 | DV-05 | KFN-03 | 2 · ✅ selesai 11 November 2026 (kerangka navigasi, Beranda dengan progres sementara) |
 | DV-07 | F03 Materi + F04 Kartu Rumus + gambar 2D berlabel harga | P1 | DV-06, D-03 | KFN-04 sampai KFN-06 | 3 |
 | DV-08 | F12 Contoh Bertahap (penuh dan sebagian) | P1 | DV-07 | KFN-15 | 3 |
-| DV-09 | F06 Penanda Informasi (`TeksBertanda`) | P1 | DV-04 | KFN-08 | 4 |
+| DV-09 | F06 Penanda Informasi (`TeksBertanda`) | P1 | DV-04 | KFN-08 | 4 · ✅ selesai 11 November 2026 (pratinjau di /latihan/tandai; dipasang ke halaman Soal di DV-10) |
 | DV-10 | F05 Panduan Langkah + F09 Latihan Level 1–4 | P1 | DV-09, D-04 | KFN-07, KFN-11 | 4–5 |
 | DV-11 | F11 Petunjuk Bertingkat + fading | P1 | DV-10, D-05 | KFN-14 | 5 |
 | DV-12 | F10 Pembahasan | P1 | DV-10, D-05 | KFN-12, KFN-13 | 5 |
 | DV-13 | Penyimpanan percobaan + antrean luring | P1 | DV-10, DV-02 | KFN-16; data masuk setelah koneksi kembali | 5 |
-| DV-14 | F07 Simulasi versi 2D | P1 | DV-04 | KFN-09 | 6 |
+| DV-14 | F07 Simulasi versi 2D | P1 | DV-04 | KFN-09 | 6 · ✅ selesai 11 November 2026 |
 | DV-15 | F08 Adegan 3D Three.js + cadangan 2D | P2 | DV-14 | KFN-10; dimuat hanya di P07 | 6 |
 | DV-16 | F13 Halaman Progres | P2 | DV-13 | KFN-17 | 6 |
 

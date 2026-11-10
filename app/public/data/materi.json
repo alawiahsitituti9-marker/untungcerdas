@@ -1,0 +1,13 @@
+{
+  "versi": 1,
+  "catatan": "Daftar submateri dari docs/konten/D-03_materi.md. Isi kartu ditambahkan di DV-07.",
+  "materi": [
+    { "id": "M0", "judul": "Pemanasan", "opsional": true, "ringkas": "Perkalian, pembagian, dan arti persen" },
+    { "id": "M1", "judul": "Harga Beli dan Harga Jual", "ringkas": "Harga saat membeli dan saat menjual" },
+    { "id": "M2", "judul": "Untung atau Rugi?", "ringkas": "Bandingkan harga jual dengan harga beli" },
+    { "id": "M3", "judul": "Menghitung Untung", "ringkas": "Untung = HJ − HB" },
+    { "id": "M4", "judul": "Menghitung Rugi", "ringkas": "Rugi = HB − HJ" },
+    { "id": "M5", "judul": "Persentase Untung", "ringkas": "Untung ÷ HB × 100%" },
+    { "id": "M6", "judul": "Persentase Rugi", "ringkas": "Rugi ÷ HB × 100%" }
+  ]
+}

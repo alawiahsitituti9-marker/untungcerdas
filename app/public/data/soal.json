@@ -1,0 +1,90 @@
+{
+  "versi": 1,
+  "catatan": "Teks dan kunci dari docs/konten/D-04_bank_soal.md (disetujui 11 November 2026). Level 1, 2, dan 4 ditambahkan di DV-10.",
+  "soal": [
+    {
+      "id": "L3-01", "level": 3, "gambar": "air-mineral", "ditanya": "persen",
+      "hb": 48000, "hj": 60000,
+      "segmen": [
+        { "teks": "Mas Andi membeli 1 dus air mineral seharga " },
+        { "teks": "Rp48.000", "peran": "HB", "nilai": 48000 },
+        { "teks": ". Air itu habis terjual, dan ia mendapat " },
+        { "teks": "Rp60.000", "peran": "HJ", "nilai": 60000 },
+        { "teks": ". " },
+        { "teks": "Berapa persen keuntungan Mas Andi?", "peran": "DITANYA" }
+      ],
+      "kunci": { "jenis": "untung", "besar": 12000, "persen": 25 },
+      "kataKunci": { "HB": "membeli … seharga", "HJ": "mendapat (hasil semua air yang terjual)" }
+    },
+    {
+      "id": "L3-02", "level": 3, "gambar": "tas", "ditanya": "persen",
+      "hb": 60000, "hj": 78000,
+      "segmen": [
+        { "teks": "Bu Rina membeli 1 tas seharga " },
+        { "teks": "Rp60.000", "peran": "HB", "nilai": 60000 },
+        { "teks": ". Tas itu dijual " },
+        { "teks": "Rp78.000", "peran": "HJ", "nilai": 78000 },
+        { "teks": ". " },
+        { "teks": "Berapa persen keuntungan Bu Rina?", "peran": "DITANYA" }
+      ],
+      "kunci": { "jenis": "untung", "besar": 18000, "persen": 30 },
+      "kataKunci": { "HB": "membeli … seharga", "HJ": "dijual" }
+    },
+    {
+      "id": "L3-03", "level": 3, "gambar": "sepatu", "ditanya": "persen",
+      "hb": 250000, "hj": 200000,
+      "segmen": [
+        { "teks": "Kak Rani membeli sepatu di toko online seharga " },
+        { "teks": "Rp250.000", "peran": "HB", "nilai": 250000 },
+        { "teks": ". Ukurannya kekecilan, jadi sepatu itu dijual lagi " },
+        { "teks": "Rp200.000", "peran": "HJ", "nilai": 200000 },
+        { "teks": ". " },
+        { "teks": "Berapa persen kerugian Kak Rani?", "peran": "DITANYA" }
+      ],
+      "kunci": { "jenis": "rugi", "besar": 50000, "persen": 20 },
+      "kataKunci": { "HB": "membeli … seharga", "HJ": "dijual lagi" }
+    },
+    {
+      "id": "L3-04", "level": 3, "gambar": "kambing", "ditanya": "persen",
+      "hb": 2500000, "hj": 3000000,
+      "segmen": [
+        { "teks": "Pak Dodi membeli seekor kambing seharga " },
+        { "teks": "Rp2.500.000", "peran": "HB", "nilai": 2500000 },
+        { "teks": ". Menjelang Iduladha, kambing itu dijual " },
+        { "teks": "Rp3.000.000", "peran": "HJ", "nilai": 3000000 },
+        { "teks": ". " },
+        { "teks": "Berapa persen keuntungan Pak Dodi?", "peran": "DITANYA" }
+      ],
+      "kunci": { "jenis": "untung", "besar": 500000, "persen": 20 },
+      "kataKunci": { "HB": "membeli … seharga", "HJ": "dijual" }
+    },
+    {
+      "id": "L3-05", "level": 3, "gambar": "tomat", "ditanya": "persen",
+      "hb": 160000, "hj": 112000,
+      "segmen": [
+        { "teks": "Bu Ida membeli 1 keranjang tomat seharga " },
+        { "teks": "Rp160.000", "peran": "HB", "nilai": 160000 },
+        { "teks": ". Sebagian tomat busuk, sehingga hasil penjualannya hanya " },
+        { "teks": "Rp112.000", "peran": "HJ", "nilai": 112000 },
+        { "teks": ". " },
+        { "teks": "Berapa persen kerugian Bu Ida?", "peran": "DITANYA" }
+      ],
+      "kunci": { "jenis": "rugi", "besar": 48000, "persen": 30 },
+      "kataKunci": { "HB": "membeli … seharga", "HJ": "hasil penjualannya" }
+    },
+    {
+      "id": "L3-06", "level": 3, "gambar": "hp", "ditanya": "persen",
+      "hb": 1500000, "hj": 1050000,
+      "segmen": [
+        { "teks": "Dimas membeli HP bekas seharga " },
+        { "teks": "Rp1.500.000", "peran": "HB", "nilai": 1500000 },
+        { "teks": ". Setahun kemudian, HP itu dijual " },
+        { "teks": "Rp1.050.000", "peran": "HJ", "nilai": 1050000 },
+        { "teks": ". " },
+        { "teks": "Berapa persen kerugian Dimas?", "peran": "DITANYA" }
+      ],
+      "kunci": { "jenis": "rugi", "besar": 450000, "persen": 30 },
+      "kataKunci": { "HB": "membeli … seharga", "HJ": "dijual" }
+    }
+  ]
+}
