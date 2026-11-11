@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { tandaiMateri } from '../layanan/progres.js';
 import KepalaFokus from '../komponen/KepalaFokus.jsx';
-import BarangDuaDimensi from '../komponen/BarangDuaDimensi.jsx';
+import AdeganBarang3D from '../komponen/AdeganBarang3D.jsx';
 import BatangBanding from '../komponen/BatangBanding.jsx';
 import { hitungTransaksi, hampirSama } from '../logika/hitung.js';
 import { formatAngka, formatRupiah, formatPersen } from '../logika/format.js';
 
 // P07 Simulasi Jual Beli, versi 2D (DV-14; design.md §6, §16).
-// Visual 3D Three.js ditambahkan di DV-15 dengan versi 2D ini sebagai cadangan.
+// Visual 3D (DV-15) memakai Three.js yang dimuat hanya di halaman ini, dengan cadangan 2D.
+// Tambahkan ?2d di alamat untuk menguji tampilan cadangan.
 
 const MIN = 10_000;
 const MAKS = 200_000;
@@ -136,7 +137,7 @@ export default function Simulasi() {
         </section>
       )}
 
-      <BarangDuaDimensi hb={hb} hj={hj} />
+      <AdeganBarang3D hb={hb} hj={hj} paksa2d={new URLSearchParams(window.location.search).has('2d')} />
 
       <Penggeser id="hb" judul="Harga beli" warna="hb" nilai={hb} onUbah={ubahHb} terkunci={tantangan?.kunciHb} />
       <Penggeser id="hj" judul="Harga jual" warna="hj" nilai={hj} onUbah={ubahHj} />

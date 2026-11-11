@@ -158,10 +158,11 @@ Alternatif jika K-03 ditolak: fungsi RPC `masuk_dengan_kode` yang mengembalikan 
 
 ## 6. Integrasi Three.js
 
-- Modul `src/three/AdeganBarang.js` diekspor sebagai fungsi `pasang(elemen, { hb, hj })` dan `perbarui({ hb, hj })`, serta `lepas()` untuk membersihkan memori saat halaman ditutup.
-- Halaman P07 memuat modul ini dengan `import()` dinamis, sehingga Three.js tidak ikut dalam unduhan awal.
-- Pemeriksaan WebGL dilakukan sebelum memuat. Jika gagal, ditampilkan komponen 2D `BarangDuaDimensi`.
-- Render **on-demand**: `renderer.render()` hanya dipanggil saat slider berubah atau saat barang diputar.
+- Modul `src/three/AdeganBarang.js` mengekspor `pasang(elemen)` yang mengembalikan `{ lepas() }`. Harga tidak dikirim ke adegan karena label harga diatur komponen React `komponen/AdeganBarang3D.jsx`. `lepas()` dipanggil saat halaman ditutup untuk melepas event listener, pengamat ukuran, geometri, bahan, renderer, dan konteks WebGL (`forceContextLoss()`).
+- Halaman P07 memakai komponen `AdeganBarang3D`, yang memuat modul ini dengan `import()` dinamis, sehingga Three.js tidak ikut dalam unduhan awal.
+- Pemeriksaan WebGL dilakukan di komponen **sebelum memuat** (konteks uji langsung dilepas). Jika WebGL tidak ada, modul gagal dimuat, atau konteks gagal dibuat, ditampilkan komponen 2D `BarangDuaDimensi`. Parameter alamat `?2d` memaksa tampilan cadangan untuk pengujian.
+- Render **on-demand**: `renderer.render()` hanya dipanggil saat barang diputar atau ukuran wadah berubah. Perubahan slider hanya memperbarui label HTML.
+- Barang diputar dengan geser horizontal satu jari. Kanvas memakai `touch-action: pan-y` agar geser vertikal tetap menggulir halaman.
 - `devicePixelRatio` dibatasi maksimal 2 agar ringan di HP.
 - Label harga berupa elemen HTML yang diposisikan di atas kanvas.
 
