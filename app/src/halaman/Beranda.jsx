@@ -27,7 +27,7 @@ export default function Beranda() {
       <section className="kartu">
         <p className="teks-redup" style={{ marginBottom: 4 }}>Berikutnya:</p>
         <h2>M1 Harga Beli dan Harga Jual</h2>
-        <Link to="/materi" className="tombol-utama" style={{ display: 'grid', placeItems: 'center', textDecoration: 'none' }}>
+        <Link to="/materi/M1" className="tombol-utama" style={{ display: 'grid', placeItems: 'center', textDecoration: 'none' }}>
           Lanjut belajar
         </Link>
       </section>

@@ -1,13 +1,267 @@
 {
-  "versi": 1,
-  "catatan": "Daftar submateri dari docs/konten/D-03_materi.md. Isi kartu ditambahkan di DV-07.",
+  "versi": 2,
+  "catatan": "Teks kartu dan cek cepat dari docs/konten/D-03_materi.md; umpan balik cek cepat dari D-05 §6 (disetujui 11 November 2026). Kartu Rumus dari design.md §6 P05. Pecahan ditulis { \"p\": pembilang, \"q\": penyebut }.",
   "materi": [
-    { "id": "M0", "judul": "Pemanasan", "opsional": true, "ringkas": "Perkalian, pembagian, dan arti persen" },
-    { "id": "M1", "judul": "Harga Beli dan Harga Jual", "ringkas": "Harga saat membeli dan saat menjual" },
-    { "id": "M2", "judul": "Untung atau Rugi?", "ringkas": "Bandingkan harga jual dengan harga beli" },
-    { "id": "M3", "judul": "Menghitung Untung", "ringkas": "Untung = HJ − HB" },
-    { "id": "M4", "judul": "Menghitung Rugi", "ringkas": "Rugi = HB − HJ" },
-    { "id": "M5", "judul": "Persentase Untung", "ringkas": "Untung ÷ HB × 100%" },
-    { "id": "M6", "judul": "Persentase Rugi", "ringkas": "Rugi ÷ HB × 100%" }
-  ]
+    {
+      "id": "M0",
+      "judul": "Pemanasan",
+      "opsional": true,
+      "ringkas": "Perkalian, pembagian, dan arti persen",
+      "kartu": [
+        {
+          "teks": "Persen artinya \"per seratus\". 25% sama dengan 25 dibagi 100.",
+          "rumus": [{ "rantai": ["25% =", { "p": 25, "q": 100 }, "= 0,25"] }]
+        },
+        {
+          "teks": "Membagi angka ribuan bisa dibuat mudah. Coret angka nol yang sama di atas dan di bawah.",
+          "rumus": [{ "rantai": [{ "p": 20000, "q": 80000 }, "=", { "p": 2, "q": 8 }, "=", { "p": 1, "q": 4 }] }]
+        },
+        {
+          "teks": "Untuk mengubah pecahan menjadi persen, kalikan dengan 100%.",
+          "rumus": [{ "rantai": [{ "p": 1, "q": 4 }, "× 100% = **25%**"] }]
+        }
+      ],
+      "cek": {
+        "id": "L0-M0",
+        "tanya": "Berapa hasil 10.000 ÷ 50.000 × 100%?",
+        "tipe": "pilihan",
+        "acak": true,
+        "pilihan": [{ "teks": "20%", "benar": true }, { "teks": "5%" }, { "teks": "50%" }, { "teks": "500%" }],
+        "umpanSalah": "10.000 ÷ 50.000 = 1/5. Lalu 1/5 × 100% = 20%."
+      }
+    },
+    {
+      "id": "M1",
+      "judul": "Harga Beli dan Harga Jual",
+      "ringkas": "Harga saat membeli dan saat menjual",
+      "kartu": [
+        {
+          "teks": "Pak Budi membeli tas di pasar grosir. Harga saat pedagang membeli disebut **harga beli**.",
+          "gambar": { "barang": "tas", "hb": 80000 }
+        },
+        {
+          "teks": "Pak Budi lalu menjual tas itu di tokonya. Harga saat pedagang menjual disebut **harga jual**.",
+          "gambar": { "barang": "tas", "hb": 80000, "hj": 100000 }
+        },
+        {
+          "teks": "Kita singkat: **HB** = harga beli, **HJ** = harga jual. Kata \"membeli\" atau \"modal\" menunjuk harga beli. Kata \"menjual\" atau \"dijual\" menunjuk harga jual.",
+          "rumus": [{ "teks": "HB = Rp80.000 · HJ = Rp100.000" }]
+        }
+      ],
+      "cek": {
+        "id": "L0-M1",
+        "cerita": "Bu Sari membeli kue seharga Rp2.000. Kue itu dijual Rp2.500.",
+        "tanya": "Mana harga belinya?",
+        "tipe": "pilihan",
+        "pilihan": [
+          { "teks": "Rp2.000", "benar": true },
+          { "teks": "Rp2.500", "umpan": "Rp2.500 adalah harga saat kue **dijual**. Harga beli adalah harga saat Bu Sari **membeli**." }
+        ]
+      }
+    },
+    {
+      "id": "M2",
+      "judul": "Untung atau Rugi?",
+      "ringkas": "Bandingkan harga jual dengan harga beli",
+      "kartu": [
+        {
+          "teks": "Jika harga jual **lebih besar** dari harga beli, pedagang **untung** ▲.",
+          "gambar": { "batang": true, "hb": 80000, "hj": 100000 },
+          "rumus": [{ "teks": "100.000 > 80.000 → ▲ Untung", "tanda": "untung" }]
+        },
+        {
+          "teks": "Jika harga jual **lebih kecil** dari harga beli, pedagang **rugi** ▼.",
+          "gambar": { "batang": true, "hb": 50000, "hj": 40000 },
+          "rumus": [{ "teks": "40.000 < 50.000 → ▼ Rugi", "tanda": "rugi" }]
+        },
+        {
+          "teks": "Jika keduanya sama, pedagang tidak untung dan tidak rugi. Keadaan ini disebut **impas**. Jadi, selalu bandingkan HJ dengan HB dulu.",
+          "rumus": [{ "teks": "HJ = HB → Impas", "tanda": "impas" }]
+        }
+      ],
+      "cek": {
+        "id": "L0-M2",
+        "cerita": "HB = Rp15.000, HJ = Rp12.000.",
+        "tanya": "Pedagang untung atau rugi?",
+        "tipe": "pilihan",
+        "pilihan": [
+          { "teks": "▲ Untung", "umpan": "Harga jual Rp12.000 lebih kecil dari harga beli Rp15.000. Jadi pedagang rugi." },
+          { "teks": "▼ Rugi", "benar": true }
+        ],
+        "alasan": {
+          "tanya": "Pilih alasannya.",
+          "pilihan": [
+            { "teks": "Karena harga jual lebih kecil dari harga beli", "benar": true },
+            { "teks": "Karena harga jual lebih besar dari harga beli", "umpan": "Bandingkan lagi: 12.000 lebih kecil dari 15.000." }
+          ]
+        }
+      }
+    },
+    {
+      "id": "M3",
+      "judul": "Menghitung Untung",
+      "ringkas": "Untung = HJ − HB",
+      "kartu": [
+        {
+          "teks": "Besar untung adalah selisih harga jual dan harga beli.",
+          "rumus": [{ "teks": "**Untung = HJ − HB**", "tanda": "untung" }]
+        },
+        {
+          "teks": "Tas Pak Budi dibeli Rp80.000 dan dijual Rp100.000.",
+          "gambar": { "barang": "tas", "hb": 80000, "hj": 100000 },
+          "rumus": [{ "teks": "Untung = 100.000 − 80.000 = **Rp20.000**", "tanda": "untung" }]
+        },
+        {
+          "teks": "Untuk untung, harga jual dikurangi harga beli. Yang lebih besar dikurangi yang lebih kecil.",
+          "rumus": [{ "teks": "HJ − HB", "tanda": "untung" }]
+        }
+      ],
+      "cek": {
+        "id": "L0-M3",
+        "cerita": "HB = Rp30.000, HJ = Rp36.000.",
+        "tanya": "Berapa untungnya?",
+        "tipe": "rupiah",
+        "kunci": 6000,
+        "umpanSalah": "Untung = HJ − HB = 36.000 − 30.000. Dalam ribuan: 36 − 30."
+      }
+    },
+    {
+      "id": "M4",
+      "judul": "Menghitung Rugi",
+      "ringkas": "Rugi = HB − HJ",
+      "kartu": [
+        {
+          "teks": "Besar rugi adalah selisih harga beli dan harga jual. Urutannya dibalik supaya hasilnya tidak negatif.",
+          "rumus": [{ "teks": "**Rugi = HB − HJ**", "tanda": "rugi" }]
+        },
+        {
+          "teks": "Bu Tini membeli sepatu Rp50.000. Sepatu itu hanya laku Rp40.000.",
+          "gambar": { "barang": "sepatu", "hb": 50000, "hj": 40000 },
+          "rumus": [{ "teks": "Rugi = 50.000 − 40.000 = **Rp10.000**", "tanda": "rugi" }]
+        },
+        {
+          "teks": "Bedakan kedua rumus ini. Yang lebih besar selalu dikurangi yang lebih kecil.",
+          "rumus": [
+            { "teks": "Untung = HJ − HB", "tanda": "untung" },
+            { "teks": "Rugi = HB − HJ", "tanda": "rugi" }
+          ]
+        }
+      ],
+      "cek": {
+        "id": "L0-M4",
+        "cerita": "HB = Rp25.000, HJ = Rp20.000.",
+        "tanya": "Berapa ruginya?",
+        "tipe": "rupiah",
+        "kunci": 5000,
+        "umpanSalah": "Rugi = HB − HJ = 25.000 − 20.000. Dalam ribuan: 25 − 20."
+      }
+    },
+    {
+      "id": "M5",
+      "judul": "Persentase Untung",
+      "ringkas": "Untung ÷ HB × 100%",
+      "kartu": [
+        {
+          "teks": "Untung Rp20.000 itu banyak atau sedikit? Jawabannya bergantung pada modal pedagang. Persentase membantu kita membandingkannya.",
+          "gambar": { "barang": "tas", "hb": 80000, "hj": 100000 },
+          "rumus": [{ "teks": "Untung = Rp20.000", "tanda": "untung" }]
+        },
+        {
+          "teks": "Ini rumus persentase untung.",
+          "rumus": [{ "teks": "**% Untung = Untung ÷ HB × 100%**", "tanda": "untung" }]
+        },
+        {
+          "teks": "Mengapa dibagi **harga beli**? Harga beli adalah modal, yaitu uang yang dikeluarkan pedagang. Untung selalu dibandingkan dengan modal.",
+          "gambar": { "barang": "tas", "hb": 80000 },
+          "rumus": [{ "teks": "penyebut = HB = 80.000" }]
+        },
+        {
+          "teks": "Sekarang kita hitung persentase untung tas Pak Budi.",
+          "gambar": { "barang": "tas", "hb": 80000, "hj": 100000 },
+          "rumus": [{ "rantai": [{ "p": 20000, "q": 80000, "ket": "harga beli" }, "× 100% =", { "p": 1, "q": 4 }, "× 100% = **25%**"] }]
+        },
+        {
+          "teks": "Hati-hati, jangan membagi dengan harga jual. Hasilnya menjadi salah.",
+          "rumus": [
+            { "tanda": "salah", "rantai": [{ "p": 20000, "q": 100000, "ket": "harga jual" }, "× 100% = 20%"] },
+            { "tanda": "benar", "rantai": [{ "p": 20000, "q": 80000, "ket": "harga beli" }, "× 100% = **25%**"] }
+          ]
+        }
+      ],
+      "cek": {
+        "id": "L0-M5",
+        "cerita": "HB = Rp50.000, HJ = Rp60.000.",
+        "tanya": "Berapa persen untungnya?",
+        "tipe": "pilihan",
+        "acak": true,
+        "pilihan": [
+          { "teks": "20%", "benar": true },
+          { "teks": "16,67%", "umpan": "Kamu membagi dengan harga jual (60.000). Persen untung dibagi **harga beli**: 10.000 ÷ 50.000 × 100%." },
+          { "teks": "10%", "umpan": "Rp10.000 adalah besar untungnya, bukan persennya. Hitung 10.000 ÷ 50.000 × 100%." },
+          { "teks": "2%", "umpan": "Periksa lagi: 10.000 ÷ 50.000 = 0,2. Lalu 0,2 × 100% = 20%." }
+        ]
+      }
+    },
+    {
+      "id": "M6",
+      "judul": "Persentase Rugi",
+      "ringkas": "Rugi ÷ HB × 100%",
+      "kartu": [
+        {
+          "teks": "Rumus persentase rugi mirip dengan persentase untung. Pembaginya tetap **harga beli**.",
+          "rumus": [{ "teks": "**% Rugi = Rugi ÷ HB × 100%**", "tanda": "rugi" }]
+        },
+        {
+          "teks": "Kita hitung persentase rugi sepatu Bu Tini.",
+          "gambar": { "barang": "sepatu", "hb": 50000, "hj": 40000 },
+          "rumus": [{ "rantai": [{ "p": 10000, "q": 50000, "ket": "harga beli" }, "× 100% =", { "p": 1, "q": 5 }, "× 100% = **20%**"] }]
+        },
+        {
+          "teks": "Bandingkan kedua rumus. Yang berbeda hanya kata untung dan rugi. Pembaginya sama-sama harga beli.",
+          "rumus": [
+            { "teks": "Untung ÷ **HB** × 100%", "tanda": "untung" },
+            { "teks": "Rugi ÷ **HB** × 100%", "tanda": "rugi" }
+          ]
+        },
+        {
+          "teks": "Periksa jawabanmu dengan hitung balik. Hasilnya harus sama dengan besar rugi.",
+          "rumus": [{ "teks": "20% × 50.000 = 10.000 ✓" }]
+        }
+      ],
+      "cek": {
+        "id": "L0-M6",
+        "cerita": "HB = Rp80.000, HJ = Rp60.000.",
+        "tanya": "Berapa persen ruginya?",
+        "tipe": "pilihan",
+        "acak": true,
+        "pilihan": [
+          { "teks": "25%", "benar": true },
+          { "teks": "33,33%", "umpan": "Kamu membagi dengan harga jual (60.000). Persen rugi dibagi **harga beli**: 20.000 ÷ 80.000 × 100%." },
+          { "teks": "20%", "umpan": "Rugi Rp20.000 bukan 20%. Hitung 20.000 ÷ 80.000 × 100%." },
+          { "teks": "75%", "umpan": "75% adalah harga jual dibagi harga beli. Hitung dulu ruginya: 80.000 − 60.000." }
+        ]
+      }
+    }
+  ],
+  "kartuRumus": {
+    "rumus": [
+      { "teks": "Untung = HJ − HB", "tanda": "untung" },
+      { "teks": "Rugi = HB − HJ", "tanda": "rugi" },
+      { "teks": "% Untung = Untung ÷ **HB** × 100%", "tanda": "untung" },
+      { "teks": "% Rugi = Rugi ÷ **HB** × 100%", "tanda": "rugi" }
+    ],
+    "simbol": [
+      { "kode": "HB", "arti": "harga beli" },
+      { "kode": "HJ", "arti": "harga jual" }
+    ],
+    "ingat": "Ingat: persen selalu dibagi **HARGA BELI**.",
+    "contoh": {
+      "teks": "Tas dibeli Rp80.000 dan dijual Rp100.000.",
+      "gambar": { "barang": "tas", "hb": 80000, "hj": 100000 },
+      "rumus": [
+        { "teks": "Untung = 100.000 − 80.000 = **Rp20.000**", "tanda": "untung" },
+        { "rantai": [{ "p": 20000, "q": 80000, "ket": "harga beli" }, "× 100% = **25%**"] }
+      ]
+    }
+  }
 }

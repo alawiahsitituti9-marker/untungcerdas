@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { muatMateri } from '../layanan/konten.js';
 
-// P03 Daftar Materi (design.md §3, F03). Kartu materi dibuat di DV-07.
+// P03 Daftar Materi (design.md §3, F03). Semua submateri bisa dibuka bebas (design.md §4).
 export default function DaftarMateri() {
   const [materi, setMateri] = useState(null);
   const [galat, setGalat] = useState('');
@@ -20,19 +20,20 @@ export default function DaftarMateri() {
         <ul className="daftar">
           {materi.map((m) => (
             <li key={m.id}>
-              <div className="baris-daftar" aria-disabled="true">
+              <Link className="baris-daftar" to={`/materi/${m.id}`}>
                 <span>
                   {m.id} {m.judul}
                   {m.opsional && ' (pilihan)'}
                   <small>{m.ringkas}</small>
                 </span>
-                <small>Segera</small>
-              </div>
+                <span aria-hidden="true">›</span>
+              </Link>
             </li>
           ))}
         </ul>
       )}
       <ul className="daftar">
+        <li><Link className="baris-daftar" to="/rumus">Kartu Rumus<span aria-hidden="true">›</span></Link></li>
         <li><Link className="baris-daftar" to="/simulasi">Simulasi Jual Beli<span aria-hidden="true">›</span></Link></li>
       </ul>
     </main>

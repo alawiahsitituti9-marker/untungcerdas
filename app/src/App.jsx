@@ -8,6 +8,8 @@ import PilihLevel from './halaman/PilihLevel.jsx';
 import Progres from './halaman/Progres.jsx';
 import Simulasi from './halaman/Simulasi.jsx';
 import CobaPenanda from './halaman/CobaPenanda.jsx';
+import HalamanKartuMateri from './halaman/KartuMateri.jsx';
+import KartuRumus from './halaman/KartuRumus.jsx';
 import { sesiSaatIni, keluar as keluarLayanan } from './layanan/auth.js';
 
 // Halaman yang membutuhkan sesi. `denganNav` = tampilkan tab bawah;
@@ -43,6 +45,8 @@ export default function App() {
           <Route path="progres" element={<Progres />} />
         </Route>
         <Route element={<Terlindung {...lindungi} />}>
+          <Route path="materi/:id" element={<HalamanKartuMateri />} />
+          <Route path="rumus" element={<KartuRumus />} />
           <Route path="simulasi" element={<Simulasi />} />
           <Route path="latihan/tandai" element={<CobaPenanda />} />
         </Route>
