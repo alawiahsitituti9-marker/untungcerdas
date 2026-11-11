@@ -2,7 +2,7 @@
 
 Versi: 0.2 · Acuan: [architecture.md](architecture.md)
 
-Riwayat: 0.1 disetujui 11 November 2026. **0.2 (12 November 2026, menunggu persetujuan):** endpoint dan skema F14 Latihan Literasi Matematis (§1, §3.5–3.7, §4.1, §5.3, §7). Semua tambahan berstatus **[Usulan]**.
+Riwayat: 0.1 disetujui 11 November 2026. **0.2 (disetujui 12 November 2026):** endpoint dan skema F14 Latihan Literasi Matematis (§1, §3.5–3.7, §4.1, §5.3, §7). Semua tambahan berstatus **[Usulan]** yang disetujui 12 November 2026.
 
 MathSave **tidak** memiliki server API buatan sendiri. "API" di sini adalah:
 1. **Supabase Auth** (`/auth/v1`) untuk login kode siswa.
@@ -264,7 +264,7 @@ Siswa tidak dapat mengubah atau menghapus `percobaan_soal` (tidak ada kebijakan 
 
 ### 4.1 Usulan migrasi `002_literasi.sql` (F14) **[Usulan, KL-13]**
 
-Ditambahkan 12 November 2026. **Belum dibuat.** Skema database hanya boleh diubah dengan persetujuan pemilik proyek (AGENTS.md §10.6) dan harus berupa file migrasi baru (AGENTS.md §7).
+Ditambahkan dan **disetujui 12 November 2026 (KL-13)**. Belum dibuat; dibuat di tugas LM-09 sebagai file migrasi baru (AGENTS.md §7).
 
 Pemeriksaan skema saat ini: tabel `percobaan_soal` **tidak** cukup untuk F14. Tabel itu menyimpan satu baris per soal Level 1–4 dengan kolom benar/salah, tanpa skor per tahap, skor per indikator, atau pengelompokan per percobaan. Karena itu diusulkan dua tabel baru. Tabel lama tidak diubah.
 

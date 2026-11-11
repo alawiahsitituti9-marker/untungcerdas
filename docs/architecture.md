@@ -2,7 +2,7 @@
 
 Versi: 0.2 · Acuan: [PRD.md](PRD.md) · [api.md](api.md)
 
-Riwayat: 0.1 disetujui 11 November 2026. **0.2 (12 November 2026, menunggu persetujuan):** rancangan teknis F14 Latihan Literasi Matematis (§4, §7, §8, §10).
+Riwayat: 0.1 disetujui 11 November 2026. **0.2 (disetujui 12 November 2026):** rancangan teknis F14 Latihan Literasi Matematis (§4, §7, §8, §10).
 
 Butir bertanda **[Keputusan K-xx]** sudah disetujui pada 11 November 2026 (PRD §13). Butir bertanda **[Konfirmasi]** tanpa nomor masih terbuka.
 
@@ -122,7 +122,7 @@ erDiagram
     }
 ```
 
-Tabel `EVALUASI_LITERASI` dan `JAWABAN_LITERASI` adalah **[Usulan, KL-13]** (12 November 2026) dan belum dibuat.
+Tabel `EVALUASI_LITERASI` dan `JAWABAN_LITERASI` adalah **[Usulan, KL-13]**, disetujui 12 November 2026. Dibuat di tugas LM-09.
 
 Konten materi dan soal **tidak** disimpan di database (lihat §1). Detail kolom dan kebijakan RLS ada di [api.md](api.md) §4.
 
@@ -233,7 +233,7 @@ mathsave/
 
 ## 10. Rancangan Teknis F14 Latihan Literasi Matematis dan Evaluasi
 
-Ditambahkan 12 November 2026. Seluruh bagian ini adalah **[Usulan]** dan menunggu persetujuan (PRD §13.1, KL-01 sampai KL-15). Belum ada kode atau perubahan database yang dibuat.
+Ditambahkan 12 November 2026. Seluruh bagian ini adalah **[Usulan]** yang **disetujui 12 November 2026** (PRD §13.1, KL-01 sampai KL-15). Kode dan migrasi dibuat di tugas LM-05 sampai LM-11.
 
 ### 10.1 Komponen sistem
 

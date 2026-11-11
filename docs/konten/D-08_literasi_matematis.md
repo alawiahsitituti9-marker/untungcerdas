@@ -1,6 +1,6 @@
 # D-08 — Latihan Literasi Matematis dan Evaluasi (F14)
 
-Versi: 0.1 (**draf, menunggu persetujuan pemilik proyek**) · Disusun 12 November 2026
+Versi: 1.0 (**disetujui pemilik proyek, 12 November 2026**; KL-01 sampai KL-15 di PRD §13.1)
 Acuan: [PRD.md](../PRD.md) §8.3–8.5, §9 (F14) · [design.md](../design.md) §17 · [architecture.md](../architecture.md) §10 · [api.md](../api.md) §3.5, §5.3
 
 Penanda di dokumen ini:
@@ -8,8 +8,8 @@ Penanda di dokumen ini:
 | Label | Arti |
 |---|---|
 | **[Spesifikasi]** | Ditetapkan pemilik proyek pada 12 November 2026 (tugas tambahan perkuliahan). **Tidak boleh diubah** tanpa persetujuan |
-| **[Usulan]** | Rancangan pengembang. Belum berlaku sampai disetujui |
-| **[Konfirmasi KL-xx]** | Butir terbuka; daftar lengkap di PRD §13.1 |
+| **[Usulan]** | Rancangan pengembang, **disetujui 12 November 2026**. Label tetap dipakai untuk membedakan asal rancangan dari [Spesifikasi] |
+| **[KL-xx]** | Keputusan terkait (12 November 2026); daftar lengkap di PRD §13.1 |
 
 Aturan bahasa untuk teks siswa (AGENTS.md §4) tetap berlaku untuk semua teks [Usulan]: kalimat ≤ 15 kata, istilah tetap, format `Rp100.000` dan koma desimal.
 

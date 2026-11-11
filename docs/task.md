@@ -1,6 +1,6 @@
 # Task — MathSave
 
-Versi: 0.2 (12 November 2026: tambahan F14 di §8, menunggu persetujuan) · Acuan: [PRD.md](PRD.md) · [design.md](design.md) · [architecture.md](architecture.md)
+Versi: 0.2 (12 November 2026: tambahan F14 di §8, disetujui) · Acuan: [PRD.md](PRD.md) · [design.md](design.md) · [architecture.md](architecture.md)
 
 Status: `[x]` selesai · `[~]` berjalan / menunggu persetujuan · `[ ]` belum.
 Prioritas: P1 wajib · P2 penting · P3 opsional (sama dengan PRD §9).
@@ -30,7 +30,7 @@ Rencana waktu: sekitar 8 minggu, dihitung **sejak dokumentasi disetujui**.
 | D-05 | Teks pembahasan D1–D6 dan petunjuk 4 tingkat per soal | P1 | D-04 | Setiap soal memiliki petunjuk dan pembahasan | [x] |
 | D-06 | Arsitektur dan API | P1 | D-01 | architecture.md dan api.md disetujui; K-01 sampai K-05 terjawab | [x] |
 | D-07 | Validasi rancangan materi dan media oleh ahli (dosen/guru) | P2 | D-03, D-04 | Lembar penilaian dan revisi | [ ] |
-| D-08 | Rancangan F14 Latihan Literasi Matematis dan Evaluasi (rincian di §8) | P1 | Persyaratan 12 November 2026 | [D-08](konten/D-08_literasi_matematis.md) + dokumen terkait disetujui | [~] menunggu persetujuan |
+| D-08 | Rancangan F14 Latihan Literasi Matematis dan Evaluasi (rincian di §8) | P1 | Persyaratan 12 November 2026 | [D-08](konten/D-08_literasi_matematis.md) + dokumen terkait disetujui | [x] disetujui 12 November 2026 |
 
 ## 3. Development
 
@@ -115,15 +115,15 @@ Jalur kritis: **A-05 → D-03 → D-04 → D-05 → DV-10 → DV-11/12 → T-06.
 ## 8. Fitur F14 Latihan Literasi Matematis dan Evaluasi
 
 Ditambahkan 12 November 2026 ([PRD](PRD.md) §8.3–8.6, §13.1 · [D-08](konten/D-08_literasi_matematis.md) · [design.md](design.md) §17 · [architecture.md](architecture.md) §10 · [api.md](api.md) §3.5–3.7, §4.1, §5.3).
-**Coding F14 belum boleh dimulai** sampai LM-01 selesai. Status DV-01 sampai DV-07 tidak berubah.
+Rancangan disetujui 12 November 2026. **Coding F14 dimulai setelah pemilik proyek memberi perintah.** Langkah berikutnya: LM-03 (teks bantuan dan pembahasan). Status DV-01 sampai DV-07 tidak berubah.
 
 ### 8.1 Perencanaan
 
 | ID | Tugas | Prio | Bergantung | Kriteria selesai | Status |
 |---|---|---|---|---|---|
-| D-08 | Rancangan F14: soal dan kunci [Spesifikasi], alur tahap, rubrik, umpan balik, tampilan, data [Usulan] | P1 | – | Dokumen D-08 + pembaruan PRD, design, architecture, api | [~] menunggu persetujuan |
-| LM-01 | Keputusan pemilik proyek atas KL-01 sampai KL-15 | P1 | D-08 | Keputusan bertanggal di PRD §13.1 | [ ] |
-| LM-02 | Finalisasi rubrik dan pilihan jawaban sesuai keputusan LM-01 | P1 | LM-01 | D-08 §3–5 berstatus disetujui | [ ] |
+| D-08 | Rancangan F14: soal dan kunci [Spesifikasi], alur tahap, rubrik, umpan balik, tampilan, data [Usulan] | P1 | – | Dokumen D-08 + pembaruan PRD, design, architecture, api | [x] disetujui 12 November 2026 |
+| LM-01 | Keputusan pemilik proyek atas KL-01 sampai KL-15 | P1 | D-08 | Keputusan bertanggal di PRD §13.1 | [x] semua usulan disetujui 12 November 2026 |
+| LM-02 | Finalisasi rubrik dan pilihan jawaban sesuai keputusan LM-01 | P1 | LM-01 | D-08 §3–5 berstatus disetujui | [x] 12 November 2026 (rubrik dan pilihan sesuai usulan, tanpa perubahan) |
 | LM-03 | Menulis teks bantuan (23 tahap × 2 tingkat) dan pembahasan lengkap per tahap | P1 | LM-02 | Semua tahap memiliki bantuan dan pembahasan; kalimat ≤ 15 kata | [ ] |
 | LM-04 | Validasi soal dan rubrik oleh dosen/ahli (bagian dari D-07) | P2 | LM-02 | Lembar penilaian dan catatan revisi | [ ] |
 

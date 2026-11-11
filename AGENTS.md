@@ -22,7 +22,7 @@ Sumber kebenaran:
 
 - Dokumentasi disetujui pada 11 November 2026 (task.md A-05, D-01, D-02, D-06). Coding hanya dimulai setelah pemilik proyek memberi perintah untuk memulai Development.
 - Keputusan K-01 sampai K-10 ada di PRD §13. Butir bertanda **[Konfirmasi]** tanpa nomor belum diputuskan; jangan menganggapnya sudah disepakati.
-- **F14 Latihan Literasi Matematis (12 November 2026):** soal, kunci, indikator, dan bobot di PRD §8.3–8.5 adalah [Spesifikasi] dan tidak boleh diubah. Rancangan lainnya ([Usulan], KL-01 sampai KL-15 di PRD §13.1) belum disetujui. Jangan coding F14 sebelum task.md LM-01 selesai.
+- **F14 Latihan Literasi Matematis (12 November 2026):** soal, kunci, indikator, dan bobot di PRD §8.3–8.5 adalah [Spesifikasi] dan tidak boleh diubah. Rancangan lainnya ([Usulan], KL-01 sampai KL-15 di PRD §13.1) disetujui 12 November 2026. Coding F14 dimulai setelah pemilik proyek memberi perintah.
 
 ## 3. Aturan Data Penelitian
 

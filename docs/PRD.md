@@ -3,7 +3,7 @@
 **Product Requirements Document**
 Versi: 0.2 · Tahap ADDIE: Analysis → Design
 
-Riwayat: 0.1 disetujui 11 November 2026. **0.2 (12 November 2026, menunggu persetujuan):** penambahan persyaratan Mathematical Literacy dan fitur F14 Latihan Literasi Matematis dan Evaluasi (§3, §8.1–8.6, §9, §10, §12, §13.1).
+Riwayat: 0.1 disetujui 11 November 2026. **0.2 (disetujui 12 November 2026):** penambahan persyaratan Mathematical Literacy dan fitur F14 Latihan Literasi Matematis dan Evaluasi (§3, §8.1–8.6, §9, §10, §12, §13.1).
 
 Dokumen terkait: [design.md](design.md) · [architecture.md](architecture.md) · [api.md](api.md) · [task.md](task.md) · [Catatan pemeriksaan wawancara](01_Analisis_Kebutuhan_MathSave.md)
 
@@ -306,7 +306,7 @@ Aspek yang dinilai **[Spesifikasi]**: ketepatan mengidentifikasi informasi, mene
 
 Hasil evaluasi menampilkan **[Spesifikasi]**: skor setiap indikator; total skor dari 24; pembahasan langkah demi langkah; bagian yang sudah benar dan yang perlu diperbaiki; saran materi untuk dipelajari kembali. Tidak hanya benar/salah. Bahasa sederhana, tampilan tidak padat, penjelasan bertahap.
 
-**[Usulan]** Isi setiap tahap, kriteria skor 0/1/2, penilaian konsekuen, pengecoh, dan umpan balik ada di [D-08](konten/D-08_literasi_matematis.md) §3–8. Bagian ini belum berlaku sampai disetujui (KL-04, KL-05).
+**[Usulan]** Isi setiap tahap, kriteria skor 0/1/2, penilaian konsekuen, pengecoh, dan umpan balik ada di [D-08](konten/D-08_literasi_matematis.md) §3–8. Disetujui 12 November 2026 (KL-04, KL-05).
 
 ### 8.6 Kaitan F14 dengan Cognitive Load Theory dan wawancara
 
@@ -347,9 +347,9 @@ Kriteria prioritas:
 | F11 | Petunjuk Bertingkat (Fading Hints) | P1 | H-5, T17 | 4 tingkat; berkurang per level |
 | F12 | Contoh Bertahap (pengganti video) | P1 | T17, T20, T21, T22 | Keputusan 11 November 2026: video tidak dibuat |
 | F13 | Progres Belajar | P2 | [Spesifikasi], KA2 | Versi sederhana: status submateri + hasil per level. Ditambah riwayat hasil F14 (12 November 2026) |
-| F14 | Latihan Literasi Matematis dan Evaluasi | P1 **[Konfirmasi KL-01]** | [Spesifikasi] 12 November 2026; T2, T9, T16, T17, T18 | 4 soal (§8.4), 23 tahap, skor maks. 6 per indikator dan 24 total; hasil evaluasi, pembahasan, saran materi; hasil disimpan dan terhubung ke progres |
+| F14 | Latihan Literasi Matematis dan Evaluasi | P1 **[Keputusan KL-01]** | [Spesifikasi] 12 November 2026; T2, T9, T16, T17, T18 | 4 soal (§8.4), 23 tahap, skor maks. 6 per indikator dan 24 total; hasil evaluasi, pembahasan, saran materi; hasil disimpan dan terhubung ke progres |
 
-**Di luar ruang lingkup:** persentase diskon, rabat, bruto/neto/tara, pajak, bunga; soal kebalikan (mencari HJ dari persentase) **kecuali Soal 2 F14 [Konfirmasi KL-02]**; video; halaman guru/admin **[Keputusan K-08]**; mode luring.
+**Di luar ruang lingkup:** persentase diskon, rabat, bruto/neto/tara, pajak, bunga; soal kebalikan (mencari HJ dari persentase) **kecuali Soal 2 F14 [Keputusan KL-02]**; video; halaman guru/admin **[Keputusan K-08]**; mode luring.
 
 ## 10. Kebutuhan Fungsional
 
@@ -413,7 +413,7 @@ Kriteria uji kualitatif mengikuti kolom "Cara menguji fitur" pada Matriks H doku
 | KK8 | Siswa memahami hasil evaluasi | F14 | Siswa uji membaca hasil, lalu ditanya: "Bagian mana yang perlu kamu perbaiki?" | Siswa dapat menyebut minimal satu tahap dan materi yang disarankan **[Usulan]** |
 | KK9 | Pengerjaan F14 nyaman di HP | F14 | Uji perangkat 360 px | Satu tahap tampil tanpa gulir horizontal; latihan dapat diselesaikan tanpa kehilangan jawaban **[Usulan]** |
 
-KK7–KK9 ditambahkan 12 November 2026 dan masih menunggu persetujuan.
+KK7–KK9 ditambahkan dan disetujui 12 November 2026.
 
 ## 13. Keputusan Teknis
 
@@ -432,11 +432,11 @@ Semua butir di bawah ini **disetujui pemilik proyek pada 11 November 2026** sesu
 | K-09 | Target angka kriteria keberhasilan | Seperti Bagian 12 |
 | K-10 | Memindahkan file wawancara ke folder `referensi/` | Ya, agar sesuai struktur proyek |
 
-### 13.1 Konfirmasi terbuka: F14 Latihan Literasi Matematis (12 November 2026)
+### 13.1 Keputusan F14 Latihan Literasi Matematis (12 November 2026)
 
-Semua butir di bawah ini **belum diputuskan**. Kolom "Usulan" adalah rekomendasi pengembang. Rinciannya ada di [D-08](konten/D-08_literasi_matematis.md), [design.md](design.md) §17, dan [architecture.md](architecture.md) §10.
+Semua butir di bawah ini **disetujui pemilik proyek pada 12 November 2026** sesuai usulan pengembang ("semua setuju"). Rinciannya ada di [D-08](konten/D-08_literasi_matematis.md), [design.md](design.md) §17, dan [architecture.md](architecture.md) §10.
 
-| ID | Hal | Usulan pengembang |
+| ID | Hal | Keputusan (12 November 2026) |
 |---|---|---|
 | KL-01 | Prioritas F14 | P1, karena merupakan persyaratan tugas perkuliahan |
 | KL-02 | Soal 2 adalah soal kebalikan (mencari HJ dari persen). Jenis soal ini sebelumnya di luar ruang lingkup dan tidak ada di M0–M6 | Masuk ruang lingkup **hanya untuk F14**. M0–M6 tidak diubah. Dukungan lewat bantuan tingkat 2 ("HJ = HB + untung") dan pembahasan Soal 2 |
@@ -451,5 +451,5 @@ Semua butir di bawah ini **belum diputuskan**. Kolom "Usulan" adalah rekomendasi
 | KL-11 | Pesan hasil | Pesan per rentang skor indikator (D-08 §8), tanpa kategori nilai atau peringkat |
 | KL-12 | Nama indikator di layar siswa | Nama lengkap bahasa Inggris + keterangan singkat bahasa Indonesia (D-08 §1) |
 | KL-13 | Perubahan skema database (AGENTS.md §10.6) | 2 tabel baru + 1 fungsi RPC dalam migrasi baru `002_literasi.sql` (api.md §4.1) |
-| KL-14 | Persyaratan menyebut "siswa SMP kelas VII" | Ditafsirkan sebagai tingkat bahasa (setara Kelas VII). Target pengguna tetap Kelas VIII–IX (§4, AGENTS.md §10.2). Perlu ditegaskan |
+| KL-14 | Persyaratan menyebut "siswa SMP kelas VII" | Ditafsirkan sebagai tingkat bahasa (setara Kelas VII). Target pengguna tetap Kelas VIII–IX (§4, AGENTS.md §10.2) |
 | KL-15 | Penyimpanan pembahasan | Disimpan sebagai kode umpan balik per tahap; teks pembahasan dibuat ulang dari konten statis dengan versi rubrik yang sama |

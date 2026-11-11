@@ -2,7 +2,7 @@
 
 Versi: 0.2 · Acuan kebutuhan: [PRD.md](PRD.md)
 
-Riwayat: 0.1 disetujui 11 November 2026. **0.2 (12 November 2026, menunggu persetujuan):** F14 Latihan Literasi Matematis dan Evaluasi: halaman P12–P14, alur, wireframe, komponen (§2, §3, §4, §5, §17).
+Riwayat: 0.1 disetujui 11 November 2026. **0.2 (disetujui 12 November 2026):** F14 Latihan Literasi Matematis dan Evaluasi: halaman P12–P14, alur, wireframe, komponen (§2, §3, §4, §5, §17).
 
 ID fitur (F01–F14), kebutuhan (KP, KM, KT, KA), dan temuan (T1–T23) mengikuti PRD.
 
@@ -452,7 +452,7 @@ Kartu "mengapa dibagi harga beli" (M5) memakai penjelasan konseptual sederhana: 
 
 ## 17. Latihan Literasi Matematis dan Evaluasi (F14)
 
-Ditambahkan 12 November 2026. Soal, kunci, indikator, dan bobot adalah **[Spesifikasi]** ([PRD](PRD.md) §8.3–8.5). Semua rancangan tampilan di bagian ini adalah **[Usulan]** dan menunggu persetujuan. Isi tahap, rubrik, dan umpan balik ada di [D-08](konten/D-08_literasi_matematis.md).
+Ditambahkan 12 November 2026. Soal, kunci, indikator, dan bobot adalah **[Spesifikasi]** ([PRD](PRD.md) §8.3–8.5). Semua rancangan tampilan di bagian ini adalah **[Usulan]** yang **disetujui 12 November 2026** (PRD §13.1). Isi tahap, rubrik, dan umpan balik ada di [D-08](konten/D-08_literasi_matematis.md).
 
 ### 17.1 Posisi dalam aplikasi
 
