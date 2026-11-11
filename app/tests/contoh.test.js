@@ -11,7 +11,7 @@ const pemb = JSON.parse(baca('../public/data/pembahasan.json'));
 const D03 = baca('../../docs/konten/D-03_materi.md');
 const D05 = baca('../../docs/konten/D-05_petunjuk_pembahasan.md');
 const contoh = (id) => materi.contoh.find((c) => c.id === id);
-const data = { templat: pemb.templat, petunjukLevel2: pemb.petunjukLevel2, kartuRumus: materi.kartuRumus };
+const data = { ...pemb, kartuRumus: materi.kartuRumus };
 const bagianD03 = (id) => D03.split(`### ${id} — `)[1].split(/\n### |\n---/)[0];
 
 describe('materi.json: Contoh Bertahap sesuai D-03 §2', () => {

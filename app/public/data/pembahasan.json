@@ -1,6 +1,6 @@
 {
-  "versi": 1,
-  "catatan": "Templat pembahasan D-05 §3.3 dan petunjuk Level 2 D-05 §2.2 (disetujui 11 November 2026). Variabel templat: D-05 §1.",
+  "versi": 2,
+  "catatan": "Templat pembahasan D-05 §3.3, petunjuk D-05 §2.1–2.3 (disetujui 11 November 2026). Variabel templat: D-05 §1. Sel D-05 yang memuat dua varian (Level 1 / Level 2–3) dipisah menjadi dua templat tanpa mengubah kalimatnya.",
   "templat": {
     "D1": [
       "Kamu menulis {jawab}. Sepertinya kamu membagi dengan **harga jual** ({HJ}).",
@@ -38,5 +38,42 @@
     "**% {Jenis} = {Jenis} ÷ Harga Beli × 100%.** Ingat, pembaginya selalu harga beli.",
     "{Jenis}nya {selisih}. Hitung {selisih} ÷ {HB} dulu. Coret nol yang sama di atas dan di bawah.",
     "{selisih} ÷ {HB} = **{pecahan}**. Sekarang kalikan {pecahan} dengan 100%."
+  ],
+  "templatKhusus": {
+    "D5_tandai": [
+      "Harga beli dan harga jual yang kamu tandai belum tepat.",
+      "Harga saat **membeli** adalah harga beli. Harga saat **menjual** adalah harga jual.",
+      "Cari kata kunci di soal. \"{kata_HB}\" menunjuk harga beli. \"{kata_HJ}\" menunjuk harga jual."
+    ],
+    "D6_ditanya": [
+      "Jawabanmu belum tepat di Langkah 1.",
+      "Tandai juga kalimat yang ditanyakan.",
+      "Kalimat tanya biasanya ada di akhir soal."
+    ],
+    "L7_level1_untung": [
+      "Hitung balikmu belum cocok.",
+      "Harga beli ditambah untung (atau dikurangi rugi) harus sama dengan harga jual.",
+      "{HB} + {selisih} = …"
+    ],
+    "L7_level1_rugi": [
+      "Hitung balikmu belum cocok.",
+      "Harga beli ditambah untung (atau dikurangi rugi) harus sama dengan harga jual.",
+      "{HB} − {selisih} = …"
+    ],
+    "L7_level23": [
+      "Hitung balikmu belum cocok.",
+      "{persen} dari harga beli harus sama dengan {jenis}.",
+      "{persen} × {HB} = …"
+    ]
+  },
+  "petunjukLevel1": [
+    "Lihat label pada gambar. Label **Beli** adalah harga beli. Label **Jual** adalah harga jual.",
+    "Bandingkan harga jual dengan harga beli dulu. Jika untung: **HJ − HB**. Jika rugi: **HB − HJ**.",
+    "{HJ} {lebih} dari {HB}, jadi pedagang **{jenis}**. Hitung {a} − {b}.",
+    "Hitung dalam ribuan saja: {a_rb} − {b_rb} = … Lalu tambahkan \"ribu\" di belakangnya."
+  ],
+  "petunjukLevel3": [
+    "Cari kata kunci di soal. \"{kata_HB}\" menunjuk harga beli. \"{kata_HJ}\" menunjuk harga jual.",
+    "**% {Jenis} = {Jenis} ÷ Harga Beli × 100%.** Ingat, pembaginya selalu harga beli."
   ]
 }

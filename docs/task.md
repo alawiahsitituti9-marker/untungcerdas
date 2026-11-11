@@ -47,7 +47,7 @@ Hanya dimulai setelah A-05, D-01, D-02, dan D-06 disetujui.
 | DV-07 | F03 Materi + F04 Kartu Rumus + gambar 2D berlabel harga | P1 | DV-06, D-03 | KFN-04 sampai KFN-06 | 3 · ✅ selesai 11 November 2026 (kartu M0–M6 + cek cepat, Kartu Rumus halaman dan lembar bawah; status selesai materi disimpan di DV-13) |
 | DV-08 | F12 Contoh Bertahap (penuh dan sebagian) | P1 | DV-07 | KFN-15 | 3 · ✅ selesai 12 November 2026 (C1–C4 di `/contoh/:id`; templat pembahasan D-05 di `pembahasan.json`) |
 | DV-09 | F06 Penanda Informasi (`TeksBertanda`) | P1 | DV-04 | KFN-08 | 4 · ✅ selesai 11 November 2026 (pratinjau di /latihan/tandai; dipasang ke halaman Soal di DV-10) |
-| DV-10 | F05 Panduan Langkah + F09 Latihan Level 1–4 | P1 | DV-09, D-04 | KFN-07, KFN-11 | 4–5 |
+| DV-10 | F05 Panduan Langkah + F09 Latihan Level 1–4 | P1 | DV-09, D-04 | KFN-07, KFN-11 | 4–5 · 🔶 bagian A dibuat 12 November 2026 (soal.json 23 soal; Level 1–3 dengan panduan dan pemeriksaan per langkah; kunci level lokal) selesai dan disetujui. Bagian B: Level 4 |
 | DV-11 | F11 Petunjuk Bertingkat + fading | P1 | DV-10, D-05 | KFN-14 | 5 |
 | DV-12 | F10 Pembahasan | P1 | DV-10, D-05 | KFN-12, KFN-13 | 5 |
 | DV-13 | Penyimpanan percobaan + antrean luring | P1 | DV-10, DV-02 | KFN-16; data masuk setelah koneksi kembali | 5 |

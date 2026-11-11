@@ -7,7 +7,7 @@ import DaftarMateri from './halaman/DaftarMateri.jsx';
 import PilihLevel from './halaman/PilihLevel.jsx';
 import Progres from './halaman/Progres.jsx';
 import Simulasi from './halaman/Simulasi.jsx';
-import CobaPenanda from './halaman/CobaPenanda.jsx';
+import Soal from './halaman/Soal.jsx';
 import HalamanKartuMateri from './halaman/KartuMateri.jsx';
 import KartuRumus from './halaman/KartuRumus.jsx';
 import LatihanLiterasi from './halaman/LatihanLiterasi.jsx';
@@ -56,7 +56,7 @@ export default function App() {
           <Route path="literasi/kerjakan" element={<KerjakanLiterasi />} />
           <Route path="literasi/hasil" element={<HasilLiterasi />} />
           <Route path="simulasi" element={<Simulasi />} />
-          <Route path="latihan/tandai" element={<CobaPenanda />} />
+          <Route path="latihan/level/:level" element={<Soal />} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

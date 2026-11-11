@@ -714,3 +714,12 @@
 .langkah-contoh__judul { font-weight: 700; margin-bottom: 4px; }
 .langkah-contoh .rumus-baris { background: var(--permukaan); }
 .isian-contoh .umpan-balik p { margin-bottom: 6px; }
+
+/* ---------- Soal Latihan (P09) ---------- */
+.kartu-harga {
+  display: grid;
+  gap: 8px;
+  margin: 0 0 12px;
+}
+.kartu-harga__nama { font-weight: 700; font-size: var(--ukuran-judul); }
+.bagian-langkah { margin-bottom: 12px; }

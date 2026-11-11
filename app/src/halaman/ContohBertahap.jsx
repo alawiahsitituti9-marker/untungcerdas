@@ -149,7 +149,7 @@ export default function ContohBertahap() {
 
   useEffect(() => {
     Promise.all([muatMateri(), muatPembahasan()])
-      .then(([m, p]) => setData({ contoh: m.contoh, kartuRumus: m.kartuRumus, templat: p.templat, petunjukLevel2: p.petunjukLevel2 }))
+      .then(([m, p]) => setData({ ...p, contoh: m.contoh, kartuRumus: m.kartuRumus }))
       .catch((e) => setGalat(e.message));
   }, []);
 
