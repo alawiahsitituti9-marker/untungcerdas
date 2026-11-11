@@ -1,0 +1,42 @@
+{
+  "versi": 1,
+  "catatan": "Templat pembahasan D-05 §3.3 dan petunjuk Level 2 D-05 §2.2 (disetujui 11 November 2026). Variabel templat: D-05 §1.",
+  "templat": {
+    "D1": [
+      "Kamu menulis {jawab}. Sepertinya kamu membagi dengan **harga jual** ({HJ}).",
+      "Persen {jenis} dibandingkan dengan **modal**, yaitu harga beli. Jadi pembaginya harga beli.",
+      "Coba hitung {selisih} ÷ **{HB}** × 100%."
+    ],
+    "D2": [
+      "Kamu menulis {jawab}. Itu baru hasil pembagian, belum persen.",
+      "Persen artinya per seratus. Hasil bagi harus dikalikan 100%.",
+      "Hitung {jawab} × 100% = …"
+    ],
+    "D3": [
+      "Kamu memilih **{jenis_siswa}**. Coba bandingkan lagi kedua harga.",
+      "Harga jual lebih besar dari harga beli → **untung** ▲. Harga jual lebih kecil → **rugi** ▼.",
+      "Harga jual {HJ}. Harga beli {HB}. Mana yang lebih besar?"
+    ],
+    "D4": [
+      "Besar {jenis} belum tepat. Kamu menulis {jawab}.",
+      "Untung = HJ − HB. Rugi = HB − HJ. Yang besar dikurangi yang kecil.",
+      "Hitung {a} − {b}. Dalam ribuan: {a_rb} − {b_rb} = …"
+    ],
+    "D5": [
+      "Harga beli dan harga jual yang kamu tulis belum tepat.",
+      "Harga saat **membeli** adalah harga beli. Harga saat **menjual** adalah harga jual.",
+      "Baca lagi soalnya. Cari kata \"membeli\" dan \"dijual\"."
+    ],
+    "D6": [
+      "Jawabanmu belum tepat di **Langkah {n}**.",
+      "@kartuRumus",
+      "@petunjuk3"
+    ]
+  },
+  "petunjukLevel2": [
+    "Harga beli {HB}. Harga jual {HJ}. Bandingkan keduanya untuk tahu untung atau rugi.",
+    "**% {Jenis} = {Jenis} ÷ Harga Beli × 100%.** Ingat, pembaginya selalu harga beli.",
+    "{Jenis}nya {selisih}. Hitung {selisih} ÷ {HB} dulu. Coret nol yang sama di atas dan di bawah.",
+    "{selisih} ÷ {HB} = **{pecahan}**. Sekarang kalikan {pecahan} dengan 100%."
+  ]
+}

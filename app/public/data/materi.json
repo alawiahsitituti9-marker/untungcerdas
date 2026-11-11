@@ -1,6 +1,6 @@
 {
-  "versi": 2,
-  "catatan": "Teks kartu dan cek cepat dari docs/konten/D-03_materi.md; umpan balik cek cepat dari D-05 §6 (disetujui 11 November 2026). Kartu Rumus dari design.md §6 P05. Pecahan ditulis { \"p\": pembilang, \"q\": penyebut }.",
+  "versi": 3,
+  "catatan": "Teks kartu dan cek cepat dari docs/konten/D-03_materi.md; umpan balik cek cepat dari D-05 §6 (disetujui 11 November 2026). Kartu Rumus dari design.md §6 P05. Contoh Bertahap C1–C4 dari D-03 §2 (DV-08). Pecahan ditulis { \"p\": pembilang, \"q\": penyebut }.",
   "materi": [
     {
       "id": "M0",
@@ -158,6 +158,7 @@
     },
     {
       "id": "M5",
+      "contoh": "C1",
       "judul": "Persentase Untung",
       "ringkas": "Untung ÷ HB × 100%",
       "kartu": [
@@ -204,6 +205,7 @@
     },
     {
       "id": "M6",
+      "contoh": "C2",
       "judul": "Persentase Rugi",
       "ringkas": "Rugi ÷ HB × 100%",
       "kartu": [
@@ -240,6 +242,494 @@
           { "teks": "20%", "umpan": "Rugi Rp20.000 bukan 20%. Hitung 20.000 ÷ 80.000 × 100%." },
           { "teks": "75%", "umpan": "75% adalah harga jual dibagi harga beli. Hitung dulu ruginya: 80.000 − 60.000." }
         ]
+      }
+    }
+  ],
+  "contoh": [
+    {
+      "id": "C1",
+      "judul": "Persentase untung",
+      "setelah": "M5",
+      "catatan": "Soal pemicu dari dokumen wawancara (Bagian C).",
+      "gambar": {
+        "barang": "baju",
+        "hb": 100000,
+        "hj": 120000
+      },
+      "segmen": [
+        {
+          "teks": "Seorang pedagang membeli sebuah baju dengan harga "
+        },
+        {
+          "teks": "Rp100.000",
+          "peran": "HB"
+        },
+        {
+          "teks": ". Baju itu dijual lagi dengan harga "
+        },
+        {
+          "teks": "Rp120.000",
+          "peran": "HJ"
+        },
+        {
+          "teks": ". "
+        },
+        {
+          "teks": "Untung atau rugi? Berapa persen?",
+          "peran": "DITANYA"
+        }
+      ],
+      "langkah": [
+        {
+          "judul": "1. Tandai",
+          "teks": "Cari kata \"membeli\" dan \"dijual\". Lalu cari yang ditanyakan.",
+          "hasil": [
+            {
+              "teks": "Rp100.000 = HB · Rp120.000 = HJ · Ditanya: untung/rugi dan persennya"
+            }
+          ]
+        },
+        {
+          "judul": "2. HB dan HJ",
+          "teks": "Tulis harga beli dan harga jual.",
+          "hasil": [
+            {
+              "teks": "HB = Rp100.000 · HJ = Rp120.000"
+            }
+          ]
+        },
+        {
+          "judul": "3. Untung atau rugi?",
+          "teks": "Harga jual lebih besar dari harga beli.",
+          "hasil": [
+            {
+              "teks": "▲ **Untung**",
+              "tanda": "untung"
+            }
+          ]
+        },
+        {
+          "judul": "4. Besar untung",
+          "teks": "Harga jual dikurangi harga beli.",
+          "hasil": [
+            {
+              "teks": "120.000 − 100.000 = **Rp20.000**",
+              "tanda": "untung"
+            }
+          ]
+        },
+        {
+          "judul": "5. Pilih rumus",
+          "teks": "Persentase untung dibagi harga beli.",
+          "hasil": [
+            {
+              "teks": "% Untung = Untung ÷ HB × 100%",
+              "tanda": "untung"
+            }
+          ]
+        },
+        {
+          "judul": "6. Hitung",
+          "teks": "Masukkan angkanya.",
+          "hasil": [
+            {
+              "rantai": [
+                {
+                  "p": 20000,
+                  "q": 100000,
+                  "ket": "harga beli"
+                },
+                "× 100% = **20%**"
+              ]
+            }
+          ]
+        },
+        {
+          "judul": "7. Periksa",
+          "teks": "Hitung balik: 20% dari harga beli. Hasilnya harus sama dengan untung.",
+          "hasil": [
+            {
+              "teks": "20% × 100.000 = 20.000 ✓"
+            }
+          ]
+        }
+      ],
+      "berikut": {
+        "teks": "Lanjut: M6 Persentase Rugi",
+        "tautan": "/materi/M6"
+      }
+    },
+    {
+      "id": "C2",
+      "judul": "Persentase rugi",
+      "setelah": "M6",
+      "gambar": {
+        "barang": "sepeda",
+        "hb": 600000,
+        "hj": 450000
+      },
+      "segmen": [
+        {
+          "teks": "Kak Dina membeli sepeda bekas seharga "
+        },
+        {
+          "teks": "Rp600.000",
+          "peran": "HB"
+        },
+        {
+          "teks": ". Karena butuh uang, sepeda itu dijual "
+        },
+        {
+          "teks": "Rp450.000",
+          "peran": "HJ"
+        },
+        {
+          "teks": ". "
+        },
+        {
+          "teks": "Berapa persen kerugian Kak Dina?",
+          "peran": "DITANYA"
+        }
+      ],
+      "langkah": [
+        {
+          "judul": "1. Tandai",
+          "teks": "Cari harga saat membeli dan saat menjual.",
+          "hasil": [
+            {
+              "teks": "Rp600.000 = HB · Rp450.000 = HJ · Ditanya: persen rugi"
+            }
+          ]
+        },
+        {
+          "judul": "2. HB dan HJ",
+          "teks": "Tulis keduanya.",
+          "hasil": [
+            {
+              "teks": "HB = Rp600.000 · HJ = Rp450.000"
+            }
+          ]
+        },
+        {
+          "judul": "3. Untung atau rugi?",
+          "teks": "Harga jual lebih kecil dari harga beli.",
+          "hasil": [
+            {
+              "teks": "▼ **Rugi**",
+              "tanda": "rugi"
+            }
+          ]
+        },
+        {
+          "judul": "4. Besar rugi",
+          "teks": "Harga beli dikurangi harga jual.",
+          "hasil": [
+            {
+              "teks": "600.000 − 450.000 = **Rp150.000**",
+              "tanda": "rugi"
+            }
+          ]
+        },
+        {
+          "judul": "5. Pilih rumus",
+          "teks": "Persentase rugi juga dibagi harga beli.",
+          "hasil": [
+            {
+              "teks": "% Rugi = Rugi ÷ HB × 100%",
+              "tanda": "rugi"
+            }
+          ]
+        },
+        {
+          "judul": "6. Hitung",
+          "teks": "Coret nol yang sama, lalu sederhanakan.",
+          "hasil": [
+            {
+              "rantai": [
+                {
+                  "p": 150000,
+                  "q": 600000,
+                  "ket": "harga beli"
+                },
+                "× 100% =",
+                {
+                  "p": 1,
+                  "q": 4
+                },
+                "× 100% = **25%**"
+              ]
+            }
+          ]
+        },
+        {
+          "judul": "7. Periksa",
+          "teks": "Hitung balik 25% dari harga beli.",
+          "hasil": [
+            {
+              "teks": "25% × 600.000 = 150.000 ✓"
+            }
+          ]
+        }
+      ],
+      "berikut": {
+        "teks": "Lanjut: C3 Soal cerita dengan perkalian",
+        "tautan": "/contoh/C3"
+      }
+    },
+    {
+      "id": "C3",
+      "judul": "Soal cerita dengan perkalian",
+      "setelah": "C2",
+      "gambar": {
+        "barang": "jeruk",
+        "hb": 150000,
+        "hj": 18000,
+        "ketHb": "(10 kg)",
+        "ketHj": "/kg"
+      },
+      "segmen": [
+        {
+          "teks": "Pak Joko membeli 10 kg jeruk seharga "
+        },
+        {
+          "teks": "Rp150.000",
+          "peran": "HB"
+        },
+        {
+          "teks": ". Semua jeruk laku dijual "
+        },
+        {
+          "teks": "Rp18.000",
+          "peran": "HJ"
+        },
+        {
+          "teks": " per kg. "
+        },
+        {
+          "teks": "Berapa persen keuntungan Pak Joko?",
+          "peran": "DITANYA"
+        }
+      ],
+      "langkah": [
+        {
+          "judul": "1. Tandai",
+          "teks": "Perhatikan: harga jual ditulis **per kg**.",
+          "hasil": [
+            {
+              "teks": "Rp150.000 = HB (10 kg) · Rp18.000/kg = harga jual per kg · Ditanya: persen untung"
+            }
+          ]
+        },
+        {
+          "judul": "2. HB dan HJ",
+          "teks": "Harga jual seluruhnya = harga per kg × banyak kg.",
+          "hasil": [
+            {
+              "teks": "HB = Rp150.000 · HJ = 18.000 × 10 = **Rp180.000**"
+            }
+          ]
+        },
+        {
+          "judul": "3. Untung atau rugi?",
+          "teks": "Rp180.000 lebih besar dari Rp150.000.",
+          "hasil": [
+            {
+              "teks": "▲ **Untung**",
+              "tanda": "untung"
+            }
+          ]
+        },
+        {
+          "judul": "4. Besar untung",
+          "teks": "Harga jual dikurangi harga beli.",
+          "hasil": [
+            {
+              "teks": "180.000 − 150.000 = **Rp30.000**",
+              "tanda": "untung"
+            }
+          ]
+        },
+        {
+          "judul": "5. Pilih rumus",
+          "teks": "Dibagi harga beli.",
+          "hasil": [
+            {
+              "teks": "% Untung = Untung ÷ HB × 100%",
+              "tanda": "untung"
+            }
+          ]
+        },
+        {
+          "judul": "6. Hitung",
+          "teks": "Sederhanakan dulu.",
+          "hasil": [
+            {
+              "rantai": [
+                {
+                  "p": 30000,
+                  "q": 150000,
+                  "ket": "harga beli"
+                },
+                "× 100% =",
+                {
+                  "p": 1,
+                  "q": 5
+                },
+                "× 100% = **20%**"
+              ]
+            }
+          ]
+        },
+        {
+          "judul": "7. Periksa",
+          "teks": "Hitung balik.",
+          "hasil": [
+            {
+              "teks": "20% × 150.000 = 30.000 ✓"
+            }
+          ]
+        }
+      ],
+      "berikut": {
+        "teks": "Lanjut: Simulasi Jual Beli",
+        "tautan": "/simulasi"
+      }
+    },
+    {
+      "id": "C4",
+      "judul": "Contoh sebagian",
+      "sebagian": true,
+      "setelah": "sebelum Latihan Level 2",
+      "gambar": {
+        "barang": "payung",
+        "hb": 40000,
+        "hj": 50000
+      },
+      "hb": 40000,
+      "hj": 50000,
+      "segmen": [
+        {
+          "teks": "Bu Ani membeli payung seharga "
+        },
+        {
+          "teks": "Rp40.000",
+          "peran": "HB"
+        },
+        {
+          "teks": ". Payung itu dijual "
+        },
+        {
+          "teks": "Rp50.000",
+          "peran": "HJ"
+        },
+        {
+          "teks": ". "
+        },
+        {
+          "teks": "Berapa persen keuntungan Bu Ani?",
+          "peran": "DITANYA"
+        }
+      ],
+      "langkah": [
+        {
+          "judul": "1–2. HB dan HJ",
+          "hasil": [
+            {
+              "teks": "HB = Rp40.000 · HJ = Rp50.000"
+            }
+          ]
+        },
+        {
+          "judul": "3. Untung atau rugi?",
+          "hasil": [
+            {
+              "teks": "▲ Untung, karena HJ lebih besar dari HB",
+              "tanda": "untung"
+            }
+          ]
+        },
+        {
+          "judul": "4. Besar untung",
+          "no": 4,
+          "isian": {
+            "jenis": "rupiah",
+            "perintah": "Untung = 50.000 − 40.000 = …",
+            "kunci": 10000
+          },
+          "hasil": [
+            {
+              "teks": "50.000 − 40.000 = **Rp10.000**",
+              "tanda": "untung"
+            }
+          ]
+        },
+        {
+          "judul": "5. Pilih rumus",
+          "no": 5,
+          "isian": {
+            "jenis": "rumus",
+            "perintah": "Pilih rumus persentase untung.",
+            "pilihan": [
+              {
+                "teks": "Untung ÷ HB × 100%",
+                "nilai": "bagi_hb"
+              },
+              {
+                "teks": "Untung ÷ HJ × 100%",
+                "nilai": "bagi_hj"
+              },
+              {
+                "teks": "Untung × HB ÷ 100",
+                "nilai": "kali_hb"
+              }
+            ],
+            "kunci": "bagi_hb"
+          },
+          "hasil": [
+            {
+              "teks": "% Untung = Untung ÷ HB × 100%",
+              "tanda": "untung"
+            }
+          ]
+        },
+        {
+          "judul": "6. Hitung",
+          "no": 6,
+          "isian": {
+            "jenis": "persen",
+            "perintah": "10.000/40.000 × 100% = …",
+            "kunci": 25
+          },
+          "hasil": [
+            {
+              "rantai": [
+                {
+                  "p": 10000,
+                  "q": 40000,
+                  "ket": "harga beli"
+                },
+                "× 100% =",
+                {
+                  "p": 1,
+                  "q": 4
+                },
+                "× 100% = **25%**"
+              ]
+            }
+          ]
+        },
+        {
+          "judul": "7. Periksa",
+          "hasil": [
+            {
+              "teks": "25% × 40.000 = 10.000 ✓"
+            }
+          ]
+        }
+      ],
+      "berikut": {
+        "teks": "Ke Latihan",
+        "tautan": "/latihan"
       }
     }
   ],

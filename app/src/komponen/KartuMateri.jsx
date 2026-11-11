@@ -6,7 +6,7 @@ import LabelHarga from './LabelHarga.jsx';
 
 // Satu kartu materi: gambar opsional (maksimal satu, selalu berlabel harga) +
 // teks ≤ 3 kalimat + rumus terisi di bawah gambar transaksi yang sama (design.md §2, §7).
-function Gambar({ gambar }) {
+export function Gambar({ gambar }) {
   if (gambar.batang) {
     return (
       <figure className="gambar-batang" aria-label="Perbandingan harga beli dan harga jual">
@@ -18,7 +18,7 @@ function Gambar({ gambar }) {
       </figure>
     );
   }
-  return <BarangDuaDimensi gambar={gambar.barang} hb={gambar.hb} hj={gambar.hj} />;
+  return <BarangDuaDimensi gambar={gambar.barang} hb={gambar.hb} hj={gambar.hj} ketHb={gambar.ketHb} ketHj={gambar.ketHj} />;
 }
 
 export default function KartuMateri({ kartu }) {

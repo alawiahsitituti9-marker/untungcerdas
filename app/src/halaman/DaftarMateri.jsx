@@ -5,10 +5,16 @@ import { muatMateri } from '../layanan/konten.js';
 // P03 Daftar Materi (design.md §3, F03). Semua submateri bisa dibuka bebas (design.md §4).
 export default function DaftarMateri() {
   const [materi, setMateri] = useState(null);
+  const [contoh, setContoh] = useState([]);
   const [galat, setGalat] = useState('');
 
   useEffect(() => {
-    muatMateri().then((d) => setMateri(d.materi)).catch((e) => setGalat(e.message));
+    muatMateri()
+      .then((d) => {
+        setMateri(d.materi);
+        setContoh(d.contoh ?? []);
+      })
+      .catch((e) => setGalat(e.message));
   }, []);
 
   return (
@@ -31,6 +37,21 @@ export default function DaftarMateri() {
             </li>
           ))}
         </ul>
+      )}
+      {contoh.length > 0 && (
+        <>
+          <h2>Contoh Bertahap</h2>
+          <ul className="daftar">
+            {contoh.map((c) => (
+              <li key={c.id}>
+                <Link className="baris-daftar" to={`/contoh/${c.id}`}>
+                  <span>{c.id} {c.judul}</span>
+                  <span aria-hidden="true">›</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </>
       )}
       <ul className="daftar">
         <li><Link className="baris-daftar" to="/rumus">Kartu Rumus<span aria-hidden="true">›</span></Link></li>

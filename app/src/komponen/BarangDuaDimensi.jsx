@@ -16,6 +16,42 @@ const GAMBAR = {
       </>
     ),
   },
+  baju: {
+    nama: 'Baju',
+    isi: (
+      <path d="M34 14l-20 12 8 16 8-4v46h36V38l8 4 8-16-20-12c-2 6-8 10-14 10s-12-4-14-10z" fill="#1d4ed8" />
+    ),
+  },
+  sepeda: {
+    nama: 'Sepeda',
+    isi: (
+      <>
+        <circle cx="24" cy="62" r="16" fill="none" stroke="#334e68" strokeWidth="5" />
+        <circle cx="72" cy="62" r="16" fill="none" stroke="#334e68" strokeWidth="5" />
+        <path d="M24 62l16-26h24l8 26M40 36l12 26h-28M60 26h10" fill="none" stroke="#0f766e" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
+      </>
+    ),
+  },
+  jeruk: {
+    nama: 'Jeruk',
+    isi: (
+      <>
+        <circle cx="34" cy="60" r="20" fill="#f59e0b" />
+        <circle cx="62" cy="60" r="20" fill="#f59e0b" />
+        <circle cx="48" cy="38" r="20" fill="#fbbf24" />
+        <path d="M48 18c4-6 10-8 16-6-4 6-10 8-16 6z" fill="#15803d" />
+      </>
+    ),
+  },
+  payung: {
+    nama: 'Payung',
+    isi: (
+      <>
+        <path d="M10 46a38 34 0 0 1 76 0z" fill="#7c3aed" />
+        <path d="M48 46v30a8 8 0 0 1-16 0" fill="none" stroke="#334e68" strokeWidth="5" strokeLinecap="round" />
+      </>
+    ),
+  },
   sepatu: {
     nama: 'Sepatu',
     isi: (
@@ -28,7 +64,7 @@ const GAMBAR = {
   },
 };
 
-export default function BarangDuaDimensi({ hb, hj, gambar = 'tas' }) {
+export default function BarangDuaDimensi({ hb, hj, gambar = 'tas', ketHb, ketHj }) {
   const { nama, isi } = GAMBAR[gambar] ?? GAMBAR.tas;
   return (
     <figure className="barang" aria-label={`${nama}: ${hj != null ? 'harga beli dan harga jual' : 'harga beli'}`}>
@@ -36,8 +72,8 @@ export default function BarangDuaDimensi({ hb, hj, gambar = 'tas' }) {
         {isi}
       </svg>
       <figcaption className="barang__label">
-        <LabelHarga jenis="hb" nilai={hb} />
-        {hj != null && <LabelHarga jenis="hj" nilai={hj} />}
+        <LabelHarga jenis="hb" nilai={hb} keterangan={ketHb} />
+        {hj != null && <LabelHarga jenis="hj" nilai={hj} keterangan={ketHj} />}
       </figcaption>
     </figure>
   );

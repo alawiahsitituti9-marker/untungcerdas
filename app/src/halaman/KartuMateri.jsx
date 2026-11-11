@@ -40,6 +40,8 @@ function IsiMateri({ data, id }) {
 
   const ke = (n) => setParam({ kartu: String(n) }, { replace: true });
   const berikut = data.materi[iMateri + 1];
+  // Contoh Bertahap setelah submateri (D-03 §2: C1 setelah M5, C2 setelah M6).
+  const contoh = m.contoh && data.contoh?.find((c) => c.id === m.contoh);
 
   return (
     <main className="halaman halaman--fokus halaman--kartu">
@@ -62,7 +64,11 @@ function IsiMateri({ data, id }) {
       {diCek && selesai ? (
         <div className="selesai-materi">
           <p style={{ fontWeight: 700 }}>{m.id} {m.judul} selesai.</p>
-          {berikut ? (
+          {contoh ? (
+            <Link className="tombol-utama tombol-tautan" to={`/contoh/${contoh.id}`}>
+              Lanjut: Contoh {contoh.id} {contoh.judul}
+            </Link>
+          ) : berikut ? (
             <Link className="tombol-utama tombol-tautan" to={`/materi/${berikut.id}`} replace>
               Lanjut: {berikut.id} {berikut.judul}
             </Link>

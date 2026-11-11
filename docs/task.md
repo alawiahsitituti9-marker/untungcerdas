@@ -45,7 +45,7 @@ Hanya dimulai setelah A-05, D-01, D-02, dan D-06 disetujui.
 | DV-05 | F01 Login + sesi + keluar | P1 | DV-02, DV-03 | KFN-01, KFN-02 | 2 · 🔶 sebagian: halaman Masuk + mode uji tanpa server; login Supabase menunggu DV-02 |
 | DV-06 | Kerangka navigasi + F02 Beranda | P1 | DV-05 | KFN-03 | 2 · ✅ selesai 11 November 2026 (kerangka navigasi, Beranda dengan progres sementara) |
 | DV-07 | F03 Materi + F04 Kartu Rumus + gambar 2D berlabel harga | P1 | DV-06, D-03 | KFN-04 sampai KFN-06 | 3 · ✅ selesai 11 November 2026 (kartu M0–M6 + cek cepat, Kartu Rumus halaman dan lembar bawah; status selesai materi disimpan di DV-13) |
-| DV-08 | F12 Contoh Bertahap (penuh dan sebagian) | P1 | DV-07 | KFN-15 | 3 |
+| DV-08 | F12 Contoh Bertahap (penuh dan sebagian) | P1 | DV-07 | KFN-15 | 3 · ✅ selesai 12 November 2026 (C1–C4 di `/contoh/:id`; templat pembahasan D-05 di `pembahasan.json`) |
 | DV-09 | F06 Penanda Informasi (`TeksBertanda`) | P1 | DV-04 | KFN-08 | 4 · ✅ selesai 11 November 2026 (pratinjau di /latihan/tandai; dipasang ke halaman Soal di DV-10) |
 | DV-10 | F05 Panduan Langkah + F09 Latihan Level 1–4 | P1 | DV-09, D-04 | KFN-07, KFN-11 | 4–5 |
 | DV-11 | F11 Petunjuk Bertingkat + fading | P1 | DV-10, D-05 | KFN-14 | 5 |

@@ -17,3 +17,4 @@ async function muat(nama) {
 export const muatMateri = () => muat('materi');
 export const muatSoal = () => muat('soal');
 export const muatLiterasi = () => muat('literasi');
+export const muatPembahasan = () => muat('pembahasan');

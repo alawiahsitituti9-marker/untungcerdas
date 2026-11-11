@@ -13,6 +13,7 @@ import KartuRumus from './halaman/KartuRumus.jsx';
 import LatihanLiterasi from './halaman/LatihanLiterasi.jsx';
 import KerjakanLiterasi from './halaman/KerjakanLiterasi.jsx';
 import HasilLiterasi from './halaman/HasilLiterasi.jsx';
+import ContohBertahap from './halaman/ContohBertahap.jsx';
 import { sesiSaatIni, keluar as keluarLayanan } from './layanan/auth.js';
 
 // Halaman yang membutuhkan sesi. `denganNav` = tampilkan tab bawah;
@@ -50,6 +51,7 @@ export default function App() {
         <Route element={<Terlindung {...lindungi} />}>
           <Route path="materi/:id" element={<HalamanKartuMateri />} />
           <Route path="rumus" element={<KartuRumus />} />
+          <Route path="contoh/:id" element={<ContohBertahap />} />
           <Route path="literasi" element={<LatihanLiterasi />} />
           <Route path="literasi/kerjakan" element={<KerjakanLiterasi />} />
           <Route path="literasi/hasil" element={<HasilLiterasi />} />
