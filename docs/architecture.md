@@ -219,8 +219,8 @@ mathsave/
 │   │   │                         petunjuk.js (termasuk fading), penyelesaian.js, progres.js,
 │   │   │                         penilaianLiterasi.js, alurLiterasi.js (F14)
 │   │   ├── layanan/              auth.js (mode uji), konten.js, progres.js, progresLatihan.js,
-│   │   │                         literasi.js (draf F14);
-│   │   │                         supabase.js, antrean.js (menyusul, DV-05/DV-13)
+│   │   │                         literasi.js (draf F14), antrean.js (antrean luring);
+│   │   │                         supabase.js (menyusul, DV-05/DV-13)
 │   │   └── gaya/                 token.css, dasar.css, komponen.css
 │   └── tests/                    uji Vitest per modul logika dan konten (*.test.js)
 └── supabase/
