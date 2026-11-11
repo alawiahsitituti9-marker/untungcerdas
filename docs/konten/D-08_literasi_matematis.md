@@ -365,7 +365,7 @@ Setiap tahap punya 2 tingkat bantuan, mengikuti F11 (design.md §9) tetapi tanpa
 | 1. Arah | Menunjukkan informasi yang dipakai | "Pakai kerugian dari tahap 2 dan harga beli jaket." |
 | 2. Rumus | Menunjukkan rumus tanpa hasil | "% Rugi = Rugi ÷ HB × 100%." |
 
-Teks bantuan lengkap untuk 23 tahap ditulis di `literasi.json` setelah alur dan rubrik disetujui (tugas LM-03).
+Teks bantuan dan pembahasan lengkap untuk 23 tahap ada di [LM-03_bantuan_pembahasan.md](LM-03_bantuan_pembahasan.md) (tugas LM-03), lalu dipindah ke `literasi.json` di LM-05.
 
 ## 7. Saran Materi dari Hasil [Usulan]
 
