@@ -1,21 +1,30 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { masuk, modeUji } from '../layanan/auth.js';
 
-// P01 Masuk (design.md §6, F01).
+// P01 Masuk (design.md §6, F01; api.md §7: setelah 429 tombol dinonaktifkan 30 detik).
 export default function Masuk({ onMasuk }) {
   const [kode, setKode] = useState('');
   const [pesan, setPesan] = useState('');
   const [sibuk, setSibuk] = useState(false);
+  const [terkunci, setTerkunci] = useState(false);
+  const pewaktu = useRef(null);
   const navigasi = useNavigate();
+  useEffect(() => () => clearTimeout(pewaktu.current), []);
 
   const kirim = async (e) => {
     e.preventDefault();
+    if (sibuk || terkunci) return;
     setSibuk(true);
     const hasil = await masuk(kode);
     setSibuk(false);
     if (!hasil.ok) {
       setPesan(hasil.pesan);
+      if (hasil.tunggu) {
+        setTerkunci(true);
+        clearTimeout(pewaktu.current);
+        pewaktu.current = setTimeout(() => setTerkunci(false), hasil.tunggu * 1000);
+      }
       return;
     }
     onMasuk(hasil.sesi);
@@ -43,7 +52,7 @@ export default function Masuk({ onMasuk }) {
         />
         <p id="kode-bantuan" className="teks-redup" style={{ marginTop: 4 }}>Kode diberikan oleh guru.</p>
         <p id="kode-pesan" className="pesan-galat" role="alert">{pesan}</p>
-        <button type="submit" className="tombol-utama" disabled={sibuk}>
+        <button type="submit" className="tombol-utama" disabled={sibuk || terkunci}>
           {sibuk ? 'Memeriksa…' : 'Masuk'}
         </button>
       </form>

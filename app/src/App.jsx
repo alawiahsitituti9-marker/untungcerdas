@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, Outlet, useNavigate } from 'react-router-dom';
 import NavBawah from './komponen/NavBawah.jsx';
 import Masuk from './halaman/Masuk.jsx';
@@ -14,7 +14,7 @@ import LatihanLiterasi from './halaman/LatihanLiterasi.jsx';
 import KerjakanLiterasi from './halaman/KerjakanLiterasi.jsx';
 import HasilLiterasi from './halaman/HasilLiterasi.jsx';
 import ContohBertahap from './halaman/ContohBertahap.jsx';
-import { sesiSaatIni, keluar as keluarLayanan } from './layanan/auth.js';
+import { sesiSaatIni, keluar as keluarLayanan, pantauSesi } from './layanan/auth.js';
 
 // Halaman yang membutuhkan sesi. `denganNav` = tampilkan tab bawah;
 // halaman mode fokus (Simulasi, Soal, Materi) tanpa tab bawah (design.md §5).
@@ -37,6 +37,8 @@ function Terlindung({ sesi, setSesi, denganNav }) {
 export default function App() {
   const [sesi, setSesi] = useState(() => sesiSaatIni());
   const lindungi = { sesi, setSesi };
+  // Mode Supabase: kembali ke P01 bila sesi diakhiri server (api.md §7, sesi kedaluwarsa).
+  useEffect(() => pantauSesi(() => setSesi(null)), []);
 
   return (
     <BrowserRouter>

@@ -12,7 +12,7 @@ MathSave **tidak** memiliki server API buatan sendiri. "API" di sini adalah:
 Frontend memanggil endpoint ini melalui `@supabase/supabase-js`. Bentuk HTTP ditulis agar mudah diuji dan didokumentasikan. Semua permintaan ke Supabase menyertakan header:
 
 ```
-apikey: <SUPABASE_ANON_KEY>
+apikey: <publishable key>                (VITE_SUPABASE_PUBLISHABLE_KEY; dulu disebut anon key)
 Authorization: Bearer <access_token>      (setelah login)
 Content-Type: application/json
 ```
@@ -468,6 +468,9 @@ Validasi format dilakukan di frontend. Validasi tipe dan rentang diulang oleh co
 | Kondisi | Sumber | Tindakan frontend | Pesan untuk siswa |
 |---|---|---|---|
 | Kode salah | Auth 400 | Tetap di P01 | "Kode tidak ditemukan. Periksa lagi hurufnya." |
+| Login tanpa internet | Jaringan | Tetap di P01 | "Tidak ada koneksi internet. Periksa koneksi, lalu coba lagi." **[Usulan, DV-05]** |
+| Akun Auth ada tetapi baris `siswa` belum ada | Data | Keluar lagi; tetap di P01 | "Akun belum siap. Tanyakan kepada guru." **[Usulan, DV-05]** |
+| `app/.env` tidak lengkap atau berisi kunci rahasia | Konfigurasi | Login ditolak; alasan di konsol | "Aplikasi belum diatur dengan benar. Beri tahu guru." **[Usulan, DV-05]** |
 | Terlalu banyak percobaan | Auth 429 | Nonaktifkan tombol 30 detik | "Terlalu banyak percobaan. Tunggu sebentar, lalu coba lagi." |
 | Sesi kedaluwarsa | 401 | Coba refresh; jika gagal, kembali ke P01 | "Silakan masuk lagi dengan kodemu." |
 | Tidak ada internet saat menyimpan | Jaringan | Simpan di antrean lokal; kirim ulang nanti | "Jawabanmu disimpan sementara di HP ini." |

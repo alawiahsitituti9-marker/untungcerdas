@@ -2,7 +2,7 @@
 
 Untuk pemilik proyek atau pengembang. Langkah ini dilakukan sekali, sebelum uji coba dengan siswa (task.md DV-02, DV-03).
 
-> **Jangan pernah menempelkan kunci (anon maupun service_role) ke chat, dokumen, atau kode.** Kunci hanya diisi di file `.env` yang tidak masuk git.
+> **Jangan pernah menempelkan kunci (publishable maupun secret) ke chat, dokumen, atau kode.** Kunci hanya diisi di file `.env` yang tidak masuk git.
 
 ## 1. Buat proyek (tier gratis)
 
@@ -31,12 +31,17 @@ Ketiganya sudah diuji pada PostgreSQL (PGlite) dengan tiruan Supabase Auth: RLS 
 
 ## 4. Isi file `.env` (di komputer sendiri)
 
-Ambil nilai dari **Project Settings → API**.
+Ambil nilai dari **Project Settings → API Keys** (Project URL ada di **Project Settings → Data API**).
 
 | File | Isi | Asal |
 |---|---|---|
-| `app/.env` | `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` | Project URL dan kunci **anon / publishable** |
-| `supabase/scripts/.env` | `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `SISWA_DOMAIN` | Project URL, kunci **service_role / secret**, domain email sintetis |
+| `app/.env` | `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY`, `VITE_SISWA_DOMAIN` | Project URL, kunci **publishable** (`sb_publishable_…`), domain email sintetis |
+| `supabase/scripts/.env` | `SUPABASE_URL`, `SUPABASE_SECRET_KEY`, `SISWA_DOMAIN` | Project URL, kunci **secret** (`sb_secret_…`), domain email sintetis |
+
+- Nama lama masih diterima sebagai cadangan: `VITE_SUPABASE_ANON_KEY` dan `SUPABASE_SERVICE_ROLE_KEY`.
+- `VITE_SISWA_DOMAIN` dan `SISWA_DOMAIN` **harus sama** (usulan sementara: `siswa.mathsave.app`). Jika berbeda, siswa tidak bisa masuk.
+- Kunci secret **tidak boleh** diisi di `app/.env`. Aplikasi menolak login jika itu terjadi.
+- Selama `app/.env` belum ada, aplikasi berjalan dalam mode uji. Setelah diisi, mulai ulang `npm run dev`.
 
 Contoh isi ada di `app/.env.example` dan `supabase/scripts/.env.example`.
 

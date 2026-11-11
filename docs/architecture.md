@@ -153,9 +153,10 @@ sequenceDiagram
 
 Rincian:
 1. Siswa mengetik kode. Frontend menormalkan kode (huruf besar, menghapus spasi dan tanda "-").
-2. Email sintetis = `<kode-ternormal>@<domain-sintetis>`, misalnya `ms7k4pq2xr@siswa.mathsave.app`. Email ini tidak pernah dipakai untuk mengirim surat. Konfirmasi email dimatikan, dan akun dibuat dengan `email_confirm: true`. Domain sintetis **[Konfirmasi]**.
-3. Sesi disimpan oleh supabase-js dan diperbarui otomatis, sehingga siswa tidak perlu login ulang setiap kali membuka aplikasi (KFN-02).
-4. Pembuatan akun dilakukan oleh skrip `supabase/scripts/buat-akun-siswa.js` yang dijalankan di komputer pengembang dengan kunci `service_role`. Kunci ini tidak pernah masuk ke frontend atau repositori **[Keputusan K-04]**.
+2. Email sintetis = `<kode-ternormal>@<domain-sintetis>`, misalnya `ms7k4pq2xr@siswa.mathsave.app`. Email ini tidak pernah dipakai untuk mengirim surat. Konfirmasi email dimatikan, dan akun dibuat dengan `email_confirm: true`. Domain sintetis **[Konfirmasi]**; usulan sementara `siswa.mathsave.app` (12 November 2026). Domain diatur di `VITE_SISWA_DOMAIN` (frontend) dan `SISWA_DOMAIN` (skrip); keduanya **harus sama**.
+3. Sesi disimpan oleh supabase-js dan diperbarui otomatis, sehingga siswa tidak perlu login ulang setiap kali membuka aplikasi (KFN-02). Setelah login, `kode_tampil` dan `kelas` dibaca dari tabel `siswa`; jika barisnya belum ada, sesi langsung diakhiri. Saat luring sesi tidak diakhiri, sehingga siswa tetap bisa belajar.
+4. Pembuatan akun dilakukan oleh skrip `supabase/scripts/buat-akun-siswa.js` yang dijalankan di komputer pengembang dengan kunci **secret** (`SUPABASE_SECRET_KEY`; dulu `service_role`). Kunci ini tidak pernah masuk ke frontend atau repositori **[Keputusan K-04]**.
+5. Konfigurasi frontend dibaca `src/layanan/konfigurasi.js`: `VITE_SUPABASE_URL` dan `VITE_SUPABASE_PUBLISHABLE_KEY` (cadangan: `VITE_SUPABASE_ANON_KEY`). Jika keduanya kosong, aplikasi berjalan dalam **mode uji**. Jika hanya satu terisi, atau kunci yang diisi adalah kunci rahasia, login ditolak.
 
 Alternatif jika K-03 ditolak: fungsi RPC `masuk_dengan_kode` yang mengembalikan token sesi buatan sendiri. Kelemahannya: lebih banyak kode keamanan yang harus ditulis sendiri.
 
@@ -199,7 +200,7 @@ mathsave/
 │   ├── index.html
 │   ├── package.json, package-lock.json
 │   ├── vite.config.js            juga konfigurasi Vitest
-│   ├── .env.example              VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY
+│   ├── .env.example              VITE_SUPABASE_URL, VITE_SUPABASE_PUBLISHABLE_KEY, VITE_SISWA_DOMAIN
 │   ├── public/
 │   │   ├── data/materi.json      M0–M6, Cek Cepat, Contoh Bertahap C1–C4, Kartu Rumus
 │   │   ├── data/soal.json        bank soal Level 1–4
@@ -221,10 +222,10 @@ mathsave/
 │   │   │                         cekCepat.js, contoh.js, panduan.js, level4.js,
 │   │   │                         petunjuk.js (termasuk fading), penyelesaian.js, progres.js,
 │   │   │                         penilaianLiterasi.js, alurLiterasi.js (F14)
-│   │   ├── layanan/              auth.js (mode uji), konten.js, progres.js, progresLatihan.js,
-│   │   │                         literasi.js (draf F14), antrean.js (antrean luring),
-│   │   │                         pengirimAntrean.js (kirim item antrean ke Supabase);
-│   │   │                         supabase.js (menyusul, DV-05/DV-13)
+│   │   ├── layanan/              auth.js (login Supabase + mode uji), konfigurasi.js, supabase.js,
+│   │   │                         konten.js, progres.js, progresLatihan.js, literasi.js (draf F14),
+│   │   │                         antrean.js (antrean luring),
+│   │   │                         pengirimAntrean.js (kirim item antrean ke Supabase)
 │   │   └── gaya/                 token.css, dasar.css, komponen.css
 │   └── tests/                    uji Vitest per modul logika dan konten (*.test.js)
 └── supabase/

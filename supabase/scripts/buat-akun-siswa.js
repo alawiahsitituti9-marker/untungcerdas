@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Membuat akun siswa MathSave (DV-03; architecture.md §5; Keputusan K-03, K-04, K-05).
 //
-// DIJALANKAN HANYA DI KOMPUTER PENGEMBANG. Memakai kunci service_role (AGENTS.md §7).
+// DIJALANKAN HANYA DI KOMPUTER PENGEMBANG. Memakai kunci secret / service_role (AGENTS.md §7).
 // Kunci itu dibaca dari supabase/scripts/.env yang tidak masuk git. Jangan pernah menempelnya di kode.
 //
 // Pemakaian (dari folder repositori):
@@ -71,10 +71,11 @@ if (coba) {
 } else {
   const env = { ...bacaEnv(), ...process.env };
   const url = env.SUPABASE_URL;
-  const kunci = env.SUPABASE_SERVICE_ROLE_KEY;
+  // SUPABASE_SECRET_KEY (kunci secret baru); cadangan: SUPABASE_SERVICE_ROLE_KEY (nama lama).
+  const kunci = env.SUPABASE_SECRET_KEY || env.SUPABASE_SERVICE_ROLE_KEY;
   const domain = env.SISWA_DOMAIN;
   if (!url || !kunci || !domain) {
-    console.error('Isi SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, dan SISWA_DOMAIN di supabase/scripts/.env (lihat .env.example).');
+    console.error('Isi SUPABASE_URL, SUPABASE_SECRET_KEY, dan SISWA_DOMAIN di supabase/scripts/.env (lihat .env.example).');
     process.exit(1);
   }
   const require = createRequire(join(akar, 'app/package.json'));
