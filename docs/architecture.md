@@ -182,42 +182,51 @@ Alternatif jika K-03 ditolak: fungsi RPC `masuk_dengan_kode` yang mengembalikan 
 
 Jika penyimpanan gagal (koneksi putus), data ditampung di antrean `localStorage` dan dikirim ulang saat online. Siswa tetap bisa melanjutkan belajar.
 
-## 8. Struktur Folder Aplikasi (rencana)
+## 8. Struktur Folder Aplikasi
 
-Belum dibuat. Akan dibuat pada tahap Development setelah dokumentasi disetujui.
+Disesuaikan dengan isi repositori pada 12 November 2026 (sesudah DV-15). Berkas bertanda *(menyusul)* masih rencana dan baru dibuat di tugas yang disebutkan.
 
 ```text
 mathsave/
 ├── README.md
 ├── AGENTS.md
-├── docs/                         dokumentasi (PRD, design, architecture, api, task)
-├── referensi/                    file wawancara [Keputusan K-10]
+├── docs/                         dokumentasi (PRD, design, architecture, api, task, konten/D-xx)
+├── referensi/                    file wawancara [Keputusan K-10]; tidak masuk git
 ├── app/
 │   ├── index.html
-│   ├── package.json
-│   ├── vite.config.js
+│   ├── package.json, package-lock.json
+│   ├── vite.config.js            juga konfigurasi Vitest
 │   ├── .env.example              VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY
 │   ├── public/
-│   │   ├── data/materi.json      M0–M6, contoh bertahap
+│   │   ├── data/materi.json      M0–M6, Cek Cepat, Contoh Bertahap C1–C4, Kartu Rumus
 │   │   ├── data/soal.json        bank soal Level 1–4
-│   │   ├── data/literasi.json    F14: 4 soal Literasi Matematis, tahap, rubrik (usulan)
-│   │   └── gambar/               gambar barang 2D berlabel harga (SVG)
+│   │   ├── data/pembahasan.json  templat pembahasan D1–D6, petunjuk per level, Level 4 khusus
+│   │   ├── data/literasi.json    F14: 4 soal Literasi Matematis, 23 tahap, rubrik, bantuan, saran
+│   │   └── gambar/               kosong; gambar barang 2D digambar sebagai SVG di BarangDuaDimensi
 │   ├── src/
-│   │   ├── main.jsx, App.jsx, rute.jsx
+│   │   ├── main.jsx, App.jsx     App.jsx juga memuat daftar rute
 │   │   ├── halaman/              Masuk, Beranda, DaftarMateri, KartuMateri, KartuRumus,
-│   │   │                         ContohBertahap, Simulasi, PilihLevel, Soal, Progres
-│   │   ├── komponen/             LabelHarga, RumusTerisi, TeksBertanda, BilahLangkah,
-│   │   │                         InputRupiah, InputPersen, TombolPilihan, TombolPetunjuk,
-│   │   │                         LembarBawah, BatangBanding, NavBawah
-│   │   ├── three/AdeganBarang.js
-│   │   ├── logika/               hitung.js, diagnosis.js, fading.js, format.js,
-│   │   │                         penilaianLiterasi.js (F14, usulan)
-│   │   ├── layanan/              supabase.js, auth.js, progres.js, antrean.js
-│   │   └── gaya/                 token.css, dasar.css
-│   └── tests/                    hitung.test.js, diagnosis.test.js, format.test.js
+│   │   │                         ContohBertahap, Simulasi, PilihLevel, Soal, SoalLevel4, Progres,
+│   │   │                         LatihanLiterasi (P12), KerjakanLiterasi (P13), HasilLiterasi (P14)
+│   │   ├── komponen/             LabelHarga, RumusTerisi, TeksBertanda, TeksKaya, BilahLangkah,
+│   │   │                         InputRupiah, InputPersen, TombolPilihan, TombolBantuan,
+│   │   │                         LembarBawah, BatangBanding, NavBawah, KepalaFokus, KartuMateri,
+│   │   │                         CekCepat, IsiKartuRumus, RingkasHarga, PenyelesaianBertahap,
+│   │   │                         BarangDuaDimensi, AdeganBarang3D, BilahSkor, BarisTahap
+│   │   ├── three/AdeganBarang.js adegan Three.js (§6), dimuat dengan import() dinamis
+│   │   ├── logika/               hitung.js, diagnosis.js, format.js, kode.js, templat.js,
+│   │   │                         cekCepat.js, contoh.js, panduan.js, level4.js,
+│   │   │                         petunjuk.js (termasuk fading), penyelesaian.js, progres.js,
+│   │   │                         penilaianLiterasi.js, alurLiterasi.js (F14)
+│   │   ├── layanan/              auth.js (mode uji), konten.js, progres.js, progresLatihan.js,
+│   │   │                         literasi.js (draf F14);
+│   │   │                         supabase.js, antrean.js (menyusul, DV-05/DV-13)
+│   │   └── gaya/                 token.css, dasar.css, komponen.css
+│   └── tests/                    uji Vitest per modul logika dan konten (*.test.js)
 └── supabase/
-    ├── migrations/001_skema.sql
-    └── scripts/buat-akun-siswa.js
+    ├── README.md                 panduan menyiapkan proyek Supabase
+    ├── migrations/               001_skema.sql, 002_literasi.sql
+    └── scripts/                  buat-akun-siswa.js, .env.example (kunci service_role hanya di sini)
 ```
 
 ## 9. Pertimbangan Keamanan
