@@ -115,7 +115,7 @@ Jalur kritis: **A-05 → D-03 → D-04 → D-05 → DV-10 → DV-11/12 → T-06.
 ## 8. Fitur F14 Latihan Literasi Matematis dan Evaluasi
 
 Ditambahkan 12 November 2026 ([PRD](PRD.md) §8.3–8.6, §13.1 · [D-08](konten/D-08_literasi_matematis.md) · [design.md](design.md) §17 · [architecture.md](architecture.md) §10 · [api.md](api.md) §3.5–3.7, §4.1, §5.3).
-Rancangan disetujui 12 November 2026. **Coding F14 dimulai setelah pemilik proyek memberi perintah.** LM-01 sampai LM-03, LM-05, LM-06, dan LM-12 selesai. Langkah berikutnya: LM-07 (P12–P13), menunggu perintah. Status DV-01 sampai DV-07 tidak berubah.
+Rancangan disetujui 12 November 2026. **Coding F14 dimulai setelah pemilik proyek memberi perintah.** LM-01 sampai LM-03, LM-05, LM-06, dan LM-12 selesai. Langkah berikutnya: LM-08 (P14 Hasil Evaluasi), menunggu perintah. Status DV-01 sampai DV-07 tidak berubah.
 
 ### 8.1 Perencanaan
 
@@ -133,7 +133,7 @@ Rancangan disetujui 12 November 2026. **Coding F14 dimulai setelah pemilik proye
 |---|---|---|---|---|---|
 | LM-05 | `literasi.json`: 4 soal (teks persis PRD §8.4), 23 tahap, kunci, umpan, bantuan, saran | P1 | LM-03 | Uji: teks soal = PRD; bobot per soal = 6; total = 24 | [x] selesai 12 November 2026 (`app/public/data/literasi.json`; keputusan A–E) |
 | LM-06 | `logika/penilaianLiterasi.js`: nilai tahap, soal, latihan, indikator, saran; penilaian konsekuen | P1 | LM-02, DV-04 | Uji unit LM-12 lulus | [x] selesai 12 November 2026 (`app/src/logika/penilaianLiterasi.js`) |
-| LM-07 | P12 Pengantar + P13 Mengerjakan: penanda, pilihan, isian rupiah/persen, bantuan, Kartu Rumus, draf `localStorage` | P1 | LM-05, LM-06, DV-09, DV-10 (`InputPersen`) | KFN-18, KFN-19, KFN-21, KFN-26. Kebutuhan dari LM-05 (12 November 2026): `TeksBertanda` ditambah label **PERSEN** (tag "Persen", warna `--untung`, design.md §17.7) dan prop opsional pembatas label per tahap (ML-1/ML-4: HB, HJ; ML-2 t1: HB, PERSEN). Nilai bawaan = perilaku sekarang agar Level 1–4 tidak berubah | [ ] |
+| LM-07 | P12 Pengantar + P13 Mengerjakan: penanda, pilihan, isian rupiah/persen, bantuan, Kartu Rumus, draf `localStorage` | P1 | LM-05, LM-06, DV-09, DV-10 (`InputPersen`) | KFN-18, KFN-19, KFN-21, KFN-26. Kebutuhan dari LM-05 (12 November 2026): `TeksBertanda` ditambah label **PERSEN** (tag "Persen", warna `--untung`, design.md §17.7) dan prop opsional pembatas label per tahap (ML-1/ML-4: HB, HJ; ML-2 t1: HB, PERSEN). Nilai bawaan = perilaku sekarang agar Level 1–4 tidak berubah | | [x] selesai 12 November 2026 (P12 `/literasi`, P13 `/literasi/kerjakan`). Sementara P14 belum ada, akhir latihan kembali ke P12 |
 | LM-08 | P14 Hasil Evaluasi: ringkasan skor, pembahasan per tahap, penyelesaian lengkap, saran materi | P1 | LM-07 | KFN-20, KFN-22, KFN-23 | [ ] |
 
 ### 8.3 Integrasi

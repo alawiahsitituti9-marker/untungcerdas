@@ -8,16 +8,21 @@ export const LABEL = [
   { id: 'HJ', teks: 'Harga jual', tag: 'Jual' },
   { id: 'SELISIH', teks: 'Untung/Rugi', tag: 'Untung/Rugi' },
   { id: 'DITANYA', teks: 'Ditanya', tag: 'Ditanya' },
+  { id: 'PERSEN', teks: 'Persen untung', tag: 'Persen' }, // F14 Soal 2 (design.md §17.7)
 ];
+/** Label bawaan Level 1–4. PERSEN hanya muncul bila diminta lewat `labelTersedia`. */
+export const LABEL_BAWAAN = ['HB', 'HJ', 'SELISIH', 'DITANYA'];
 const TAG = Object.fromEntries(LABEL.map((l) => [l.id, l.tag]));
 
 // Segmen yang hanya berisi tanda baca tidak perlu bisa diketuk.
 const bisaDiketuk = (s) => /[\p{L}\p{N}]/u.test(s.teks);
 
 /**
- * @param {{ segmen: {teks:string}[], label: Record<number,string>, onUbah: (label) => void, terkunci?: boolean }} props
+ * @param {{ segmen: {teks:string}[], label: Record<number,string>, onUbah: (label) => void, terkunci?: boolean, labelTersedia?: string[] }} props
+ *   `labelTersedia` membatasi tombol label per tahap (F14); bawaannya LABEL_BAWAAN.
+ *   `sesudahTeks` (opsional) tampil tepat setelah teks soal, misalnya kalimat tanya.
  */
-export default function TeksBertanda({ segmen, label, onUbah, terkunci = false }) {
+export default function TeksBertanda({ segmen, label, onUbah, terkunci = false, labelTersedia = LABEL_BAWAAN, sesudahTeks = null }) {
   const [terpilih, setTerpilih] = useState(null);
 
   const beriLabel = (id) => {
@@ -62,6 +67,7 @@ export default function TeksBertanda({ segmen, label, onUbah, terkunci = false }
           ),
         )}
       </p>
+      {sesudahTeks}
 
       {!terkunci && (
         <>
@@ -69,7 +75,7 @@ export default function TeksBertanda({ segmen, label, onUbah, terkunci = false }
             {terpilih == null ? 'Ketuk bagian soal, lalu pilih labelnya.' : `Pilih label untuk: "${segmen[terpilih].teks}"`}
           </p>
           <div className="pilihan-label" role="group" aria-label="Pilih label">
-            {LABEL.map((l) => (
+            {LABEL.filter((l) => labelTersedia.includes(l.id)).map((l) => (
               <button key={l.id} type="button" data-label={l.id} disabled={terpilih == null} onClick={() => beriLabel(l.id)}>
                 {l.teks}
               </button>

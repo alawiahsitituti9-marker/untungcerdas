@@ -339,6 +339,7 @@
 .segmen[data-label='HJ'] { background: #ffedd5; border-bottom: 3px solid var(--hj); }
 .segmen[data-label='SELISIH'] { background: #dcfce7; border-bottom: 3px solid var(--untung); }
 .segmen[data-label='DITANYA'] { background: #ede9fe; border-bottom: 3px solid var(--ditanya); }
+.segmen[data-label='PERSEN'] { background: #dcfce7; border-bottom: 3px solid var(--untung); }
 .segmen__tag {
   display: inline-block;
   margin-right: 4px;
@@ -354,6 +355,7 @@
 .segmen[data-label='HJ'] .segmen__tag { background: var(--hj); }
 .segmen[data-label='SELISIH'] .segmen__tag { background: var(--untung); }
 .segmen[data-label='DITANYA'] .segmen__tag { background: var(--ditanya); }
+.segmen[data-label='PERSEN'] .segmen__tag { background: var(--untung); }
 
 .pilihan-label {
   display: grid;
@@ -372,6 +374,7 @@
 .pilihan-label button[data-label='HJ'] { color: var(--hj); border-color: var(--hj); }
 .pilihan-label button[data-label='SELISIH'] { color: var(--untung); border-color: var(--untung); }
 .pilihan-label button[data-label='DITANYA'] { color: var(--ditanya); border-color: var(--ditanya); }
+.pilihan-label button[data-label='PERSEN'] { color: var(--untung); border-color: var(--untung); }
 .pilihan-label button:disabled { opacity: 0.4; }
 
 /* ---------- Kartu Materi (P04, F03) ---------- */
@@ -565,3 +568,81 @@
 }
 .lembar-bawah__kepala h2 { margin: 0; }
 .isi-kartu-rumus > .rumus-terisi .rumus-baris { background: var(--permukaan); }
+
+/* ---------- F14 Latihan Literasi Matematis (P12, P13) ---------- */
+.daftar-soal-literasi { list-style: none; }
+.bilah-langkah {
+  display: flex;
+  gap: 6px;
+  margin: 0 0 12px;
+}
+.bilah-langkah span {
+  flex: 1;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--garis);
+}
+.bilah-langkah .bilah-langkah__isi { background: var(--aksi); }
+.pertanyaan-soal {
+  font-weight: 600;
+  border-left: 4px solid var(--ditanya);
+  padding-left: 8px;
+}
+.perintah-tahap {
+  font-size: var(--ukuran-judul);
+  margin: 16px 0 12px;
+}
+.label-bagian {
+  font-weight: 600;
+  margin: 8px 0 4px;
+}
+.panel-soal {
+  background: var(--permukaan);
+  border-radius: var(--sudut);
+  padding: 4px 12px;
+  margin: 0 0 12px;
+}
+.panel-soal summary {
+  min-height: var(--sentuh-min);
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  color: var(--aksi);
+  cursor: pointer;
+}
+.panel-soal .teks-bertanda { font-size: 16px; line-height: 1.9; }
+.ringkas-harga { margin: 0 0 8px; }
+.ringkas-harga__baris {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  margin: 0 0 6px;
+}
+.ringkas-harga__nama { font-weight: 600; min-width: 64px; }
+.label-harga--persen { color: var(--untung); }
+.kotak-bantuan {
+  background: var(--petunjuk);
+  border-left: 4px solid #b45309;
+  border-radius: var(--sudut);
+  padding: 12px;
+  margin: 12px 0;
+}
+.kotak-bantuan p:last-child { margin-bottom: 0; }
+.bilah-aksi {
+  position: sticky;
+  bottom: 0;
+  display: grid;
+  gap: 8px;
+  padding: 12px 0 calc(12px + env(safe-area-inset-bottom));
+  background: var(--latar);
+}
+.bilah-aksi__baris {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.bilah-aksi .tombol-kedua:disabled { opacity: 0.4; cursor: default; }
+.layar-jeda { margin-top: 24px; }
+.ringkas-harga .label-harga { padding: 2px 6px; font-size: 15px; }
+.ringkas-harga .ringkas-harga__nama { min-width: 56px; }
