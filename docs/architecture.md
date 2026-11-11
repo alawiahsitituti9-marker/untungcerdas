@@ -93,6 +93,7 @@ erDiagram
         smallint percobaan_ke "1 atau 2"
         integer durasi_detik
         timestamptz dibuat_pada
+        uuid id_klien "UNIQUE, dibuat di HP (anti ganda, migrasi 003)"
     }
     EVALUASI_LITERASI {
         uuid id PK "dibuat di HP (anti ganda)"
@@ -123,6 +124,8 @@ erDiagram
 ```
 
 Tabel `EVALUASI_LITERASI` dan `JAWABAN_LITERASI` adalah **[Usulan, KL-13]**, disetujui 12 November 2026. Dibuat di tugas LM-09.
+
+Kolom `PERCOBAAN_SOAL.id_klien` ditambahkan oleh migrasi `003_id_klien.sql` (disetujui 12 November 2026) agar kiriman ulang dari antrean luring tidak tercatat ganda ([api.md](api.md) §4.2).
 
 Konten materi dan soal **tidak** disimpan di database (lihat §1). Detail kolom dan kebijakan RLS ada di [api.md](api.md) §4.
 
@@ -180,7 +183,7 @@ Alternatif jika K-03 ditolak: fungsi RPC `masuk_dengan_kode` yang mengembalikan 
 | F14: selesai 4 soal | `rpc/simpan_evaluasi_literasi` | HP → DB | Sekali per percobaan |
 | F14: riwayat | `evaluasi_literasi`, `jawaban_literasi` | DB → HP | Saat membuka P11/P14 riwayat |
 
-Jika penyimpanan gagal (koneksi putus), data ditampung di antrean `localStorage` dan dikirim ulang saat online. Siswa tetap bisa melanjutkan belajar.
+Jika penyimpanan gagal (koneksi putus), data ditampung di antrean `localStorage` dan dikirim ulang saat online. Siswa tetap bisa melanjutkan belajar. Setiap item antrean punya id buatan HP yang ikut dikirim (`id_klien`, `p_hasil.id`), sehingga kiriman ulang tidak membuat data ganda ([api.md](api.md) §4.2).
 
 ## 8. Struktur Folder Aplikasi
 
@@ -219,13 +222,14 @@ mathsave/
 │   │   │                         petunjuk.js (termasuk fading), penyelesaian.js, progres.js,
 │   │   │                         penilaianLiterasi.js, alurLiterasi.js (F14)
 │   │   ├── layanan/              auth.js (mode uji), konten.js, progres.js, progresLatihan.js,
-│   │   │                         literasi.js (draf F14), antrean.js (antrean luring);
+│   │   │                         literasi.js (draf F14), antrean.js (antrean luring),
+│   │   │                         pengirimAntrean.js (kirim item antrean ke Supabase);
 │   │   │                         supabase.js (menyusul, DV-05/DV-13)
 │   │   └── gaya/                 token.css, dasar.css, komponen.css
 │   └── tests/                    uji Vitest per modul logika dan konten (*.test.js)
 └── supabase/
     ├── README.md                 panduan menyiapkan proyek Supabase
-    ├── migrations/               001_skema.sql, 002_literasi.sql
+    ├── migrations/               001_skema.sql, 002_literasi.sql, 003_id_klien.sql
     └── scripts/                  buat-akun-siswa.js, .env.example (kunci service_role hanya di sini)
 ```
 

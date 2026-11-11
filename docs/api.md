@@ -138,11 +138,12 @@ Response 429: terlalu banyak percobaan → tampilkan "Terlalu banyak percobaan. 
   "langkah_salah": 6,
   "jumlah_petunjuk": 1,
   "percobaan_ke": 1,
-  "durasi_detik": 74
+  "durasi_detik": 74,
+  "id_klien": "9b2e…-uuid dibuat di HP"
 }
 ```
 
-→ 201. Dikirim satu kali per jawaban akhir soal latihan Level 1–4 (bukan per langkah). Soal cek cepat di akhir submateri (`L0-Mx`) tidak dicatat di tabel ini; hasilnya cukup menandai `progres_materi` sebagai `selesai`.
+→ 201. `id_klien` adalah id item antrean luring (migrasi `003_id_klien.sql`, §4.2). Jika baris yang sama dikirim ulang, database menolaknya dengan **409** dan antrean menganggapnya sudah terkirim, sehingga tidak ada data ganda. Dikirim satu kali per jawaban akhir soal latihan Level 1–4 (bukan per langkah). Soal cek cepat di akhir submateri (`L0-Mx`) tidak dicatat di tabel ini; hasilnya cukup menandai `progres_materi` sebagai `selesai`.
 
 ### 3.5 Simpan hasil Latihan Literasi Matematis (F14) **[Usulan, KL-13]**
 
@@ -319,6 +320,29 @@ Fungsi `simpan_evaluasi_literasi(p_hasil jsonb)` ditulis sebagai `SECURITY INVOK
 
 Kode lengkap fungsi ditulis di tugas LM-09 setelah skema disetujui.
 
+### 4.2 Migrasi `003_id_klien.sql`: mencegah percobaan soal tercatat ganda
+
+Disetujui pemilik proyek 12 November 2026 (opsi A). Jalankan setelah 001 dan 002.
+
+Masalah: `percobaan_soal.id` dibuat database. Jika server sudah menyimpan baris tetapi balasannya tidak sampai ke HP, antrean luring mengirim ulang dan baris yang sama tercatat dua kali. Baris ganda tidak bisa dibedakan dari percobaan ulang yang sungguhan, sehingga data penelitian terdistorsi.
+
+```sql
+alter table percobaan_soal add column id_klien uuid;
+alter table percobaan_soal add constraint percobaan_soal_id_klien_unik unique (id_klien);
+```
+
+- HP mengirim id item antrean sebagai `id_klien` (§3.4). Kiriman ulang dengan `id_klien` yang sama melanggar UNIQUE (kode `23505`), PostgREST membalas 409, dan antrean menghapus item itu (§7).
+- Kolom boleh kosong agar aman untuk baris yang sudah ada. Beberapa baris tanpa `id_klien` tidak bentrok.
+- Kolom lama, RLS, trigger, dan `ringkasan_progres` tidak berubah. Pembatalan: `alter table percobaan_soal drop column id_klien;`
+
+Pencegahan data ganda untuk semua kiriman antrean (`app/src/layanan/pengirimAntrean.js`):
+
+| Data | Penanda dari HP | Kiriman ulang |
+|---|---|---|
+| `percobaan_soal` | `id_klien` (UNIQUE) | Ditolak 409 → dianggap terkirim |
+| `evaluasi_literasi` | `p_hasil.id` | RPC mengembalikan hasil yang sudah ada |
+| `progres_materi` | Kunci (`siswa_id`, `materi_id`) | Upsert; tetap satu baris |
+
 ## 5. Struktur Konten Statis
 
 ### 5.1 `materi.json` (potongan)
@@ -447,6 +471,7 @@ Validasi format dilakukan di frontend. Validasi tipe dan rentang diulang oleh co
 | Terlalu banyak percobaan | Auth 429 | Nonaktifkan tombol 30 detik | "Terlalu banyak percobaan. Tunggu sebentar, lalu coba lagi." |
 | Sesi kedaluwarsa | 401 | Coba refresh; jika gagal, kembali ke P01 | "Silakan masuk lagi dengan kodemu." |
 | Tidak ada internet saat menyimpan | Jaringan | Simpan di antrean lokal; kirim ulang nanti | "Jawabanmu disimpan sementara di HP ini." |
+| Data kiriman ulang sudah ada di server | 409 (UNIQUE, §4.2) | Dianggap terkirim; hapus dari antrean | – (tanpa pesan) |
 | Proyek Supabase dijeda | 5xx / timeout | Tampilkan pesan; materi tetap bisa dibaca dari cache | "Server sedang tidak aktif. Kamu tetap bisa membaca materi." |
 | Ditolak RLS / constraint | 403 / 400 | Catat di konsol; tidak diulang | "Ada kesalahan. Coba muat ulang halaman." |
 | `materi.json` gagal dimuat | Hosting | Tombol "Coba lagi" | "Materi belum termuat. Periksa koneksi internet." |

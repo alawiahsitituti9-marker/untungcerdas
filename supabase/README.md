@@ -23,8 +23,11 @@ Di **SQL Editor**, tempel lalu jalankan isi file berikut **berurutan**:
 
 1. `supabase/migrations/001_skema.sql`
 2. `supabase/migrations/002_literasi.sql`
+3. `supabase/migrations/003_id_klien.sql` (mencegah percobaan soal tercatat ganda dari antrean luring; api.md §4.2)
 
-Keduanya sudah diuji pada PostgreSQL (PGlite) dengan tiruan Supabase Auth: RLS antar-siswa, trigger status materi, `ringkasan_progres`, dan `simpan_evaluasi_literasi` (24 pemeriksaan lulus). Setelah dijalankan di Supabase, lakukan uji RLS sungguhan (task.md T-07).
+Jalankan **masing-masing tepat satu kali, sesuai urutan**. File-file ini tidak dirancang untuk dijalankan ulang (misalnya `create table` akan gagal dan 002 mengganti nama fungsi). Jika muncul galat, berhenti dan catat pesannya; jangan menjalankan ulang. Jalankan 003 sebelum siswa mulai memakai aplikasi.
+
+Ketiganya sudah diuji pada PostgreSQL (PGlite) dengan tiruan Supabase Auth: RLS antar-siswa, trigger status materi, `ringkasan_progres`, `simpan_evaluasi_literasi`, `id_klien` UNIQUE (termasuk dijalankan pada tabel yang sudah berisi), serta antrean luring aplikasi terhadap database itu (40 pemeriksaan lulus). Setelah dijalankan di Supabase, lakukan uji RLS sungguhan (task.md T-07).
 
 ## 4. Isi file `.env` (di komputer sendiri)
 
