@@ -13,9 +13,11 @@ import IsiKartuRumus from '../komponen/IsiKartuRumus.jsx';
 import { muatSoal, muatPembahasan, muatMateri } from '../layanan/konten.js';
 import { catatSesi } from '../layanan/progresLatihan.js';
 import KerjakanLevel4 from './SoalLevel4.jsx';
+import { TombolBantuan, DaftarBantuan } from '../komponen/TombolBantuan.jsx';
+import { petunjukSoal, layarUntuk } from '../logika/petunjuk.js';
 import { bacaRupiah, bacaPersen } from '../logika/format.js';
 import {
-  LAYAR, JUDUL_LANGKAH, BATAS_PERCOBAAN, SYARAT_BUKA, JUMLAH_SOAL_SESI,
+  JUDUL_LANGKAH, BATAS_PERCOBAAN, SYARAT_BUKA, JUMLAH_SOAL_SESI,
   pilihSoalSesi, periksaLayar, pembahasanLangkah, jawabanBenarLangkah, teksSoalLangsung, perintahHitungBalik,
 } from '../logika/panduan.js';
 
@@ -23,7 +25,8 @@ import {
 // Level 4 tanpa panduan: lihat SoalLevel4.jsx.
 // Setiap layar diperiksa sebelum lanjut. Salah pertama → pembahasan ①–③ + "Coba lagi";
 // salah kedua → jawaban benar ditampilkan dan soal dihitung salah (D-05 §3.1).
-// Petunjuk bertingkat (DV-11), penyelesaian lengkap ④ (DV-12), dan penyimpanan percobaan (DV-13) belum di sini.
+// Petunjuk bertingkat (F11, DV-11): dibuka satu tingkat per ketukan; jumlahnya dicatat untuk fading.
+// Penyelesaian lengkap ④ (DV-12) dan penyimpanan percobaan (DV-13) belum di sini.
 
 const LEVEL_ADA = [1, 2, 3, 4];
 const LABEL_TANDAI = ['HB', 'HJ', 'DITANYA'];
@@ -137,8 +140,9 @@ function TampilanSoal({ soal, data, labelTampil, tandaiAktif }) {
   );
 }
 
-function KerjakanSoal({ soal, nomor, level, data, onSelesai }) {
-  const daftarLayar = LAYAR[level];
+function KerjakanSoal({ soal, nomor, level, data, daftarLayar, onSelesai }) {
+  const petunjuk = petunjukSoal(soal, data);
+  const [petunjukTerbuka, setPetunjukTerbuka] = useState(0);
   const [iLayar, setILayar] = useState(0);
   const [isian, setIsian] = useState({});
   const [st, setSt] = useState({ percobaan: 0, hasil: null, selesai: false, pembahasan: null });
@@ -171,7 +175,7 @@ function KerjakanSoal({ soal, nomor, level, data, onSelesai }) {
       setSt({ percobaan: 0, hasil: null, selesai: false, pembahasan: null });
       window.scrollTo(0, 0);
     } else {
-      onSelesai(!adaSalah);
+      onSelesai(!adaSalah, petunjukTerbuka);
     }
   };
 
@@ -186,6 +190,8 @@ function KerjakanSoal({ soal, nomor, level, data, onSelesai }) {
       <h2 className="perintah-tahap">
         {langkahLayar.length > 1 ? 'Hitung' : `Langkah ${langkahLayar[0]}: ${JUDUL_LANGKAH[langkahLayar[0]]}`}
       </h2>
+      {/* Petunjuk tampil dekat judul langkah agar tidak tertutup bilah tombol di HP. */}
+      <DaftarBantuan bantuan={petunjuk} terbuka={petunjukTerbuka} nama="Petunjuk" />
       {langkahLayar.map((n) => (
         <div key={n} className="bagian-langkah">
           {langkahLayar.length > 1 && <p className="label-bagian">{JUDUL_LANGKAH[n]}</p>}
@@ -210,11 +216,10 @@ function KerjakanSoal({ soal, nomor, level, data, onSelesai }) {
       </div>
 
       <div className="bilah-aksi">
-        {level >= 2 && (
-          <div className="bilah-aksi__baris" style={{ gridTemplateColumns: '1fr' }}>
-            <button type="button" className="tombol-kedua" onClick={() => setRumusTerbuka(true)}>Rumus</button>
-          </div>
-        )}
+        <div className="bilah-aksi__baris" style={level >= 2 ? undefined : { gridTemplateColumns: '1fr' }}>
+          <TombolBantuan nama="Petunjuk" terbuka={petunjukTerbuka} total={petunjuk.length} onBuka={() => setPetunjukTerbuka((n) => Math.min(n + 1, petunjuk.length))} />
+          {level >= 2 && <button type="button" className="tombol-kedua" onClick={() => setRumusTerbuka(true)}>Rumus</button>}
+        </div>
         {st.selesai ? (
           <button type="button" className="tombol-utama" onClick={lanjut}>
             {iLayar + 1 < daftarLayar.length ? 'Lanjut' : 'Soal berikutnya'}
@@ -234,7 +239,7 @@ function KerjakanSoal({ soal, nomor, level, data, onSelesai }) {
 }
 
 function Ringkasan({ level, hasil, onUlangi }) {
-  const benar = hasil.filter(Boolean).length;
+  const benar = hasil.filter((h) => h.benar).length;
   const buka = benar >= SYARAT_BUKA && level < 4;
   return (
     <main className="halaman halaman--fokus">
@@ -284,13 +289,15 @@ export default function Soal() {
     return <Ringkasan level={level} hasil={hasil} onUlangi={() => setPutaran((n) => n + 1)} />;
   }
   const soal = daftar[hasil.length];
-  const selesaiSoal = (benar) => {
-    const baru = [...hasil, benar];
+  const selesaiSoal = (benar, petunjuk = 0) => {
+    const baru = [...hasil, { benar, petunjuk }];
     setHasil(baru);
-    if (baru.length === daftar.length) catatSesi(sesi.kodeTampil, level, baru.filter(Boolean).length);
+    if (baru.length === daftar.length) catatSesi(sesi.kodeTampil, level, baru.filter((h) => h.benar).length);
     window.scrollTo(0, 0);
   };
   const kunci = `${putaran}-${soal.id}`;
   const props = { soal, nomor: hasil.length + 1, data, onSelesai: selesaiSoal };
-  return level === 4 ? <KerjakanLevel4 key={kunci} {...props} /> : <KerjakanSoal key={kunci} {...props} level={level} />;
+  return level === 4
+    ? <KerjakanLevel4 key={kunci} {...props} />
+    : <KerjakanSoal key={kunci} {...props} level={level} daftarLayar={layarUntuk(level, hasil)} />;
 }

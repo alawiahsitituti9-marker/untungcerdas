@@ -74,7 +74,7 @@ Rencana folder aplikasi ada di [docs/architecture.md](docs/architecture.md) §8.
 |---|---|
 | Analysis | Selesai dan disetujui (11 November 2026) |
 | Design | Selesai dan disetujui (11 November 2026): dokumentasi, materi, bank soal, petunjuk, pembahasan. Validasi ahli (D-07) belum. **Tambahan 12 November 2026:** rancangan F14 Latihan Literasi Matematis (D-08) disetujui 12 November 2026 |
-| Development | Berjalan: DV-01, DV-04, DV-06, DV-07, DV-08, DV-09, DV-14 selesai; DV-05 sebagian (login mode uji). F14 Literasi Matematis: LM-05 sampai LM-08 selesai (hasil masih di HP). DV-10 selesai (Latihan Level 1–4). Berikutnya DV-11 (Petunjuk Bertingkat) dan DV-12 (Pembahasan); DV-02/DV-03 dan LM-09 sampai LM-11 menunggu proyek Supabase |
+| Development | Berjalan: DV-01, DV-04, DV-06, DV-07, DV-08, DV-09, DV-14 selesai; DV-05 sebagian (login mode uji). F14 Literasi Matematis: LM-05 sampai LM-08 selesai (hasil masih di HP). DV-10 dan DV-11 selesai (Latihan Level 1–4, Petunjuk Bertingkat). Berikutnya DV-12 (Pembahasan); DV-02/DV-03 dan LM-09 sampai LM-11 menunggu proyek Supabase |
 | Implementation / Testing | Belum dimulai |
 | Evaluation | Belum dimulai |
 
