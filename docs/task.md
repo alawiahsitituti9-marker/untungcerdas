@@ -59,7 +59,7 @@ Hanya dimulai setelah A-05, D-01, D-02, dan D-06 disetujui.
 
 | ID | Tugas | Prio | Bergantung | Kriteria selesai | Minggu |
 |---|---|---|---|---|---|
-| T-01 | Uji unit (Vitest): rumus, format angka, diagnosis, fading | P1 | DV-04, DV-11 | Semua uji lulus | 2–6 |
+| T-01 | Uji unit (Vitest): rumus, format angka, diagnosis, fading | P1 | DV-04, DV-11 | Semua uji lulus | 2–6 · ✅ selesai 12 November 2026: 413 uji Vitest lulus di 14 berkas (`hitung`, `format`, `diagnosis` D1–D6, fading di `petunjuk`, termasuk HJ = HB dan HB = 0 ditolak) |
 | T-02 | Uji kotak hitam per fitur (KFN-01 sampai KFN-17) | P1 | DV-16 | Tabel hasil uji; semua P1 lulus | 7 |
 | T-03 | Uji perangkat Android (minimal 2 HP, Chrome) | P1 | DV-16 | KNF-02 sampai KNF-04; catatan waktu muat | 7 |
 | T-04 | Uji keterbatasan: koneksi lambat, WebGL mati, proyek Supabase dijeda | P1 | DV-13, DV-15 | Pesan kesalahan sesuai api.md §7 | 7 |
@@ -105,7 +105,7 @@ Jalur kritis: **A-05 → D-03 → D-04 → D-05 → DV-10 → DV-11/12 → T-06.
 
 | Jenis | Apa yang diuji | Cara | Bukti |
 |---|---|---|---|
-| Uji unit | `hitung.js` (4 rumus), `format.js` (Rp, koma), `diagnosis.js` (D1–D6), `fading.js` | Vitest, kasus normal dan batas (HJ = HB, HB = 0 ditolak) | Laporan Vitest |
+| Uji unit | `hitung.js` (4 rumus), `format.js` (Rp, koma), `diagnosis.js` (D1–D6), fading di `petunjuk.js` | Vitest, kasus normal dan batas (HJ = HB, HB = 0 ditolak) | Laporan Vitest |
 | Kotak hitam | Setiap KFN | Tabel skenario → hasil yang diharapkan → hasil nyata | Tabel uji |
 | Perangkat | Tampilan 360/412 px, keyboard, tombol Kembali, waktu muat | 2 HP Android + emulasi DevTools | Tangkapan layar + catatan |
 | Keterbacaan | Kalimat materi dan soal | 1–2 siswa membaca, lalu ditanya maknanya | Catatan revisi |
@@ -153,4 +153,4 @@ Rancangan disetujui 12 November 2026. **Coding F14 dimulai setelah pemilik proye
 | LM-14 | Uji perangkat Android 360 px untuk P12–P14 (keyboard angka, tombol Kembali, lanjut dari draf) | P1 | LM-08 | KK9 | [ ] |
 | LM-15 | Uji keterbacaan hasil evaluasi dengan 1–2 siswa uji | P1 | LM-08 | KK8; catatan revisi kalimat | [ ] |
 
-Urutan yang disarankan setelah persetujuan: LM-02 → LM-03 → LM-05/LM-06 (dapat dikerjakan tanpa Supabase) → LM-07 → LM-08 → LM-09 → LM-10 → LM-11. DV-08 sampai DV-16 tetap berjalan sesuai rencana. LM-07 memakai `InputPersen` dan `TombolPetunjuk` yang dibuat di DV-10/DV-11.
+Urutan yang disarankan setelah persetujuan: LM-02 → LM-03 → LM-05/LM-06 (dapat dikerjakan tanpa Supabase) → LM-07 → LM-08 → LM-09 → LM-10 → LM-11. DV-08 sampai DV-16 tetap berjalan sesuai rencana. LM-07 memakai `InputPersen` dan `TombolBantuan` (varian `TombolPetunjuk` di design.md) yang dibuat di DV-10/DV-11.
