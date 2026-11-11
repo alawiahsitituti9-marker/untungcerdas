@@ -1,6 +1,8 @@
 # API — MathSave
 
-Versi: 0.1 (draf, menunggu persetujuan) · Acuan: [architecture.md](architecture.md)
+Versi: 0.2 · Acuan: [architecture.md](architecture.md)
+
+Riwayat: 0.1 disetujui 11 November 2026. **0.2 (12 November 2026, menunggu persetujuan):** endpoint dan skema F14 Latihan Literasi Matematis (§1, §3.5–3.7, §4.1, §5.3, §7). Semua tambahan berstatus **[Usulan]**.
 
 MathSave **tidak** memiliki server API buatan sendiri. "API" di sini adalah:
 1. **Supabase Auth** (`/auth/v1`) untuk login kode siswa.
@@ -33,6 +35,10 @@ Bergantung pada **[Keputusan K-03]** (mekanisme login). Jika K-03 berubah, Bagia
 | 8 | POST | `/rest/v1/percobaan_soal` | Mencatat satu jawaban soal | F09, F10, F11 |
 | 9 | GET | `/data/materi.json` | Konten materi dan contoh | F03, F04, F12 |
 | 10 | GET | `/data/soal.json` | Bank soal | F09 |
+| 11 | GET | `/data/literasi.json` | Soal, tahap, rubrik, umpan balik F14 **[Usulan]** | F14 |
+| 12 | POST | `/rest/v1/rpc/simpan_evaluasi_literasi` | Menyimpan satu hasil F14 (ringkasan + 23 tahap) **[Usulan]** | F14 |
+| 13 | GET | `/rest/v1/evaluasi_literasi` | Riwayat hasil F14 **[Usulan]** | F14, F13 |
+| 14 | GET | `/rest/v1/jawaban_literasi?evaluasi_id=eq.<id>` | Jawaban per tahap untuk membuka ulang pembahasan **[Usulan]** | F14 |
 
 ## 2. Autentikasi Kode Siswa
 
@@ -138,6 +144,79 @@ Response 429: terlalu banyak percobaan → tampilkan "Terlalu banyak percobaan. 
 
 → 201. Dikirim satu kali per jawaban akhir soal latihan Level 1–4 (bukan per langkah). Soal cek cepat di akhir submateri (`L0-Mx`) tidak dicatat di tabel ini; hasilnya cukup menandai `progres_materi` sebagai `selesai`.
 
+### 3.5 Simpan hasil Latihan Literasi Matematis (F14) **[Usulan, KL-13]**
+
+`POST /rest/v1/rpc/simpan_evaluasi_literasi`
+
+Dikirim **sekali** setelah keempat soal selesai. Satu panggilan menyimpan ringkasan dan 23 jawaban tahap dalam satu transaksi, sehingga tidak ada hasil yang tersimpan setengah.
+
+```json
+{
+  "p_hasil": {
+    "id": "6f1c…-uuid dibuat di HP",
+    "versi_rubrik": 1,
+    "urutan": ["ML-3", "ML-4", "ML-2", "ML-1"],
+    "skor": { "reasoning": 5, "formulating": 3, "employing": 6, "interpreting": 4 },
+    "jumlah_bantuan": 3,
+    "durasi_detik": 1260,
+    "dimulai_pada": "2026-11-15T08:01:00+07:00",
+    "jawaban": [
+      { "soal_id": "ML-2", "tahap": 3, "jawaban": { "pilihan": 1 }, "skor": 0, "skor_maks": 1, "kode_umpan": "D1", "konsekuen": false, "jumlah_bantuan": 1 },
+      { "soal_id": "ML-2", "tahap": 4, "jawaban": { "rupiah": 60000 }, "skor": 1, "skor_maks": 1, "kode_umpan": null, "konsekuen": true, "jumlah_bantuan": 0 }
+    ]
+  }
+}
+```
+
+Response 200:
+
+```json
+{ "id": "6f1c…", "percobaan_ke": 2, "skor_total": 18 }
+```
+
+Aturan:
+- `siswa_id` tidak dikirim. Fungsi memakai `auth.uid()`.
+- `percobaan_ke` dihitung di database (jumlah hasil sebelumnya + 1).
+- `id` dibuat di HP. Jika paket yang sama dikirim ulang dari antrean luring, fungsi mengembalikan hasil yang sudah ada tanpa membuat data ganda.
+- Fungsi menolak paket (400) jika jumlah tahap ≠ 23, ada skor di luar batas bobot, atau skor per indikator ≠ jumlah skor tahap soalnya.
+
+Bentuk `jawaban` per jenis isian:
+
+| Isian | Bentuk |
+|---|---|
+| Penanda Informasi | `{ "label": { "0": "HB", "2": "HJ" } }` (indeks segmen → label) |
+| Pilihan | `{ "pilihan": 1 }` (indeks pada urutan asli di `literasi.json`, bukan urutan tampil) |
+| Rupiah | `{ "rupiah": 50000 }` |
+| Persen | `{ "persen": 25 }` |
+| Gabungan (mis. ML-1 tahap 3) | `{ "pilihan": 1, "persen": [25, 25, 20] }` |
+
+### 3.6 Riwayat hasil Literasi Matematis **[Usulan]**
+
+`GET /rest/v1/evaluasi_literasi?select=id,percobaan_ke,skor_reasoning,skor_formulating,skor_employing,skor_interpreting,skor_total,jumlah_bantuan,selesai_pada&order=selesai_pada.desc` → 200
+
+```json
+[{ "id": "6f1c…", "percobaan_ke": 2, "skor_reasoning": 5, "skor_formulating": 3, "skor_employing": 6, "skor_interpreting": 4, "skor_total": 18, "jumlah_bantuan": 3, "selesai_pada": "2026-11-15T08:22:00+07:00" }]
+```
+
+`GET /rest/v1/jawaban_literasi?evaluasi_id=eq.<id>&select=soal_id,tahap,jawaban,skor,skor_maks,kode_umpan,konsekuen,jumlah_bantuan` → 200. Dipakai untuk membuka ulang pembahasan percobaan lama di P14.
+
+### 3.7 Perluasan ringkasan progres **[Usulan]**
+
+`rpc/ringkasan_progres` (§3.2) mendapat kunci tambahan:
+
+```json
+{
+  "literasi": {
+    "jumlah_percobaan": 2,
+    "pertama": { "skor_total": 14, "selesai_pada": "2026-11-12T09:00:00+07:00" },
+    "terakhir": { "skor_total": 18, "skor": [5, 3, 6, 4], "selesai_pada": "2026-11-15T08:22:00+07:00" },
+    "terbaik": 18
+  }
+}
+```
+
+Jika siswa belum pernah mengerjakan, `literasi` bernilai `null`.
+
 ## 4. Struktur Data dan Kebijakan Database
 
 ```sql
@@ -182,6 +261,63 @@ create policy "tambah percobaan sendiri" on percobaan_soal for insert with check
 ```
 
 Siswa tidak dapat mengubah atau menghapus `percobaan_soal` (tidak ada kebijakan update/delete). Baris `siswa` hanya dibuat oleh skrip pengembang.
+
+### 4.1 Usulan migrasi `002_literasi.sql` (F14) **[Usulan, KL-13]**
+
+Ditambahkan 12 November 2026. **Belum dibuat.** Skema database hanya boleh diubah dengan persetujuan pemilik proyek (AGENTS.md §10.6) dan harus berupa file migrasi baru (AGENTS.md §7).
+
+Pemeriksaan skema saat ini: tabel `percobaan_soal` **tidak** cukup untuk F14. Tabel itu menyimpan satu baris per soal Level 1–4 dengan kolom benar/salah, tanpa skor per tahap, skor per indikator, atau pengelompokan per percobaan. Karena itu diusulkan dua tabel baru. Tabel lama tidak diubah.
+
+```sql
+create table evaluasi_literasi (
+  id uuid primary key,                         -- dibuat di HP; mencegah data ganda dari antrean luring
+  siswa_id uuid not null default auth.uid() references siswa(id) on delete cascade,
+  percobaan_ke smallint not null check (percobaan_ke >= 1),
+  versi_rubrik smallint not null check (versi_rubrik >= 1),
+  urutan text[] not null,
+  skor_reasoning    smallint not null check (skor_reasoning    between 0 and 6),
+  skor_formulating  smallint not null check (skor_formulating  between 0 and 6),
+  skor_employing    smallint not null check (skor_employing    between 0 and 6),
+  skor_interpreting smallint not null check (skor_interpreting between 0 and 6),
+  skor_total smallint generated always as
+    (skor_reasoning + skor_formulating + skor_employing + skor_interpreting) stored,
+  jumlah_bantuan smallint not null default 0 check (jumlah_bantuan between 0 and 46),
+  durasi_detik integer check (durasi_detik between 0 and 14400),
+  dimulai_pada timestamptz,
+  selesai_pada timestamptz not null default now(),
+  unique (siswa_id, percobaan_ke)
+);
+
+create table jawaban_literasi (
+  evaluasi_id uuid not null references evaluasi_literasi(id) on delete cascade,
+  siswa_id uuid not null default auth.uid() references siswa(id) on delete cascade,
+  soal_id text not null check (soal_id in ('ML-1','ML-2','ML-3','ML-4')),
+  tahap smallint not null check (tahap between 1 and 6),
+  jawaban jsonb not null check (jsonb_typeof(jawaban) = 'object' and pg_column_size(jawaban) <= 1024),
+  skor smallint not null check (skor between 0 and 2),
+  skor_maks smallint not null check (skor_maks between 1 and 2 and skor <= skor_maks),
+  kode_umpan text check (kode_umpan ~ '^[A-Z0-9-]{1,20}$'),
+  konsekuen boolean not null default false,
+  jumlah_bantuan smallint not null default 0 check (jumlah_bantuan between 0 and 2),
+  primary key (evaluasi_id, soal_id, tahap)
+);
+
+alter table evaluasi_literasi enable row level security;
+alter table jawaban_literasi enable row level security;
+
+create policy "baca evaluasi sendiri" on evaluasi_literasi for select using (siswa_id = auth.uid());
+create policy "tambah evaluasi sendiri" on evaluasi_literasi for insert with check (siswa_id = auth.uid());
+create policy "baca jawaban sendiri" on jawaban_literasi for select using (siswa_id = auth.uid());
+create policy "tambah jawaban sendiri" on jawaban_literasi for insert with check (siswa_id = auth.uid());
+-- Tidak ada kebijakan update/delete: hasil yang sudah tersimpan tidak bisa diubah siswa.
+```
+
+Fungsi `simpan_evaluasi_literasi(p_hasil jsonb)` ditulis sebagai `SECURITY INVOKER` (RLS tetap berlaku). Isinya:
+1. Jika `id` sudah ada untuk `auth.uid()`, kembalikan baris itu (idempoten).
+2. Validasi: tepat 23 tahap; pasangan soal–tahap sesuai daftar (ML-1 tahap 1–5, ML-2 sampai ML-4 tahap 1–6); `skor_maks` ML-1 tahap 3 = 2 dan lainnya 1; jumlah skor tahap per soal = skor indikatornya.
+3. Hitung `percobaan_ke`, lalu insert ke kedua tabel dalam satu transaksi.
+
+Kode lengkap fungsi ditulis di tugas LM-09 setelah skema disetujui.
 
 ## 5. Struktur Konten Statis
 
@@ -245,6 +381,53 @@ Nilai `ditanya` yang dipakai (sesuai [D-04_bank_soal.md](konten/D-04_bank_soal.m
 
 Untuk soal dengan harga satuan (L4-01, L4-03, L4-04), segmen HB/HJ menyimpan `nilai` total, `harga_satuan`, dan `jumlah` (misalnya `{ "nilai": 120000, "harga_satuan": 10000, "jumlah": 12 }`).
 
+### 5.3 `literasi.json` (F14, potongan) **[Usulan]**
+
+Teks soal dan kunci **[Spesifikasi]** disalin persis dari PRD §8.4. Uji unit membandingkan teks gabungan `segmen` dengan teks PRD, agar perubahan tidak sengaja terdeteksi.
+
+```json
+{
+  "versi_rubrik": 1,
+  "urutan": ["ML-3", "ML-4", "ML-2", "ML-1"],
+  "indikator": [
+    { "no": 1, "kunci": "reasoning", "nama": "Mathematical Reasoning", "keterangan": "Bernalar: membandingkan dan memberi alasan", "soal": "ML-1" }
+  ],
+  "soal": [
+    {
+      "id": "ML-2",
+      "nomor": 2,
+      "indikator": 2,
+      "segmen": [
+        { "teks": "Ibu membeli sebuah blender dengan harga " },
+        { "teks": "Rp250.000", "peran": "HB", "nilai": 250000 },
+        { "teks": ". Ibu ingin menjual blender tersebut dengan memperoleh keuntungan sebesar " },
+        { "teks": "20%", "peran": "PERSEN", "nilai": 20 },
+        { "teks": " dari harga beli." }
+      ],
+      "pertanyaan": "Berapakah harga jual blender yang harus ditetapkan? Tuliskan model matematika dan langkah penyelesaiannya.",
+      "kunci_teks": ["Harga beli = Rp250.000.", "…"],
+      "tahap": [
+        {
+          "no": 3,
+          "bobot": 1,
+          "kriteria": ["M"],
+          "perintah": "Pilih model untuk menghitung keuntungan.",
+          "isian": { "jenis": "pilihan", "pilihan": [
+            { "teks": "Keuntungan = 20% × harga beli", "benar": true },
+            { "teks": "Keuntungan = 20% × harga jual", "kode": "D1" }
+          ] },
+          "umpan": { "D1": "Soal menyebut \"20% dari harga beli\". Jadi dikali harga beli." },
+          "bantuan": ["Cari kata \"dari harga beli\" di soal.", "20% dari suatu harga = 20/100 × harga itu."],
+          "saran": { "D1": "M5" }
+        }
+      ]
+    }
+  ]
+}
+```
+
+Nilai `peran` baru: `PERSEN` (persen yang diketahui di soal, ML-2). Nilai `kriteria` mengikuti aspek bagian C: `I`, `M`, `R`, `H`, `T`, `K` (D-08 §3.3).
+
 ## 6. Validasi Input
 
 | Input | Aturan | Pesan jika salah |
@@ -267,3 +450,5 @@ Validasi format dilakukan di frontend. Validasi tipe dan rentang diulang oleh co
 | Proyek Supabase dijeda | 5xx / timeout | Tampilkan pesan; materi tetap bisa dibaca dari cache | "Server sedang tidak aktif. Kamu tetap bisa membaca materi." |
 | Ditolak RLS / constraint | 403 / 400 | Catat di konsol; tidak diulang | "Ada kesalahan. Coba muat ulang halaman." |
 | `materi.json` gagal dimuat | Hosting | Tombol "Coba lagi" | "Materi belum termuat. Periksa koneksi internet." |
+| F14: hasil gagal dikirim | Jaringan / 5xx | Hasil tetap tampil di P14; paket masuk antrean | "Hasilmu disimpan sementara di HP ini." **[Usulan]** |
+| F14: paket ditolak validasi RPC | 400 | Catat di konsol; hasil tetap tampil | "Hasil belum bisa disimpan. Coba muat ulang halaman." **[Usulan]** |

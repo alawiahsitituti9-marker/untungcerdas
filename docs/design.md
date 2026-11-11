@@ -1,8 +1,10 @@
 # Design — MathSave
 
-Versi: 0.1 (draf, menunggu persetujuan) · Acuan kebutuhan: [PRD.md](PRD.md)
+Versi: 0.2 · Acuan kebutuhan: [PRD.md](PRD.md)
 
-ID fitur (F01–F13), kebutuhan (KP, KM, KT, KA), dan temuan (T1–T23) mengikuti PRD.
+Riwayat: 0.1 disetujui 11 November 2026. **0.2 (12 November 2026, menunggu persetujuan):** F14 Latihan Literasi Matematis dan Evaluasi: halaman P12–P14, alur, wireframe, komponen (§2, §3, §4, §5, §17).
+
+ID fitur (F01–F14), kebutuhan (KP, KM, KT, KA), dan temuan (T1–T23) mengikuti PRD.
 
 ---
 
@@ -39,6 +41,9 @@ Prinsip desain (dari prompt dan PRD Bagian 7):
 | Germane: didorong | Self-explanation: pertanyaan "Mengapa?" berbentuk pilihan | F09, F10 |
 | Germane: didorong | Variasi konteks dengan struktur sama | F09 |
 | Germane: didorong | Langkah Periksa (hitung balik) | F05 |
+| Intrinsic: dikelola | Soal Literasi Matematis dipecah per tahap; urutan dari yang sederhana [Usulan KL-03] | F14 |
+| Extraneous: dikurangi | Soal di panel buka-tutup dengan tanda buatan siswa; satu tugas per layar | F14 |
+| Germane: didorong | Memilih rumus/model dan alasan; menilai pernyataan orang lain (Soal 4); bantuan 2 tingkat | F14 |
 
 ## 3. Struktur Halaman
 
@@ -54,7 +59,10 @@ Prinsip desain (dari prompt dan PRD Bagian 7):
 | P08 | Pilih Level Latihan | F09 | Tab "Latihan" |
 | P09 | Mengerjakan Soal | F05, F06, F11 | Dari P08 |
 | P10 | Pembahasan | F10 | Otomatis setelah jawaban salah (lembar bawah / layar penuh) |
-| P11 | Progres | F13 | Tab "Progres" |
+| P11 | Progres | F13, F14 | Tab "Progres" |
+| P12 | Pengantar Latihan Literasi Matematis | F14 | Dari P08 dan saran di P02 |
+| P13 | Mengerjakan Soal Literasi Matematis | F14 | Dari P12 |
+| P14 | Hasil Evaluasi Literasi Matematis | F14 | Otomatis setelah soal terakhir; dari P11 (riwayat) |
 
 Isi submateri (P04):
 
@@ -89,7 +97,13 @@ flowchart TD
     Q -->|salah| D[P10 Pembahasan]
     D -->|Coba lagi| Q
     B --> PR[P11 Progres]
+    L --> LM[P12 Literasi Matematis]
+    LM --> LK[P13 Kerjakan 4 soal per tahap] --> LH[P14 Hasil Evaluasi]
+    LH -->|saran materi| M1
+    LH --> PR
 ```
+
+Alur F14 rinci ada di §17.2 (ditambahkan 12 November 2026).
 
 Aturan alur:
 - Submateri bisa dibuka bebas, tetapi P02 selalu menyarankan **satu** langkah berikutnya (tombol "Lanjut belajar").
@@ -98,7 +112,7 @@ Aturan alur:
 ## 5. Navigasi
 
 - **Tab bawah** (4 tab, ikon + teks): Beranda · Materi · Latihan · Progres.
-- Tab bawah **disembunyikan** di P04, P06, dan P09 (mode fokus). Diganti tombol "←" di kiri atas dan bilah langkah, misalnya "Langkah 3 dari 7".
+- Tab bawah **disembunyikan** di P04, P06, P09, P13, dan P14 (mode fokus). Diganti tombol "←" di kiri atas dan bilah langkah, misalnya "Langkah 3 dari 7".
 - Tombol aksi utama selalu di bagian bawah layar, selebar layar, tinggi 48 px.
 - Tombol "Rumus" di P09 membuka P05 sebagai **lembar bawah** (bottom sheet), sehingga jawaban tidak hilang.
 
@@ -301,6 +315,8 @@ Progres tidak memakai skor ranking atau perbandingan dengan teman (tidak ada buk
 | `NavBawah` | 4 tab | P02, P03, P08, P11 |
 | `AdeganBarang3D` | Kanvas Three.js barang + label harga | P07 saja |
 
+Komponen F14 (`BilahSkor`, `KartuIndikator`, `PanelSoal`, `RingkasHarga`, `BarisTahap`, `TombolBantuan`) ada di §17.7.
+
 ## 8. Panduan Langkah demi Langkah (F05)
 
 | No | Langkah | Interaksi | Diperiksa | Indikator ML |
@@ -433,3 +449,220 @@ Kartu "mengapa dibagi harga beli" (M5) memakai penjelasan konseptual sederhana: 
 - **Mode bebas:** siswa menggeser HB dan HJ (Rp10.000–Rp200.000, kelipatan Rp5.000). Hasil (jenis, besar, persen) dan rumus terisi berubah langsung.
 - **Mode tantangan** (3 tantangan; titik awal T1 = HB Rp40.000, T2 = HB Rp50.000, T3 = HB Rp80.000 terkunci, sehingga cukup menggeser harga jual. Keputusan 11 November 2026): "Buat pedagang untung 25%", "Buat pedagang rugi 10%", "HB tetap Rp80.000. Berapa HJ agar untung Rp20.000?". Siswa mengatur slider lalu menekan "Cek". Tantangan ini melatih penalaran dan penafsiran, bukan rumus kebalikan formal.
 - Hasil memakai `BatangBanding`: batang HB dan HJ, dengan selisih diarsir hijau (untung) atau merah (rugi).
+
+## 17. Latihan Literasi Matematis dan Evaluasi (F14)
+
+Ditambahkan 12 November 2026. Soal, kunci, indikator, dan bobot adalah **[Spesifikasi]** ([PRD](PRD.md) §8.3–8.5). Semua rancangan tampilan di bagian ini adalah **[Usulan]** dan menunggu persetujuan. Isi tahap, rubrik, dan umpan balik ada di [D-08](konten/D-08_literasi_matematis.md).
+
+### 17.1 Posisi dalam aplikasi
+
+| Hal | Rancangan [Usulan] |
+|---|---|
+| Pintu masuk | Kartu "Latihan Literasi Matematis" di P08 (di bawah Level 1–4), dan saran di P02 Beranda (KL-09) |
+| Halaman | P12 Pengantar → P13 Mengerjakan (23 tahap) → P14 Hasil Evaluasi |
+| Mode fokus | P13 dan P14 tanpa tab bawah, sama dengan P09 |
+| Keluar di tengah | Tombol "←" bertanya "Keluar dulu? Jawabanmu tersimpan di HP ini." Siswa bisa melanjutkan nanti (KFN-26) |
+
+### 17.2 Alur
+
+```mermaid
+flowchart TD
+    P08[P08 Pilih Latihan] --> P12[P12 Pengantar: 4 soal, 4 indikator]
+    P02[P02 Beranda: saran] --> P12
+    P12 -->|Mulai / Lanjutkan| S[Soal berikutnya sesuai urutan KL-03]
+    S --> T[P13 Satu tahap per layar]
+    T -->|Bantuan 1, 2| T
+    T -->|Kartu Rumus| R[P05 lembar bawah] --> T
+    T -->|Simpan & lanjut| N{Tahap terakhir soal?}
+    N -->|belum| T
+    N -->|ya| J{Soal terakhir?}
+    J -->|belum| S
+    J -->|ya| K[Konfirmasi: Selesai dan lihat hasil]
+    K --> H[P14 Hasil: ringkasan skor]
+    H --> B[Pembahasan per soal, tahap demi tahap]
+    H --> M[Saran materi → P04 / P05]
+    H --> PR[P11 Progres: riwayat]
+```
+
+Antara dua soal tampil layar jeda singkat: "Soal 4 selesai. Berikutnya Soal 2." Layar ini memberi kesempatan istirahat dan tidak menampilkan skor (KL-08).
+
+### 17.3 Wireframe P12 Pengantar
+
+```
+┌──────────────────────────────┐
+│ ←  Latihan Literasi Matematis│
+├──────────────────────────────┤
+│ 4 soal cerita jual beli.     │
+│ Kerjakan tahap demi tahap.   │
+│ Hasilnya muncul di akhir.    │
+│                              │
+│ ┌──────────────────────────┐ │
+│ │ Soal 3  Employing …      │ │
+│ │ Soal 4  Interpreting …   │ │
+│ │ Soal 2  Formulating …    │ │
+│ │ Soal 1  Reasoning        │ │
+│ └──────────────────────────┘ │
+│ Skor maksimal 24.            │
+│ Ada bantuan di setiap tahap. │
+│                              │
+│ Hasil terakhir: 18 dari 24   │  ← hanya jika pernah mengerjakan
+├──────────────────────────────┤
+│ [          Mulai           ] │  ← "Lanjutkan (Soal 2, tahap 3)" bila ada jawaban tersimpan
+└──────────────────────────────┘
+```
+
+### 17.4 Wireframe P13 Mengerjakan (contoh Soal 1, tahap 3)
+
+```
+┌──────────────────────────────┐
+│ ←  Soal 1 · Tahap 3 dari 5   │
+│ ●●●○○                        │
+├──────────────────────────────┤
+│ ▸ Lihat soal                 │  ← panel buka-tutup; tanda HB/HJ buatan siswa
+│ ┌──────────────────────────┐ │
+│ │ Toko A  Beli Rp120.000   │ │  ← ringkasan dari tanda siswa
+│ │ Toko B  Beli Rp140.000   │ │     di tahap 1 (bukan kunci)
+│ │ Toko C  Beli Rp160.000   │ │
+│ └──────────────────────────┘ │
+│ Pilih rumus persentase       │
+│ keuntungan.                  │
+│ ( ) Untung ÷ HJ × 100%       │
+│ ( ) Untung ÷ HB × 100%       │
+│ ( ) Untung × HB ÷ 100        │
+│                              │
+│ Hitung untuk setiap toko.    │
+│ Toko A [      ] %            │
+│ Toko B [      ] %            │
+│ Toko C [      ] %            │
+├──────────────────────────────┤
+│ [💡 Bantuan 1/2]  [ Rumus ]  │
+│ [     Simpan & lanjut      ] │  ← aktif setelah semua isian terisi
+└──────────────────────────────┘
+```
+
+Aturan tampilan P13 [Usulan]:
+- Satu tugas per layar. Pengecualian: ML-1 tahap 3 memuat rumus dan tiga isian karena keduanya satu tahap berbobot 2 (spesifikasi). Bila layar 360 px terlalu padat saat diuji, bagian ini dipecah menjadi dua layar dalam tahap yang sama.
+- Tahap 1 setiap soal memakai `TeksBertanda` (F06). Di tahap berikutnya, soal ditampilkan di panel "Lihat soal" lengkap dengan tanda buatan siswa.
+- Ringkasan harga di tahap 2 dan seterusnya diambil dari tanda siswa. Jika tanda salah, ringkasan ikut salah, dan penilaian konsekuen berlaku (D-08 §4.1 U4).
+- Tidak ada tanda ✓/✗ selama pengerjaan (KL-08).
+- Bantuan dibuka satu tingkat per ketukan dan tampil di kotak kuning di bawah instruksi.
+
+### 17.5 Wireframe P14 Hasil Evaluasi
+
+Hasil dibuka bertahap dalam tiga bagian agar tidak padat (ketentuan D: penjelasan bertahap).
+
+**Bagian 1: Ringkasan skor**
+
+```
+┌──────────────────────────────┐
+│ ←  Hasil Latihan             │
+├──────────────────────────────┤
+│ Skormu                       │
+│        18 dari 24            │
+│ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░         │
+│ Naik 4 dari percobaan lalu.  │  ← hanya jika ada percobaan sebelumnya
+│                              │
+│ 1 Mathematical Reasoning     │
+│   Bernalar: membandingkan…   │
+│   ▓▓▓▓▓░  5 dari 6           │
+│   Hampir semua tepat.        │
+│ 2 Formulating Situations …   │
+│   ▓▓▓░░░  3 dari 6           │
+│   Sebagian sudah tepat.      │
+│ 3 Employing … Procedures     │
+│   ▓▓▓▓▓▓  6 dari 6  ✓        │
+│ 4 Interpreting … Outcomes    │
+│   ▓▓▓▓░░  4 dari 6           │
+├──────────────────────────────┤
+│ [   Lihat pembahasan    ]    │
+└──────────────────────────────┘
+```
+
+**Bagian 2: Pembahasan per soal** (daftar soal, lalu satu soal dibuka)
+
+```
+┌──────────────────────────────┐
+│ ←  Pembahasan Soal 2         │
+│    Formulating · 3 dari 6    │
+├──────────────────────────────┤
+│ ✓ Tahap 1 Diketahui  Sudah benar │
+│ ✓ Tahap 2 Ditanya    Sudah benar │
+│ ✗ Tahap 3 Model      Perlu diperbaiki │
+│ ┌──────────────────────────┐ │
+│ │ Jawabanmu:               │ │
+│ │ Keuntungan = 20% × HJ    │ │
+│ │ Soal menyebut "20% dari  │ │
+│ │ harga beli". Jadi dikali │ │
+│ │ harga beli.              │ │
+│ │ Yang benar:              │ │
+│ │ 20% × 250.000 = 50.000   │ │
+│ └──────────────────────────┘ │
+│ ✗ Tahap 4 …                  │  ← tertutup; ketuk untuk membuka
+│ ✓ Tahap 5 …                  │
+│ ✗ Tahap 6 …                  │
+├──────────────────────────────┤
+│ [ Lihat penyelesaian lengkap ]│  ← Contoh Bertahap: satu langkah per ketukan
+│ [  Soal berikutnya  ›   ]    │
+└──────────────────────────────┘
+```
+
+**Bagian 3: Saran belajar**
+
+```
+┌──────────────────────────────┐
+│ ←  Saran Belajar             │
+├──────────────────────────────┤
+│ Pelajari lagi bagian ini:    │
+│ ▸ M5 Persentase Untung       │
+│   Mengapa dibagi harga beli  │
+│ ▸ Kartu Rumus                │
+│ ▸ M1 Harga Beli dan Jual     │
+│                              │
+│ Kamu memakai 3 bantuan.      │
+│                              │
+├──────────────────────────────┤
+│ [ Coba lagi ]  [ Selesai ]   │
+└──────────────────────────────┘
+```
+
+Aturan tampilan P14 [Usulan]:
+- Ringkasan skor tampil lebih dulu. Pembahasan dan saran dibuka dengan ketukan (tempo diatur siswa, T22).
+- Setiap tahap memakai label teks **"Sudah benar"** atau **"Perlu diperbaiki"** beserta ikon ✓/✗. Warna tidak menjadi satu-satunya penanda (KNF-06).
+- Pembahasan tahap yang perlu diperbaiki memuat 4 unsur F10: jawaban siswa → konsep → cara memperbaiki → hasil yang benar.
+- "Lihat penyelesaian lengkap" menampilkan kunci [Spesifikasi] satu baris per ketukan, sama seperti Contoh Bertahap (F12).
+- Tanpa peringkat, tanpa perbandingan dengan teman, dan tanpa kata "lulus/gagal" (KL-11).
+- Nama indikator memakai nama lengkap bahasa Inggris dengan keterangan bahasa Indonesia di bawahnya (KL-12). Pada lebar 360 px, nama panjang boleh turun ke baris kedua dan tidak dipotong.
+
+### 17.6 Wireframe tambahan P11 Progres (bagian Literasi Matematis)
+
+```
+│ Literasi Matematis           │
+│ Pertama   12 Nov   14 dari 24│
+│ Terakhir  15 Nov   19 dari 24│
+│ Naik 5 poin.                 │
+│ R ▓▓▓▓▓░  F ▓▓▓▓░░           │
+│ E ▓▓▓▓▓▓  I ▓▓▓▓░░           │  ← singkatan disertai legenda
+│ [ Lihat semua percobaan ]    │
+```
+
+### 17.7 Komponen baru [Usulan]
+
+| Komponen | Fungsi | Dipakai di |
+|---|---|---|
+| `BilahSkor` | Bilah skor "x dari 6" / "x dari 24" dengan teks angka | P12, P14, P11 |
+| `KartuIndikator` | Nama indikator + keterangan + `BilahSkor` + pesan | P14 |
+| `PanelSoal` | Teks soal buka-tutup dengan tanda buatan siswa | P13 |
+| `RingkasHarga` | Daftar harga hasil tanda siswa (per toko / barang) | P13 |
+| `BarisTahap` | Satu tahap di pembahasan: status, jawaban siswa, umpan balik | P14 |
+| `TombolBantuan` | Membuka bantuan tingkat 1–2; menampilkan sisa bantuan | P13 (varian dari `TombolPetunjuk`) |
+
+Komponen yang dipakai ulang: `TeksBertanda`, `TombolPilihan`, `InputRupiah`, `InputPersen`, `LembarBawah`, `IsiKartuRumus`, `BilahLangkah`, `KepalaFokus`.
+
+Label baru di Penanda Informasi: **"Persen untung"** (ML-2 tahap 1). Warna memakai token `--untung` dengan tag teks "Persen", sehingga tidak bergantung pada warna saja.
+
+### 17.8 Kenyamanan di Android [Usulan]
+
+- Semua isian angka memakai `inputMode="numeric"` (rupiah) atau `inputMode="decimal"` (persen), agar keyboard angka muncul.
+- Saat keyboard muncul, tombol "Simpan & lanjut" tetap terlihat (bilah bawah lengket di atas keyboard).
+- Tombol Kembali Android di P13 sama dengan "←": bertanya dulu, lalu menyimpan jawaban sementara.
+- Ukuran teks dan area sentuh mengikuti §12–13 (≥ 16 px, ≥ 44 px).
