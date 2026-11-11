@@ -4,7 +4,7 @@
 // Pembahasan memakai templat D-05 §3.3 dengan alur D-05 §3.1 (dua kesempatan).
 
 import { diagnosisLangkah } from './diagnosis.js';
-import { hitungTransaksi, sederhanakan } from './hitung.js';
+import { hitungTransaksi } from './hitung.js';
 import { formatAngka, formatRupiah, formatPersen, formatDesimal } from './format.js';
 import { isiTemplat, nilaiTemplat } from './templat.js';
 import { acakUrutan } from './cekCepat.js';
@@ -116,27 +116,6 @@ export function pembahasanLangkah(soal, hasil, isian, data) {
     if (t === '@petunjuk3') return isiTemplat((soal.level === 1 ? data.petunjukLevel1 : data.petunjukLevel2)[2], nilai);
     return isiTemplat(t, nilai);
   });
-}
-
-/** Teks jawaban benar satu langkah, ditampilkan setelah salah kedua (sementara, sebelum ④ di DV-12). */
-export function jawabanBenarLangkah(soal, langkah) {
-  const t = hitungTransaksi(soal.hb, soal.hj);
-  const Jenis = t.jenis === 'untung' ? 'Untung' : 'Rugi';
-  const [a, b] = t.jenis === 'untung' ? [soal.hj, soal.hb] : [soal.hb, soal.hj];
-  const { pembilang, penyebut } = sederhanakan(t.selisih, soal.hb);
-  switch (langkah) {
-    case 1: return `HB = ${formatRupiah(soal.hb)} · HJ = ${formatRupiah(soal.hj)} · Ditanya: persen ${t.jenis}`;
-    case 2: return `HB = ${formatRupiah(soal.hb)} · HJ = ${formatRupiah(soal.hj)}`;
-    case 3: return `${t.jenis === 'untung' ? '▲' : '▼'} ${Jenis}, karena harga jual ${t.jenis === 'untung' ? 'lebih besar' : 'lebih kecil'} dari harga beli`;
-    case 4: return `${Jenis} = ${formatAngka(a)} − ${formatAngka(b)} = ${formatRupiah(t.selisih)}`;
-    case 5: return `% ${Jenis} = ${Jenis} ÷ HB × 100%`;
-    case 6: return `${formatAngka(t.selisih)} ÷ ${formatAngka(soal.hb)} × 100% = ${pembilang}/${penyebut} × 100% = ${formatPersen(t.persen)}`;
-    case 7:
-      return soal.level === 1
-        ? `${formatAngka(soal.hb)} ${t.jenis === 'untung' ? '+' : '−'} ${formatAngka(t.selisih)} = ${formatAngka(soal.hj)} ✓`
-        : `${formatPersen(t.persen)} × ${formatAngka(soal.hb)} = ${formatAngka(t.selisih)} ✓`;
-    default: return '';
-  }
 }
 
 /** Kalimat soal Level 1–2 dari templat `teksLevel` (D-04 §1–2). */

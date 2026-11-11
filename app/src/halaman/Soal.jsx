@@ -15,18 +15,21 @@ import { catatSesi } from '../layanan/progresLatihan.js';
 import KerjakanLevel4 from './SoalLevel4.jsx';
 import { TombolBantuan, DaftarBantuan } from '../komponen/TombolBantuan.jsx';
 import { petunjukSoal, layarUntuk } from '../logika/petunjuk.js';
+import { penyelesaianSoal } from '../logika/penyelesaian.js';
+import PenyelesaianBertahap from '../komponen/PenyelesaianBertahap.jsx';
 import { bacaRupiah, bacaPersen } from '../logika/format.js';
 import {
   JUDUL_LANGKAH, BATAS_PERCOBAAN, SYARAT_BUKA, JUMLAH_SOAL_SESI,
-  pilihSoalSesi, periksaLayar, pembahasanLangkah, jawabanBenarLangkah, teksSoalLangsung, perintahHitungBalik,
+  pilihSoalSesi, periksaLayar, pembahasanLangkah, teksSoalLangsung, perintahHitungBalik,
 } from '../logika/panduan.js';
 
 // P09 Mengerjakan Soal Level 1–4 (F05 Panduan Langkah, F09 Latihan; KFN-07, KFN-11; design.md §6, §8).
 // Level 4 tanpa panduan: lihat SoalLevel4.jsx.
-// Setiap layar diperiksa sebelum lanjut. Salah pertama → pembahasan ①–③ + "Coba lagi";
-// salah kedua → jawaban benar ditampilkan dan soal dihitung salah (D-05 §3.1).
+// Setiap layar diperiksa sebelum lanjut. Jawaban salah membuka lembar Pembahasan (P10, F10):
+// salah pertama → ①–③ + "Coba lagi"; salah kedua → ④ penyelesaian 7 langkah, lalu soal berikutnya
+// dan soal dihitung salah (D-05 §3.1, §3.3).
 // Petunjuk bertingkat (F11, DV-11): dibuka satu tingkat per ketukan; jumlahnya dicatat untuk fading.
-// Penyelesaian lengkap ④ (DV-12) dan penyimpanan percobaan (DV-13) belum di sini.
+// Penyimpanan percobaan (DV-13) belum di sini.
 
 const LEVEL_ADA = [1, 2, 3, 4];
 const LABEL_TANDAI = ['HB', 'HJ', 'DITANYA'];
@@ -149,6 +152,7 @@ function KerjakanSoal({ soal, nomor, level, data, daftarLayar, onSelesai }) {
   const [adaSalah, setAdaSalah] = useState(false);
   const [pesan, setPesan] = useState('');
   const [rumusTerbuka, setRumusTerbuka] = useState(false);
+  const [bahasTerbuka, setBahasTerbuka] = useState(false);
 
   const langkahLayar = daftarLayar[iLayar];
   const tandaiAktif = langkahLayar.includes(1);
@@ -167,9 +171,12 @@ function KerjakanSoal({ soal, nomor, level, data, daftarLayar, onSelesai }) {
     const habis = percobaan >= BATAS_PERCOBAAN;
     if (habis) setAdaSalah(true);
     setSt({ percobaan, hasil: h, selesai: habis, pembahasan: pembahasanLangkah(soal, h, r.isian, data) });
+    setBahasTerbuka(true);
   };
 
+  const gagal = st.selesai && !st.hasil?.benar; // salah kedua: soal berakhir (D-05 §3.1)
   const lanjut = () => {
+    if (gagal) return onSelesai(false, petunjukTerbuka);
     if (iLayar + 1 < daftarLayar.length) {
       setILayar(iLayar + 1);
       setSt({ percobaan: 0, hasil: null, selesai: false, pembahasan: null });
@@ -203,15 +210,7 @@ function KerjakanSoal({ soal, nomor, level, data, daftarLayar, onSelesai }) {
       <div aria-live="polite">
         {benar && <div className="umpan-balik umpan-balik--benar"><p style={{ fontWeight: 700 }}>✓ Benar!</p></div>}
         {st.pembahasan && (
-          <div className="umpan-balik umpan-balik--salah">
-            {st.pembahasan.map((p, i) => <p key={i}><TeksKaya teks={p} /></p>)}
-          </div>
-        )}
-        {st.selesai && !benar && (
-          <div className="kartu">
-            <p className="label-bagian">Hasil yang benar:</p>
-            {langkahLayar.map((n) => <p key={n}>{jawabanBenarLangkah(soal, n)}</p>)}
-          </div>
+          <button type="button" className="tombol-teks tombol-buka-rumus" onClick={() => setBahasTerbuka(true)}>Lihat pembahasan</button>
         )}
       </div>
 
@@ -222,7 +221,7 @@ function KerjakanSoal({ soal, nomor, level, data, daftarLayar, onSelesai }) {
         </div>
         {st.selesai ? (
           <button type="button" className="tombol-utama" onClick={lanjut}>
-            {iLayar + 1 < daftarLayar.length ? 'Lanjut' : 'Soal berikutnya'}
+            {!gagal && iLayar + 1 < daftarLayar.length ? 'Lanjut' : 'Soal berikutnya'}
           </button>
         ) : (
           <button type="button" className="tombol-utama" disabled={!lengkap(langkahLayar, isian)} onClick={periksa}>
@@ -234,7 +233,38 @@ function KerjakanSoal({ soal, nomor, level, data, daftarLayar, onSelesai }) {
       <LembarBawah terbuka={rumusTerbuka} onTutup={() => setRumusTerbuka(false)} judul="Kartu Rumus">
         <IsiKartuRumus data={data.kartuRumus} />
       </LembarBawah>
+      <LembarBawah terbuka={bahasTerbuka} onTutup={() => setBahasTerbuka(false)} judul={`Belum tepat di Langkah ${st.hasil?.langkah ?? ''}`}>
+        {st.pembahasan && (
+          <IsiPembahasan
+            pembahasan={st.pembahasan}
+            penyelesaian={gagal ? penyelesaianSoal(soal) : null}
+            onCobaLagi={() => setBahasTerbuka(false)}
+            onBerikutnya={() => onSelesai(false, petunjukTerbuka)}
+          />
+        )}
+      </LembarBawah>
     </main>
+  );
+}
+
+/** Isi lembar Pembahasan (P10): ① bagian yang belum tepat, ② "Ingat:", ③ "Petunjuk:", ④ penyelesaian (design.md §6). */
+function IsiPembahasan({ pembahasan, penyelesaian, onCobaLagi, onBerikutnya }) {
+  const [bagian, konsep, petunjuk] = pembahasan;
+  return (
+    <div className="isi-pembahasan">
+      <p><TeksKaya teks={bagian} /></p>
+      {konsep && <p><b>Ingat:</b> <TeksKaya teks={konsep} /></p>}
+      {petunjuk && <p><b>Petunjuk:</b> <TeksKaya teks={petunjuk} /></p>}
+      {penyelesaian ? (
+        <>
+          <p className="label-bagian">Penyelesaian yang benar:</p>
+          <PenyelesaianBertahap langkah={penyelesaian} />
+          <button type="button" className="tombol-utama" style={{ marginTop: 12 }} onClick={onBerikutnya}>Soal berikutnya</button>
+        </>
+      ) : (
+        <button type="button" className="tombol-utama" onClick={onCobaLagi}>Coba lagi</button>
+      )}
+    </div>
   );
 }
 

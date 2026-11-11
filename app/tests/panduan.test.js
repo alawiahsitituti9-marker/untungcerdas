@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
 import {
-  LAYAR, pilihSoalSesi, levelTerbuka, periksaLayar, pembahasanLangkah, jawabanBenarLangkah,
+  LAYAR, pilihSoalSesi, levelTerbuka, periksaLayar, pembahasanLangkah,
   teksSoalLangsung, perintahHitungBalik, SYARAT_BUKA,
 } from '../src/logika/panduan.js';
 
@@ -112,11 +112,6 @@ describe('teks pendukung', () => {
   it('perintah hitung balik', () => {
     expect(perintahHitungBalik(soal('L1-05'))).toBe('Hitung balik: 60.000 − 6.000 = …');
     expect(perintahHitungBalik(soal('L3-01'))).toBe('Hitung balik: 25% × 48.000 = …');
-  });
-  it('jawaban benar setelah salah kedua', () => {
-    expect(jawabanBenarLangkah(soal('L2-01'), 6)).toBe('10.000 ÷ 40.000 × 100% = 1/4 × 100% = 25%');
-    expect(jawabanBenarLangkah(soal('L1-06'), 7)).toBe('18.000 − 3.000 = 15.000 ✓');
-    expect(jawabanBenarLangkah(soal('L2-04'), 4)).toBe('Rugi = 120.000 − 90.000 = Rp30.000');
   });
 });
 
