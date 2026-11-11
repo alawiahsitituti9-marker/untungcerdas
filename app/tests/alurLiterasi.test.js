@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { readFileSync } from 'node:fs';
-import { daftarLangkah, isianAwal, tahapLengkap, bacaIsianTahap, tandaSiswa, ringkasTanda } from '../src/logika/alurLiterasi.js';
+import { daftarLangkah, isianAwal, tahapLengkap, bacaIsianTahap, tandaSiswa, ringkasTanda, teksJawaban } from '../src/logika/alurLiterasi.js';
 import { drafBaru, bacaDraf, simpanDraf, hapusDraf, kunciTahap, catatBantuan } from '../src/layanan/literasi.js';
 import { nilaiLatihan } from '../src/logika/penilaianLiterasi.js';
 
@@ -118,5 +118,21 @@ describe('draf di localStorage (KFN-26)', () => {
     expect(simpanDraf('MS-AB12', drafBaru(1))).toBe(false);
     expect(bacaDraf('MS-AB12', 1)).toBeNull();
     expect(() => hapusDraf('MS-AB12')).not.toThrow();
+  });
+});
+
+describe('teksJawaban (baris "Jawabanmu" di P14)', () => {
+  it('menampilkan tanda, pilihan, rupiah, dan persen dalam format Indonesia', () => {
+    expect(teksJawaban(soal('ML-4'), tahap('ML-4', 1), { tandai: { 3: 'HJ', 1: 'HB' } })).toEqual(['Rp400.000 = harga beli; Rp340.000 = harga jual']);
+    expect(teksJawaban(soal('ML-2'), tahap('ML-2', 1), { tandai: { 3: 'PERSEN' } })).toEqual(['20% = persen untung']);
+    expect(teksJawaban(soal('ML-3'), tahap('ML-3', 1), { sepeda: 0, kipas: 0 })).toEqual(['Sepeda: ▲ Untung', 'Kipas angin: ▲ Untung']);
+    expect(teksJawaban(soal('ML-1'), tahap('ML-1', 2), { uA: 30000, uB: 35000, uC: 32000 })).toEqual(['Toko A: Rp30.000', 'Toko B: Rp35.000', 'Toko C: Rp32.000']);
+    expect(teksJawaban(soal('ML-4'), tahap('ML-4', 4), { persen: 17.65 })).toEqual(['17,65%']);
+  });
+  it('isian kosong ditulis "(belum diisi)"', () => {
+    expect(teksJawaban(soal('ML-4'), tahap('ML-4', 1), {})).toEqual(['(belum diisi)']);
+    expect(teksJawaban(soal('ML-1'), tahap('ML-1', 3), { rumus: 0 })).toEqual([
+      'Untung ÷ harga beli × 100%', 'Toko A: (belum diisi)', 'Toko B: (belum diisi)', 'Toko C: (belum diisi)',
+    ]);
   });
 });

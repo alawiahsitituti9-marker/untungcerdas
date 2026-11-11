@@ -47,6 +47,7 @@ export default function LatihanLiterasi() {
     navigasi('/literasi/kerjakan');
   };
   const mulaiLagi = () => {
+    if (!window.confirm('Mulai lagi? Hasil ini akan dihapus dari HP ini.')) return;
     hapusDraf(sesi.kodeTampil);
     setUlang((n) => n + 1);
   };
@@ -74,9 +75,8 @@ export default function LatihanLiterasi() {
 
       {draf?.selesai ? (
         <>
-          {/* Sementara sampai P14 Hasil Evaluasi dibuat (LM-08). */}
-          <p className="spanduk-uji">Latihan selesai. Halaman hasil sedang disiapkan.</p>
-          <button type="button" className="tombol-utama" onClick={mulaiLagi}>Mulai lagi</button>
+          <button type="button" className="tombol-utama" onClick={() => navigasi('/literasi/hasil')}>Lihat hasil</button>
+          <button type="button" className="tombol-teks tombol-buka-rumus" onClick={mulaiLagi}>Mulai lagi</button>
         </>
       ) : (
         <button type="button" className="tombol-utama" onClick={mulai}>

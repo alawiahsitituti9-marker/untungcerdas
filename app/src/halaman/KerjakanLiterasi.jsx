@@ -18,7 +18,7 @@ import { daftarLangkah, isianAwal, tahapLengkap, bacaIsianTahap, tandaSiswa, rin
 
 // P13 Mengerjakan Soal Literasi Matematis (F14, design.md §17.4).
 // Satu tahap per layar. Jawaban tahap dikunci setelah "Simpan & lanjut".
-// Tidak ada tanda benar/salah selama pengerjaan (KL-08); penilaian ada di P14 (LM-08).
+// Tidak ada tanda benar/salah selama pengerjaan (KL-08); penilaian ada di P14 HasilLiterasi.
 
 const PESAN_KELUAR = 'Keluar dulu? Jawabanmu tersimpan di HP ini.';
 
@@ -161,7 +161,7 @@ export default function KerjakanLiterasi() {
   if (draf.posisi >= langkah.length) {
     const selesai = () => {
       perbarui({ ...draf, selesai: true, selesai_pada: new Date().toISOString() });
-      navigasi('/literasi', { replace: true });
+      navigasi('/literasi/hasil', { replace: true });
     };
     return kepalaSaja(
       <section className="kartu" aria-live="polite">

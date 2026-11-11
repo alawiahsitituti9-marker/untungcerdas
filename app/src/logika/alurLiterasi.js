@@ -1,7 +1,7 @@
 // Alur pengerjaan F14 (design.md §17.2, §17.4): urutan langkah, kelengkapan isian,
 // pembacaan isian, dan ringkasan tanda siswa. Fungsi murni, tanpa React.
 
-import { bacaRupiah, bacaPersen } from './format.js';
+import { bacaRupiah, bacaPersen, formatRupiah, formatPersen } from './format.js';
 
 /**
  * Semua langkah (tahap) dalam urutan pengerjaan `konten.urutan` (KL-03).
@@ -73,4 +73,26 @@ export function ringkasTanda(soal, label) {
     grup.get(nama).push({ label: l, nilai: s.nilai ?? null, teks: s.teks });
   });
   return [...grup.entries()].map(([kelompok, isi]) => ({ kelompok, isi }));
+}
+
+const NAMA_LABEL = { HB: 'harga beli', HJ: 'harga jual', PERSEN: 'persen untung' };
+
+/**
+ * Jawaban siswa pada satu tahap dalam bentuk teks, untuk baris "Jawabanmu" di P14.
+ * @returns {string[]} satu baris per isian; "(belum diisi)" bila kosong
+ */
+export function teksJawaban(soal, tahap, isian = {}) {
+  const KOSONG = '(belum diisi)';
+  return tahap.bagian.map((b) => {
+    const v = isian?.[b.id];
+    const awal = b.label && b.jenis !== 'tandai' ? `${b.label}: ` : '';
+    if (b.jenis === 'tandai') {
+      const tanda = Object.entries(v ?? {}).sort((a, c) => a[0] - c[0]);
+      return tanda.length ? tanda.map(([i, l]) => `${soal.segmen[i].teks} = ${NAMA_LABEL[l] ?? l}`).join('; ') : KOSONG;
+    }
+    if (v === undefined || v === null || v === '') return awal + KOSONG;
+    if (b.jenis === 'pilihan') return awal + (b.pilihan[v]?.teks ?? KOSONG);
+    if (b.jenis === 'rupiah') return awal + formatRupiah(v);
+    return awal + formatPersen(v);
+  });
 }

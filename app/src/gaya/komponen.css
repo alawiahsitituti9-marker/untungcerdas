@@ -646,3 +646,55 @@
 .layar-jeda { margin-top: 24px; }
 .ringkas-harga .label-harga { padding: 2px 6px; font-size: 15px; }
 .ringkas-harga .ringkas-harga__nama { min-width: 56px; }
+
+/* ---------- F14 Hasil Evaluasi (P14) ---------- */
+.skor-total__angka {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+.bilah-skor {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.bilah-skor .bilah-kemajuan { flex: 1; margin: 0; }
+.bilah-skor__angka { font-weight: 700; white-space: nowrap; }
+.daftar-indikator { list-style: none; margin: 0 0 12px; padding: 0; }
+.kartu-indikator {
+  padding: 12px 0;
+  border-top: 1px solid var(--garis);
+}
+.kartu-indikator__nama { font-weight: 700; margin: 0; }
+.kartu-indikator__pesan { margin: 6px 0 0; }
+.baris-tahap {
+  border: 2px solid var(--garis);
+  border-radius: var(--sudut);
+  margin: 0 0 8px;
+  padding: 0 12px;
+}
+.baris-tahap--benar { border-left: 6px solid var(--untung); }
+.baris-tahap--perbaiki { border-left: 6px solid #b45309; }
+.baris-tahap summary {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0 8px;
+  min-height: var(--sentuh-min);
+  padding: 8px 0;
+  cursor: pointer;
+  align-items: center;
+}
+.baris-tahap__ikon { grid-row: span 2; font-weight: 700; font-size: 20px; }
+.baris-tahap--benar .baris-tahap__ikon { color: var(--untung); }
+.baris-tahap--perbaiki .baris-tahap__ikon { color: #b45309; }
+.baris-tahap__judul { font-weight: 600; }
+.baris-tahap__status { font-size: var(--ukuran-keterangan); color: var(--teks-redup); }
+.baris-tahap__isi { padding: 0 0 12px; }
+.jawaban-siswa { margin: 0 0 8px; padding-left: 20px; }
+.pembahasan-tahap { margin: 0; }
+.pembahasan-tahap dt { font-weight: 700; margin-top: 8px; }
+.pembahasan-tahap dd { margin: 0; }
+.penyelesaian { margin-top: 12px; }
+.penyelesaian ol { padding-left: 20px; margin: 0 0 12px; }
+.penyelesaian li { margin-bottom: 6px; }
+.teks-redup-langkah { color: var(--teks-redup); }
