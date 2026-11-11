@@ -1,6 +1,8 @@
 # D-08 — Latihan Literasi Matematis dan Evaluasi (F14)
 
-Versi: 1.0 (**disetujui pemilik proyek, 12 November 2026**; KL-01 sampai KL-15 di PRD §13.1)
+Versi: 1.1 · 1.0 **disetujui pemilik proyek, 12 November 2026** (KL-01 sampai KL-15 di PRD §13.1)
+
+**Revisi 1.1 (disetujui pemilik proyek, 12 November 2026):** hasil pemeriksaan LM-05/LM-06, keputusan A dan E. Yang berubah hanya redaksi U4 (§4.1) dan satu baris ML-2 tahap 4 (§4.2). Baris yang direvisi ditandai **[Revisi 1.1]**. Soal, kunci, bobot, 23 tahap, bantuan, dan pembahasan tidak berubah.
 Acuan: [PRD.md](../PRD.md) §8.3–8.5, §9 (F14) · [design.md](../design.md) §17 · [architecture.md](../architecture.md) §10 · [api.md](../api.md) §3.5, §5.3
 
 Penanda di dokumen ini:
@@ -193,7 +195,7 @@ Bagian **[Usulan, KL-04 dan KL-05]**: kriteria rinci setiap tahap di bawah ini.
 | U1 | Tahap berbobot 1 dinilai **0 atau 1**. Skor 1 hanya jika **semua** isian di tahap itu benar |
 | U2 | Tahap berbobot 2 (ML-1 tahap 3) dinilai **0, 1, atau 2**: 1 poin untuk rumus, 1 poin untuk ketiga persentase |
 | U3 | Isian persen dianggap benar dengan toleransi ±0,01 (api.md §6). Contoh: 25 dan 25,00 benar |
-| U4 | **Penilaian konsekuen [KL-05].** Tahap **perhitungan** (H) tetap dinilai benar jika angkanya salah hanya karena memakai hasil salah siswa di tahap sebelumnya, tetapi dihitung dengan benar. Tujuannya agar satu kesalahan tidak dihukum berulang kali. Aturan ini **tidak** berlaku untuk tahap memilih rumus atau model (R, M) dan tahap evaluasi pernyataan (ML-4 tahap 5) |
+| U4 | **Penilaian konsekuen [KL-05] [Revisi 1.1].** Tahap **perhitungan** (H) tetap dinilai benar jika angkanya salah hanya karena memakai **hasil angka** salah siswa di tahap sebelumnya, tetapi dihitung dengan benar. Hal yang sama berlaku untuk **ML-1 tahap 4**: keputusan dinilai benar jika sesuai persen terbesar dari hasil persentase siswa sendiri di tahap 3. Tujuannya agar satu kesalahan tidak dihukum berulang kali. Aturan ini **tidak** berlaku untuk tahap memilih rumus atau model (R, M), tahap evaluasi pernyataan (ML-4 tahap 5), dan tahap alasan. Penilaian konsekuen juga **tidak** boleh bersumber dari pilihan rumus atau model yang salah |
 | U5 | Isian kosong atau format tidak terbaca = 0. Tombol "Simpan & lanjut" tidak aktif sebelum semua isian terisi |
 | U6 | Bantuan tidak mengurangi skor [KL-06]. Jumlah bantuan per tahap dicatat |
 | U7 | Setiap tahap yang belum tepat diberi **kode umpan balik**. Kode ini dipakai untuk memilih pembahasan dan saran materi (§5, §6) |
@@ -217,7 +219,7 @@ Bagian **[Usulan, KL-04 dan KL-05]**: kriteria rinci setiap tahap di bawah ini.
 | 1 Diketahui | Rp250.000 tidak berlabel HB, atau 20% tidak berlabel Persen untung | Keduanya berlabel benar |
 | 2 Ditanya | Memilih keuntungan atau persentase | Memilih harga jual |
 | 3 Model keuntungan | Memilih × harga jual, × 20 (tanpa %), atau ÷ 20% | Keuntungan = 20% × harga beli |
-| 4 Hitung keuntungan | Selain 50.000 (dan tidak konsekuen) | 50.000, atau konsekuen dengan model yang dipilih di tahap 3 (U4) |
+| 4 Hitung keuntungan **[Revisi 1.1]** | Selain 50.000, termasuk hasil yang konsisten dengan model salah di tahap 3 | 50.000 (tanpa penilaian konsekuen, karena tahap 3 adalah pemilihan model) |
 | 5 Model harga jual | HB − keuntungan, atau harga jual = keuntungan | Harga jual = harga beli + keuntungan |
 | 6 Harga jual | Selain 300.000 (dan tidak konsekuen) | 300.000, atau 250.000 + keuntungan dari tahap 4 siswa (U4) |
 
@@ -381,6 +383,15 @@ Saran disusun dari kode umpan balik pada tahap yang belum tepat. Paling banyak 3
 | M-SALAH, ML-2 tahap 3–6 | "Lihat lagi: Kartu Rumus dan pembahasan Soal 2" | P05 + P14 |
 | ALASAN-* | "Lihat lagi: contoh cara yang salah dan benar" | M5 kartu 5 |
 | Semua tahap benar | "Hebat! Coba latihan Level 4 untuk soal cerita lain." | P08 |
+
+**Aturan prioritas [Revisi 1.1, disetujui 12 November 2026]** untuk baris yang tumpang tindih:
+1. Baris khusus **ML-2 tahap 3–6** didahulukan untuk tahap-tahap tersebut (semua kode → Kartu Rumus dan pembahasan Soal 2).
+2. **D1 pada tahap alasan** (ML-1 tahap 5, ML-4 tahap 6) → M5 kartu 5. Aturan ini didahulukan dari aturan 3.
+3. **D1 pada soal rugi** → M6. ML-3 (untung dan rugi sekaligus) tahap 4 tetap → M5.
+4. **D2** → M5 di mana pun, kecuali tahap yang terkena aturan 1.
+5. **ALASAN-*** → M5 kartu 5.
+6. Kode tambahan: `KEPUTUSAN` (ML-1 tahap 4) → M5; `PERSEN` (isian/rumus persen tanpa pola) → M5 untuk untung, M6 untuk rugi; `IDENTIFIKASI` → M1; `KOSONG` (belum dijawab) → topik tahap.
+7. D4 memakai satu saran gabungan dengan teks persis "Ulangi: Menghitung Untung / Menghitung Rugi", bertaut ke M3 (siswa lanjut ke M4 lewat navigasi materi), dan dihitung sebagai satu slot.
 
 ## 8. Pesan Hasil per Indikator [Usulan, KL-11]
 

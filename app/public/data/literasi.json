@@ -1,0 +1,677 @@
+{
+  "versi_rubrik": 1,
+  "catatan": "F14 Latihan Literasi Matematis. Soal dan kunci dari PRD §8.4 [Spesifikasi]; tahap, rubrik, pilihan, umpan dari D-08 v1.0; bantuan dan pembahasan dari LM-03 v1.0 (disetujui 12 November 2026). Jangan ubah tanpa persetujuan pemilik proyek.",
+  "urutan": ["ML-3", "ML-4", "ML-2", "ML-1"],
+  "indikator": [
+    { "no": 1, "kunci": "reasoning", "nama": "Mathematical Reasoning", "keterangan": "Bernalar: membandingkan dan memberi alasan", "soal": "ML-1" },
+    { "no": 2, "kunci": "formulating", "nama": "Formulating Situations Mathematically", "keterangan": "Merumuskan: mengubah cerita menjadi model matematika", "soal": "ML-2" },
+    { "no": 3, "kunci": "employing", "nama": "Employing Mathematical Concepts, Facts, and Procedures", "keterangan": "Menggunakan: memilih rumus dan menghitung", "soal": "ML-3" },
+    { "no": 4, "kunci": "interpreting", "nama": "Interpreting, Applying, and Evaluating Mathematical Outcomes", "keterangan": "Menafsirkan: memeriksa dan menilai hasil", "soal": "ML-4" }
+  ],
+  "pesanSkor": [
+    { "min": 6, "maks": 6, "teks": "Semua tahap sudah tepat." },
+    { "min": 4, "maks": 5, "teks": "Hampir semua tepat. Lihat tahap yang perlu diperbaiki." },
+    { "min": 2, "maks": 3, "teks": "Sebagian sudah tepat. Pelajari pembahasannya pelan-pelan." },
+    { "min": 0, "maks": 1, "teks": "Ayo ulangi materinya dulu, lalu coba lagi." }
+  ],
+  "pesanUmum": {
+    "konsekuen": "Hitunganmu benar dengan angkamu sendiri. Perbaiki angka di tahap {n}.",
+    "skorSebagianRumusBenar": "Rumusmu sudah benar. Periksa lagi hitungan persennya.",
+    "skorSebagianHitungBenar": "Hitunganmu benar. Tetapi rumus yang kamu pilih belum tepat.",
+    "bantuanDipakai": "Kamu memakai {n} bantuan di tahap ini.",
+    "bantuanHabis": "Bantuan sudah habis. Coba kerjakan dengan langkahmu sendiri."
+  },
+  "saran": {
+    "M1": { "teks": "Ulangi: Harga Beli dan Harga Jual", "tautan": "/materi/M1" },
+    "M2": { "teks": "Ulangi: Untung atau Rugi?", "tautan": "/materi/M2" },
+    "SELISIH": { "teks": "Ulangi: Menghitung Untung / Menghitung Rugi", "tautan": "/materi/M3" },
+    "M5": { "teks": "Ulangi: Persentase Untung (mengapa dibagi harga beli)", "tautan": "/materi/M5?kartu=3" },
+    "M6": { "teks": "Ulangi: Persentase Rugi", "tautan": "/materi/M6" },
+    "RUMUS": { "teks": "Lihat lagi: Kartu Rumus dan pembahasan Soal 2", "tautan": "/rumus" },
+    "M5K5": { "teks": "Lihat lagi: contoh cara yang salah dan benar", "tautan": "/materi/M5?kartu=5" },
+    "LEVEL4": { "teks": "Hebat! Coba latihan Level 4 untuk soal cerita lain.", "tautan": "/latihan" }
+  },
+  "soal": [
+    {
+      "id": "ML-1",
+      "nomor": 1,
+      "indikator": 1,
+      "pengantar": "Soal ini melatih bernalar. Kamu membandingkan tiga toko dan memberi alasan.",
+      "segmen": [
+        { "teks": "Toko A membeli sebuah tas seharga " },
+        { "teks": "Rp120.000", "peran": "HB", "nilai": 120000, "kelompok": "Toko A" },
+        { "teks": " dan menjualnya seharga " },
+        { "teks": "Rp150.000", "peran": "HJ", "nilai": 150000, "kelompok": "Toko A" },
+        { "teks": ". Toko B membeli tas sejenis seharga " },
+        { "teks": "Rp140.000", "peran": "HB", "nilai": 140000, "kelompok": "Toko B" },
+        { "teks": " dan menjualnya seharga " },
+        { "teks": "Rp175.000", "peran": "HJ", "nilai": 175000, "kelompok": "Toko B" },
+        { "teks": ". Toko C membeli tas seharga " },
+        { "teks": "Rp160.000", "peran": "HB", "nilai": 160000, "kelompok": "Toko C" },
+        { "teks": " dan menjualnya seharga " },
+        { "teks": "Rp192.000", "peran": "HJ", "nilai": 192000, "kelompok": "Toko C" },
+        { "teks": "." }
+      ],
+      "pertanyaan": "Toko manakah yang memperoleh persentase keuntungan paling besar? Tunjukkan perhitungan dan alasanmu.",
+      "kunci_teks": [
+        "Toko A: keuntungan Rp30.000, persentase keuntungan 25%.",
+        "Toko B: keuntungan Rp35.000, persentase keuntungan 25%.",
+        "Toko C: keuntungan Rp32.000, persentase keuntungan 20%.",
+        "Kesimpulan: Toko A dan Toko B memperoleh persentase keuntungan terbesar, yaitu sama-sama 25%."
+      ],
+      "penyelesaian": [
+        { "teks": "Toko A: untung 150.000 − 120.000 = 30.000. Persen 30.000 ÷ 120.000 × 100% = 25%.", "asal": "usulan" },
+        { "teks": "Toko B: untung 175.000 − 140.000 = 35.000. Persen 35.000 ÷ 140.000 × 100% = 25%.", "asal": "usulan" },
+        { "teks": "Toko C: untung 192.000 − 160.000 = 32.000. Persen 32.000 ÷ 160.000 × 100% = 20%.", "asal": "usulan" },
+        { "teks": "Toko A: keuntungan Rp30.000, persentase keuntungan 25%.", "asal": "spesifikasi" },
+        { "teks": "Toko B: keuntungan Rp35.000, persentase keuntungan 25%.", "asal": "spesifikasi" },
+        { "teks": "Toko C: keuntungan Rp32.000, persentase keuntungan 20%.", "asal": "spesifikasi" },
+        { "teks": "Kesimpulan: Toko A dan Toko B memperoleh persentase keuntungan terbesar, yaitu sama-sama 25%.", "asal": "spesifikasi" }
+      ],
+      "tahap": [
+        {
+          "no": 1, "bobot": 1, "kriteria": ["I"], "judul": "Identifikasi harga",
+          "perintah": "Tandai harga beli dan harga jual setiap toko.",
+          "bagian": [{ "id": "tandai", "jenis": "tandai", "label": ["HB", "HJ"] }],
+          "kodeUmum": "IDENTIFIKASI", "saran": "M1",
+          "bantuan": [
+            "Setiap toko punya dua harga. Cari kata \"membeli\" dan \"menjual\".",
+            "Angka sesudah kata \"membeli\" adalah harga beli. Angka sesudah kata \"menjualnya\" adalah harga jual."
+          ],
+          "pembahasan": {
+            "benar": "Kamu menemukan harga beli dan harga jual ketiga toko.",
+            "kesalahanUmum": "Ada harga yang labelnya tertukar atau belum diberi label.",
+            "konsep": "Harga beli adalah uang yang dikeluarkan toko. Harga jual adalah uang yang diterima toko.",
+            "cara": "Baca satu toko dulu. Tandai harga belinya, lalu harga jualnya.",
+            "hasil": "Toko A: HB Rp120.000, HJ Rp150.000. Toko B: HB Rp140.000, HJ Rp175.000. Toko C: HB Rp160.000, HJ Rp192.000."
+          }
+        },
+        {
+          "no": 2, "bobot": 1, "kriteria": ["H"], "judul": "Keuntungan setiap toko",
+          "perintah": "Hitung keuntungan setiap toko.",
+          "bagian": [
+            { "id": "uA", "jenis": "rupiah", "label": "Toko A", "kunci": 30000 },
+            { "id": "uB", "jenis": "rupiah", "label": "Toko B", "kunci": 35000 },
+            { "id": "uC", "jenis": "rupiah", "label": "Toko C", "kunci": 32000 }
+          ],
+          "kodeUmum": "D4", "saran": "SELISIH",
+          "bantuan": [
+            "Lihat harga beli dan harga jual setiap toko di ringkasan.",
+            "Untung = HJ − HB. Hitung untuk Toko A, B, dan C satu per satu."
+          ],
+          "pembahasan": {
+            "benar": "Kamu menghitung keuntungan ketiga toko dengan tepat.",
+            "kesalahanUmum": "Ada keuntungan yang hitungannya belum tepat.",
+            "konsep": "Keuntungan adalah selisih harga jual dan harga beli.",
+            "cara": "Kurangi harga jual dengan harga beli. Hitung dalam ribuan agar mudah.",
+            "hasil": "A: 150.000 − 120.000 = Rp30.000. B: 175.000 − 140.000 = Rp35.000. C: 192.000 − 160.000 = Rp32.000."
+          }
+        },
+        {
+          "no": 3, "bobot": 2, "kriteria": ["R", "H"], "judul": "Rumus dan persentase",
+          "perintah": "Pilih rumus persentase keuntungan. Lalu hitung untuk setiap toko.",
+          "bagian": [
+            { "id": "rumus", "jenis": "pilihan", "pilihan": [
+              { "teks": "Untung ÷ harga beli × 100%", "benar": true },
+              { "teks": "Untung ÷ harga jual × 100%", "kode": "D1", "umpan": "Persentase keuntungan dihitung dari **harga beli**, bukan harga jual." },
+              { "teks": "Untung × harga beli ÷ 100", "kode": "R-SALAH", "umpan": "Untung dibagi harga beli, lalu dikali 100%." }
+            ] },
+            { "id": "pA", "jenis": "persen", "label": "Toko A", "kunci": 25, "konsekuen": { "bagi": { "tahap": 2, "bagian": "uA" }, "pembagi": 120000 } },
+            { "id": "pB", "jenis": "persen", "label": "Toko B", "kunci": 25, "konsekuen": { "bagi": { "tahap": 2, "bagian": "uB" }, "pembagi": 140000 } },
+            { "id": "pC", "jenis": "persen", "label": "Toko C", "kunci": 20, "konsekuen": { "bagi": { "tahap": 2, "bagian": "uC" }, "pembagi": 160000 } }
+          ],
+          "poin": [["rumus"], ["pA", "pB", "pC"]],
+          "pola": [
+            { "kode": "D1", "nilai": { "pA": 20, "pB": 20, "pC": 16.67 }, "umpan": "Sepertinya kamu membagi dengan harga jual. Coba bagi dengan harga beli." },
+            { "kode": "D2", "nilai": { "pA": 0.25, "pB": 0.25, "pC": 0.2 }, "umpan": "Kamu lupa mengalikan dengan 100%." }
+          ],
+          "kodeUmum": "PERSEN", "saran": "M5",
+          "bantuan": [
+            "Persentase membandingkan untung dengan modal toko. Modal itu harga yang mana?",
+            "Bagi untung dengan modal toko. Sederhanakan pecahannya, lalu kalikan 100%."
+          ],
+          "pembahasan": {
+            "benar": "Kamu memilih pembagi yang tepat dan menghitung ketiga persen dengan benar.",
+            "kesalahanUmum": "Rumus atau sebagian persen belum tepat.",
+            "konsep": "Persentase keuntungan selalu dibagi harga beli. Harga beli adalah modal toko.",
+            "cara": "Bagi keuntungan dengan harga beli. Sederhanakan, lalu kalikan 100%.",
+            "hasil": "% Untung = Untung ÷ HB × 100%. A: 30.000 ÷ 120.000 × 100% = 25%. B: 35.000 ÷ 140.000 × 100% = 25%. C: 32.000 ÷ 160.000 × 100% = 20%."
+          }
+        },
+        {
+          "no": 4, "bobot": 1, "kriteria": ["T"], "judul": "Keputusan",
+          "perintah": "Toko mana yang persentase keuntungannya paling besar?",
+          "bagian": [
+            { "id": "toko", "jenis": "pilihan", "konsekuenTerbesar": { "tahap": 3, "bagian": ["pA", "pB", "pC"] }, "pilihan": [
+              { "teks": "Toko A", "himpunan": ["pA"], "kode": "KEPUTUSAN", "umpan": "Persen Toko A memang 25%. Toko B juga 25%, jadi keduanya sama besar." },
+              { "teks": "Toko B", "himpunan": ["pB"], "kode": "KEPUTUSAN", "umpan": "Toko B untung paling banyak dalam rupiah. Tetapi persennya sama dengan Toko A." },
+              { "teks": "Toko C", "himpunan": ["pC"], "kode": "KEPUTUSAN", "umpan": "Toko C hanya 20%. Toko A dan Toko B 25%." },
+              { "teks": "Toko A dan Toko B (sama besar)", "himpunan": ["pA", "pB"], "benar": true }
+            ] }
+          ],
+          "kodeUmum": "KEPUTUSAN", "saran": "M5",
+          "bantuan": [
+            "Lihat lagi tiga persen yang sudah kamu hitung.",
+            "Cari persen paling besar. Apakah ada dua toko dengan persen yang sama?"
+          ],
+          "pembahasan": {
+            "benar": "Kamu memutuskan berdasarkan persentase, bukan besar rupiahnya.",
+            "kesalahanUmum": "Pilihanmu belum sesuai dengan persen paling besar.",
+            "konsep": "Toko terbaik ditentukan dari persentase keuntungan, karena modal setiap toko berbeda.",
+            "cara": "Urutkan persen ketiga toko. Pilih yang paling besar. Jika sama, pilih keduanya.",
+            "hasil": "Toko A dan Toko B sama-sama 25%. Toko C hanya 20%."
+          }
+        },
+        {
+          "no": 5, "bobot": 1, "kriteria": ["K"], "judul": "Alasan",
+          "perintah": "Pilih alasan yang tepat.",
+          "bagian": [
+            { "id": "alasan", "jenis": "pilihan", "pilihan": [
+              { "teks": "Persen untung A dan B sama-sama 25%, lebih besar dari C (20%).", "benar": true },
+              { "teks": "Toko B, karena besar keuntungannya paling banyak, yaitu Rp35.000.", "kode": "ALASAN-RUPIAH", "umpan": "Bandingkan persennya, bukan rupiahnya. Modal setiap toko berbeda." },
+              { "teks": "Toko C, karena harga jualnya paling tinggi.", "kode": "ALASAN-HJ", "umpan": "Harga jual tinggi belum tentu untungnya besar. Hitung persen dari harga beli." },
+              { "teks": "Semua sama, karena keuntungan dibagi harga jual.", "kode": "D1", "umpan": "Persentase keuntungan selalu dibagi **harga beli**." }
+            ] }
+          ],
+          "kodeUmum": "ALASAN", "saran": "M5K5",
+          "bantuan": [
+            "Alasan yang baik memakai hasil hitunganmu.",
+            "Mana yang dibandingkan: rupiah keuntungan atau persentase keuntungan?"
+          ],
+          "pembahasan": {
+            "benar": "Alasanmu memakai persentase yang dihitung dari harga beli.",
+            "kesalahanUmum": "Alasanmu belum memakai persentase dari harga beli.",
+            "konsep": "Rupiah keuntungan tidak adil dibandingkan jika modalnya berbeda. Persentase membuatnya adil.",
+            "cara": "Sebutkan persen setiap toko. Lalu jelaskan toko mana yang paling besar.",
+            "hasil": "Persen untung A dan B sama-sama 25%, lebih besar dari C (20%)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "ML-2",
+      "nomor": 2,
+      "indikator": 2,
+      "pengantar": "Soal ini melatih merumuskan. Kamu mengubah cerita menjadi model matematika.",
+      "segmen": [
+        { "teks": "Ibu membeli sebuah blender dengan harga " },
+        { "teks": "Rp250.000", "peran": "HB", "nilai": 250000, "kelompok": "Blender" },
+        { "teks": ". Ibu ingin menjual blender tersebut dengan memperoleh keuntungan sebesar " },
+        { "teks": "20%", "peran": "PERSEN", "nilai": 20, "kelompok": "Blender" },
+        { "teks": " dari harga beli." }
+      ],
+      "pertanyaan": "Berapakah harga jual blender yang harus ditetapkan? Tuliskan model matematika dan langkah penyelesaiannya.",
+      "kunci_teks": [
+        "Harga beli = Rp250.000.",
+        "Persentase keuntungan = 20%.",
+        "Keuntungan = 20% × Rp250.000 = Rp50.000.",
+        "Harga jual = harga beli + keuntungan.",
+        "Harga jual = Rp250.000 + Rp50.000 = Rp300.000."
+      ],
+      "penyelesaian": [
+        { "teks": "Harga beli = Rp250.000.", "asal": "spesifikasi" },
+        { "teks": "Persentase keuntungan = 20%.", "asal": "spesifikasi" },
+        { "teks": "Keuntungan = 20% × Rp250.000 = Rp50.000.", "asal": "spesifikasi" },
+        { "teks": "Harga jual = harga beli + keuntungan.", "asal": "spesifikasi" },
+        { "teks": "Harga jual = Rp250.000 + Rp50.000 = Rp300.000.", "asal": "spesifikasi" },
+        { "teks": "Periksa: 50.000 ÷ 250.000 × 100% = 20%. Sesuai keinginan Ibu.", "asal": "usulan" }
+      ],
+      "tahap": [
+        {
+          "no": 1, "bobot": 1, "kriteria": ["I"], "judul": "Yang diketahui",
+          "perintah": "Tandai harga beli dan persen keuntungan.",
+          "bagian": [{ "id": "tandai", "jenis": "tandai", "label": ["HB", "PERSEN"] }],
+          "kodeUmum": "IDENTIFIKASI", "saran": "M1",
+          "bantuan": [
+            "Ada dua hal yang diketahui: satu harga dan satu persen.",
+            "Harga yang dibayar Ibu saat membeli adalah harga beli. Angka bertanda % adalah persen untung."
+          ],
+          "pembahasan": {
+            "benar": "Kamu menemukan harga beli dan persen keuntungan.",
+            "kesalahanUmum": "Label harga beli atau persen untung belum tepat.",
+            "konsep": "Di soal ini harga jual belum diketahui. Yang diketahui harga beli dan persen untung.",
+            "cara": "Cari kata \"membeli\" untuk harga beli. Cari tanda % untuk persennya.",
+            "hasil": "Harga beli = Rp250.000. Persentase keuntungan = 20%."
+          }
+        },
+        {
+          "no": 2, "bobot": 1, "kriteria": ["I"], "judul": "Yang ditanyakan",
+          "perintah": "Apa yang ditanyakan soal?",
+          "bagian": [
+            { "id": "ditanya", "jenis": "pilihan", "pilihan": [
+              { "teks": "Harga jual", "benar": true },
+              { "teks": "Besar keuntungan", "kode": "IDENTIFIKASI", "umpan": "Baca lagi kalimat tanya: \"Berapakah harga jual …?\"" },
+              { "teks": "Persentase keuntungan", "kode": "IDENTIFIKASI", "umpan": "Baca lagi kalimat tanya: \"Berapakah harga jual …?\"" }
+            ] }
+          ],
+          "kodeUmum": "IDENTIFIKASI", "saran": "M1",
+          "bantuan": [
+            "Baca kalimat yang diakhiri tanda tanya.",
+            "Kata sesudah \"Berapakah\" menunjukkan hal yang ditanyakan."
+          ],
+          "pembahasan": {
+            "benar": "Kamu tahu bahwa yang dicari adalah harga jual.",
+            "kesalahanUmum": "Hal yang ditanyakan belum tepat.",
+            "konsep": "Mengetahui yang ditanyakan membantu memilih langkah berikutnya.",
+            "cara": "Baca lagi kalimat tanya di akhir soal pelan-pelan.",
+            "hasil": "Yang ditanyakan adalah harga jual blender."
+          }
+        },
+        {
+          "no": 3, "bobot": 1, "kriteria": ["M"], "judul": "Model keuntungan",
+          "perintah": "Pilih model untuk menghitung keuntungan.",
+          "bagian": [
+            { "id": "model", "jenis": "pilihan", "pilihan": [
+              { "teks": "Keuntungan = 20% × harga beli", "benar": true },
+              { "teks": "Keuntungan = 20% × harga jual", "kode": "D1", "umpan": "Soal menyebut \"20% dari harga beli\". Jadi dikali harga beli." },
+              { "teks": "Keuntungan = 20 × harga beli", "kode": "D2", "umpan": "20% artinya 20 per seratus. Jadi 20% × 250.000 = 20/100 × 250.000." },
+              { "teks": "Keuntungan = harga beli ÷ 20%", "kode": "M-SALAH", "umpan": "Untuk mencari 20% dari suatu harga, kalikan, jangan dibagi." }
+            ] }
+          ],
+          "kodeUmum": "M-SALAH", "saran": "RUMUS",
+          "bantuan": [
+            "Cari kalimat yang menyebut \"keuntungan sebesar 20% dari …\".",
+            "\"20% dari suatu harga\" berarti dikali atau dibagi? Dari harga yang mana?"
+          ],
+          "pembahasan": {
+            "benar": "Kamu membuat model keuntungan dari harga beli dengan tepat.",
+            "kesalahanUmum": "Model keuntungan belum tepat.",
+            "konsep": "\"20% dari harga beli\" artinya 20/100 dikali harga beli.",
+            "cara": "Ubah kata \"dari\" menjadi perkalian. Pakai harga beli, bukan harga jual.",
+            "hasil": "Keuntungan = 20% × harga beli."
+          }
+        },
+        {
+          "no": 4, "bobot": 1, "kriteria": ["H"], "judul": "Hitung keuntungan",
+          "perintah": "Hitung keuntungannya.",
+          "bagian": [
+            { "id": "untung", "jenis": "rupiah", "kunci": 50000 }
+          ],
+          "pola": [
+            { "kode": "D2", "nilai": { "untung": 5000000 }, "umpan": "20% sama dengan 20/100. Bagi dengan 100." }
+          ],
+          "kodeUmum": "HITUNG", "saran": "RUMUS",
+          "bantuan": [
+            "Pakai model dari tahap 3 dan harga beli blender.",
+            "20% sama dengan 20/100. Bagi harga beli dengan 100, lalu kalikan 20."
+          ],
+          "pembahasan": {
+            "benar": "Kamu menghitung keuntungan 20% dengan tepat.",
+            "kesalahanUmum": "Hasil keuntungan belum tepat.",
+            "konsep": "Persen artinya per seratus.",
+            "cara": "Hitung 250.000 ÷ 100 dulu. Lalu kalikan hasilnya dengan 20.",
+            "hasil": "Keuntungan = 20% × Rp250.000 = Rp50.000."
+          }
+        },
+        {
+          "no": 5, "bobot": 1, "kriteria": ["M"], "judul": "Model harga jual",
+          "perintah": "Pilih model untuk harga jual.",
+          "bagian": [
+            { "id": "model", "jenis": "pilihan", "pilihan": [
+              { "teks": "Harga jual = harga beli + keuntungan", "benar": true },
+              { "teks": "Harga jual = harga beli − keuntungan", "kode": "D3", "umpan": "Ibu ingin untung. Jadi harga jual lebih besar dari harga beli." },
+              { "teks": "Harga jual = keuntungan", "kode": "M-SALAH", "umpan": "Keuntungan hanya tambahannya. Harga beli harus ikut dijumlahkan." }
+            ] }
+          ],
+          "kodeUmum": "M-SALAH", "saran": "RUMUS",
+          "bantuan": [
+            "Ibu ingin untung. Jadi harga jual lebih besar atau lebih kecil dari harga beli?",
+            "Untung = HJ − HB. Jadi HJ = HB + untung."
+          ],
+          "pembahasan": {
+            "benar": "Kamu tahu harga jual sama dengan harga beli ditambah keuntungan.",
+            "kesalahanUmum": "Model harga jual belum tepat.",
+            "konsep": "Untung = HJ − HB. Jadi harga jual = harga beli + untung.",
+            "cara": "Jika ingin untung, tambahkan keuntungan ke harga beli.",
+            "hasil": "Harga jual = harga beli + keuntungan."
+          }
+        },
+        {
+          "no": 6, "bobot": 1, "kriteria": ["H", "K"], "judul": "Harga jual",
+          "perintah": "Berapa harga jual yang harus ditetapkan?",
+          "bagian": [
+            { "id": "hj", "jenis": "rupiah", "kunci": 300000, "konsekuen": { "tambah": { "tahap": 4, "bagian": "untung" }, "nilai": 250000 } }
+          ],
+          "pola": [
+            { "kode": "D3", "nilai": { "hj": 200000 }, "umpan": "Kamu mengurangi. Untung berarti harga jual lebih besar." },
+            { "kode": "M-SALAH", "nilai": { "hj": 50000 }, "umpan": "Itu besar keuntungannya. Harga jual = 250.000 + keuntungan." }
+          ],
+          "kodeUmum": "HITUNG", "saran": "RUMUS",
+          "bantuan": [
+            "Pakai model dari tahap 5 dan keuntungan dari tahap 4.",
+            "Jumlahkan harga beli dengan keuntungan. Harga jual harus lebih besar dari harga beli."
+          ],
+          "pembahasan": {
+            "benar": "Kamu menemukan harga jual yang memberi untung 20%.",
+            "kesalahanUmum": "Harga jual belum tepat.",
+            "konsep": "Harga jual yang benar memberi keuntungan tepat 20% dari harga beli.",
+            "cara": "Tambahkan keuntungan ke harga beli. Lalu periksa dengan hitung balik.",
+            "hasil": "Harga jual = Rp250.000 + Rp50.000 = Rp300.000. Periksa: 50.000 ÷ 250.000 × 100% = 20%."
+          }
+        }
+      ]
+    },
+    {
+      "id": "ML-3",
+      "nomor": 3,
+      "indikator": 3,
+      "pengantar": "Soal ini melatih memakai rumus. Kamu menghitung untung, rugi, dan persennya.",
+      "segmen": [
+        { "teks": "Pak Rudi membeli sebuah sepeda seharga " },
+        { "teks": "Rp800.000", "peran": "HB", "nilai": 800000, "kelompok": "Sepeda" },
+        { "teks": ". Sepeda tersebut kemudian dijual seharga " },
+        { "teks": "Rp920.000", "peran": "HJ", "nilai": 920000, "kelompok": "Sepeda" },
+        { "teks": ". Pada kesempatan lain, ia membeli sebuah kipas angin seharga " },
+        { "teks": "Rp500.000", "peran": "HB", "nilai": 500000, "kelompok": "Kipas angin" },
+        { "teks": ", tetapi hanya terjual seharga " },
+        { "teks": "Rp425.000", "peran": "HJ", "nilai": 425000, "kelompok": "Kipas angin" },
+        { "teks": "." }
+      ],
+      "pertanyaan": "Hitunglah besar keuntungan atau kerugian serta persentasenya untuk masing-masing barang.",
+      "kunci_teks": [
+        "Sepeda: keuntungan Rp120.000 dan persentase keuntungan 15%.",
+        "Kipas angin: kerugian Rp75.000 dan persentase kerugian 15%."
+      ],
+      "penyelesaian": [
+        { "teks": "Sepeda: 920.000 > 800.000, jadi untung. Untung = 920.000 − 800.000 = 120.000.", "asal": "usulan" },
+        { "teks": "Persen untung sepeda = 120.000 ÷ 800.000 × 100% = 15%.", "asal": "usulan" },
+        { "teks": "Kipas angin: 425.000 < 500.000, jadi rugi. Rugi = 500.000 − 425.000 = 75.000.", "asal": "usulan" },
+        { "teks": "Persen rugi kipas angin = 75.000 ÷ 500.000 × 100% = 15%.", "asal": "usulan" },
+        { "teks": "Sepeda: keuntungan Rp120.000 dan persentase keuntungan 15%.", "asal": "spesifikasi" },
+        { "teks": "Kipas angin: kerugian Rp75.000 dan persentase kerugian 15%.", "asal": "spesifikasi" }
+      ],
+      "tahap": [
+        {
+          "no": 1, "bobot": 1, "kriteria": ["I", "T"], "judul": "Untung atau rugi",
+          "perintah": "Untung atau rugi? Pilih untuk setiap barang.",
+          "bagian": [
+            { "id": "sepeda", "jenis": "pilihan", "label": "Sepeda", "pilihan": [
+              { "teks": "▲ Untung", "benar": true },
+              { "teks": "▼ Rugi", "kode": "D3" }
+            ] },
+            { "id": "kipas", "jenis": "pilihan", "label": "Kipas angin", "pilihan": [
+              { "teks": "▲ Untung", "kode": "D3", "umpan": "Bandingkan harga jual dengan harga beli. Kipas dijual lebih murah, jadi rugi." },
+              { "teks": "▼ Rugi", "benar": true }
+            ] }
+          ],
+          "kodeUmum": "D3", "saran": "M2",
+          "bantuan": [
+            "Bandingkan harga jual dengan harga beli untuk setiap barang.",
+            "Harga jual lebih besar berarti untung. Harga jual lebih kecil berarti rugi."
+          ],
+          "pembahasan": {
+            "benar": "Kamu menentukan jenis transaksi kedua barang dengan tepat.",
+            "kesalahanUmum": "Jenis untung atau rugi tertukar.",
+            "konsep": "Selalu bandingkan harga jual dengan harga beli sebelum menghitung.",
+            "cara": "Sepeda: bandingkan 920.000 dengan 800.000. Kipas: bandingkan 425.000 dengan 500.000.",
+            "hasil": "Sepeda ▲ untung, karena 920.000 > 800.000. Kipas angin ▼ rugi, karena 425.000 < 500.000."
+          }
+        },
+        {
+          "no": 2, "bobot": 1, "kriteria": ["H"], "judul": "Keuntungan sepeda",
+          "perintah": "Hitung keuntungan sepeda.",
+          "bagian": [{ "id": "untung", "jenis": "rupiah", "kunci": 120000 }],
+          "kodeUmum": "D4", "saran": "SELISIH",
+          "bantuan": [
+            "Pakai harga beli dan harga jual sepeda saja.",
+            "Untung = HJ − HB. Hitung dalam ribuan agar mudah."
+          ],
+          "pembahasan": {
+            "benar": "Kamu menghitung keuntungan sepeda dengan tepat.",
+            "kesalahanUmum": "Keuntungan sepeda belum tepat.",
+            "konsep": "Untung = harga jual − harga beli.",
+            "cara": "Kurangi 920.000 dengan 800.000. Dalam ribuan: 920 − 800.",
+            "hasil": "Untung sepeda = 920.000 − 800.000 = Rp120.000."
+          }
+        },
+        {
+          "no": 3, "bobot": 1, "kriteria": ["H"], "judul": "Kerugian kipas angin",
+          "perintah": "Hitung kerugian kipas angin.",
+          "bagian": [{ "id": "rugi", "jenis": "rupiah", "kunci": 75000 }],
+          "kodeUmum": "D4", "umpanUmum": "Rugi = HB − HJ = 500.000 − 425.000.", "saran": "SELISIH",
+          "bantuan": [
+            "Pakai harga beli dan harga jual kipas angin saja.",
+            "Rugi = HB − HJ. Yang lebih besar dikurangi yang lebih kecil."
+          ],
+          "pembahasan": {
+            "benar": "Kamu menghitung kerugian kipas angin dengan tepat.",
+            "kesalahanUmum": "Kerugian kipas angin belum tepat.",
+            "konsep": "Rugi = harga beli − harga jual. Hasilnya tidak negatif.",
+            "cara": "Kurangi 500.000 dengan 425.000. Dalam ribuan: 500 − 425.",
+            "hasil": "Rugi kipas angin = 500.000 − 425.000 = Rp75.000."
+          }
+        },
+        {
+          "no": 4, "bobot": 1, "kriteria": ["R"], "judul": "Rumus persentase",
+          "perintah": "Pilih rumus persentasenya.",
+          "bagian": [
+            { "id": "rumus", "jenis": "pilihan", "pilihan": [
+              { "teks": "Selisih ÷ harga beli × 100%", "benar": true },
+              { "teks": "Selisih ÷ harga jual × 100%", "kode": "D1", "umpan": "Untung dan rugi sama-sama dibagi **harga beli**." },
+              { "teks": "Selisih ÷ harga beli", "kode": "D2", "umpan": "Hasil bagi masih perlu dikali 100%." }
+            ] }
+          ],
+          "kodeUmum": "PERSEN", "saran": "M5",
+          "bantuan": [
+            "Persen untung dan rugi dibandingkan dengan sesuatu. Dengan apa?",
+            "Uang yang dikeluarkan pedagang di awal disebut modal. Modal itu harga beli atau harga jual?"
+          ],
+          "pembahasan": {
+            "benar": "Kamu memilih rumus persen dengan pembagi harga beli.",
+            "kesalahanUmum": "Rumus persen belum tepat.",
+            "konsep": "Persen untung dan persen rugi sama-sama dibagi harga beli, lalu dikali 100%.",
+            "cara": "Pilih rumus yang membagi selisih dengan harga beli dan mengalikan 100%.",
+            "hasil": "Persentase = selisih ÷ harga beli × 100%."
+          }
+        },
+        {
+          "no": 5, "bobot": 1, "kriteria": ["H"], "judul": "Persentase keuntungan sepeda",
+          "perintah": "Hitung persentase keuntungan sepeda.",
+          "bagian": [
+            { "id": "persen", "jenis": "persen", "kunci": 15, "konsekuen": { "bagi": { "tahap": 2, "bagian": "untung" }, "pembagi": 800000 } }
+          ],
+          "pola": [
+            { "kode": "D1", "nilai": { "persen": 13.04 }, "umpan": "Untung dan rugi sama-sama dibagi **harga beli**." },
+            { "kode": "D2", "nilai": { "persen": 0.15 }, "umpan": "Hasil bagi masih perlu dikali 100%." }
+          ],
+          "kodeUmum": "PERSEN", "saran": "M5",
+          "bantuan": [
+            "Pakai keuntungan sepeda dari tahap 2 dan harga beli sepeda.",
+            "Bagi keuntungan dengan harga beli. Sederhanakan pecahannya, lalu kalikan 100%."
+          ],
+          "pembahasan": {
+            "benar": "Kamu menghitung persentase keuntungan sepeda dengan tepat.",
+            "kesalahanUmum": "Persentase keuntungan sepeda belum tepat.",
+            "konsep": "Persentase keuntungan = keuntungan ÷ harga beli × 100%.",
+            "cara": "Coret nol yang sama: 120.000/800.000 = 12/80. Lalu sederhanakan.",
+            "hasil": "120.000 ÷ 800.000 × 100% = 3/20 × 100% = 15%."
+          }
+        },
+        {
+          "no": 6, "bobot": 1, "kriteria": ["H"], "judul": "Persentase kerugian kipas angin",
+          "perintah": "Hitung persentase kerugian kipas angin.",
+          "bagian": [
+            { "id": "persen", "jenis": "persen", "kunci": 15, "konsekuen": { "bagi": { "tahap": 3, "bagian": "rugi" }, "pembagi": 500000 } }
+          ],
+          "pola": [
+            { "kode": "D1", "nilai": { "persen": 17.65 }, "umpan": "Untung dan rugi sama-sama dibagi **harga beli**." },
+            { "kode": "D2", "nilai": { "persen": 0.15 }, "umpan": "Hasil bagi masih perlu dikali 100%." }
+          ],
+          "kodeUmum": "PERSEN", "saran": "M6", "saranKode": { "D2": "M5" },
+          "bantuan": [
+            "Pakai kerugian kipas dari tahap 3 dan harga beli kipas.",
+            "Bagi kerugian dengan harga beli, bukan harga jual. Lalu kalikan 100%."
+          ],
+          "pembahasan": {
+            "benar": "Kamu menghitung persentase kerugian kipas angin dengan tepat.",
+            "kesalahanUmum": "Persentase kerugian kipas angin belum tepat.",
+            "konsep": "Persentase kerugian = kerugian ÷ harga beli × 100%.",
+            "cara": "Coret nol yang sama: 75.000/500.000 = 75/500. Lalu sederhanakan.",
+            "hasil": "75.000 ÷ 500.000 × 100% = 3/20 × 100% = 15%. Persennya sama, tetapi sepeda untung dan kipas rugi."
+          }
+        }
+      ]
+    },
+    {
+      "id": "ML-4",
+      "nomor": 4,
+      "indikator": 4,
+      "pengantar": "Soal ini melatih menafsirkan. Kamu memeriksa apakah pernyataan teman Dina benar.",
+      "segmen": [
+        { "teks": "Dina membeli sebuah jaket seharga " },
+        { "teks": "Rp400.000", "peran": "HB", "nilai": 400000, "kelompok": "Jaket" },
+        { "teks": ". Karena sedang membutuhkan uang, jaket tersebut dijual kembali seharga " },
+        { "teks": "Rp340.000", "peran": "HJ", "nilai": 340000, "kelompok": "Jaket" },
+        { "teks": ". Teman Dina menyatakan bahwa persentase kerugian yang dialami Dina adalah " },
+        { "teks": "17,65%" },
+        { "teks": " karena kerugian " },
+        { "teks": "Rp60.000" },
+        { "teks": " dibagi dengan harga jual " },
+        { "teks": "Rp340.000", "peranBoleh": ["HJ"] },
+        { "teks": "." }
+      ],
+      "pertanyaan": "Apakah pernyataan teman Dina benar? Evaluasilah dengan perhitungan matematika dan jelaskan alasanmu.",
+      "kunci_teks": [
+        "Kerugian = Rp400.000 − Rp340.000 = Rp60.000.",
+        "Persentase kerugian = (kerugian ÷ harga beli) × 100%.",
+        "Persentase kerugian = (Rp60.000 ÷ Rp400.000) × 100% = 15%.",
+        "Kesimpulan: Pernyataan teman Dina tidak benar. Persentase kerugian yang tepat adalah 15% karena perhitungan persentase kerugian menggunakan harga beli sebagai dasar perhitungan."
+      ],
+      "penyelesaian": [
+        { "teks": "Kerugian = Rp400.000 − Rp340.000 = Rp60.000.", "asal": "spesifikasi" },
+        { "teks": "Persentase kerugian = (kerugian ÷ harga beli) × 100%.", "asal": "spesifikasi" },
+        { "teks": "Persentase kerugian = (Rp60.000 ÷ Rp400.000) × 100% = 15%.", "asal": "spesifikasi" },
+        { "teks": "Teman Dina menghitung 60.000 ÷ 340.000 × 100% = 17,65%. Pembaginya harga jual.", "asal": "usulan" },
+        { "teks": "Periksa: 15% × 400.000 = 60.000. Hasil ini sama dengan kerugian Dina.", "asal": "usulan" },
+        { "teks": "Kesimpulan: Pernyataan teman Dina tidak benar. Persentase kerugian yang tepat adalah 15% karena perhitungan persentase kerugian menggunakan harga beli sebagai dasar perhitungan.", "asal": "spesifikasi" }
+      ],
+      "tahap": [
+        {
+          "no": 1, "bobot": 1, "kriteria": ["I"], "judul": "Identifikasi harga",
+          "perintah": "Tandai harga beli dan harga jual jaket.",
+          "bagian": [{ "id": "tandai", "jenis": "tandai", "label": ["HB", "HJ"] }],
+          "kodeUmum": "IDENTIFIKASI", "saran": "M1",
+          "bantuan": [
+            "Lihat dua kalimat pertama. Di sana ada harga beli dan harga jual.",
+            "Harga beli adalah uang yang Dina bayar. Harga jual adalah uang yang Dina terima."
+          ],
+          "pembahasan": {
+            "benar": "Kamu menemukan harga beli dan harga jual jaket.",
+            "kesalahanUmum": "Label harga beli atau harga jual belum tepat.",
+            "konsep": "Angka di kalimat teman Dina adalah hasil hitungannya, bukan harga beli.",
+            "cara": "Tandai angka sesudah \"membeli … seharga\" dan sesudah \"dijual kembali seharga\".",
+            "hasil": "Harga beli = Rp400.000. Harga jual = Rp340.000."
+          }
+        },
+        {
+          "no": 2, "bobot": 1, "kriteria": ["H"], "judul": "Kerugian",
+          "perintah": "Hitung kerugian Dina.",
+          "bagian": [{ "id": "rugi", "jenis": "rupiah", "kunci": 60000 }],
+          "kodeUmum": "D4", "saran": "SELISIH",
+          "bantuan": [
+            "Harga jual lebih kecil dari harga beli. Jadi Dina rugi.",
+            "Rugi = HB − HJ. Hitung dalam ribuan agar mudah."
+          ],
+          "pembahasan": {
+            "benar": "Kamu menghitung kerugian Dina dengan tepat.",
+            "kesalahanUmum": "Kerugian Dina belum tepat.",
+            "konsep": "Rugi = harga beli − harga jual.",
+            "cara": "Kurangi 400.000 dengan 340.000. Dalam ribuan: 400 − 340.",
+            "hasil": "Kerugian = Rp400.000 − Rp340.000 = Rp60.000."
+          }
+        },
+        {
+          "no": 3, "bobot": 1, "kriteria": ["R"], "judul": "Rumus persentase kerugian",
+          "perintah": "Pilih rumus persentase kerugian yang benar.",
+          "bagian": [
+            { "id": "rumus", "jenis": "pilihan", "pilihan": [
+              { "teks": "(kerugian ÷ harga beli) × 100%", "benar": true },
+              { "teks": "(kerugian ÷ harga jual) × 100%", "kode": "D1", "umpan": "Itu cara teman Dina. Persentase kerugian dibagi **harga beli**." },
+              { "teks": "kerugian ÷ harga beli", "kode": "D2", "umpan": "Hasil bagi masih perlu dikali 100%." }
+            ] }
+          ],
+          "kodeUmum": "PERSEN", "saran": "M6", "saranKode": { "D2": "M5" },
+          "bantuan": [
+            "Teman Dina memakai satu pembagi. Apakah pembagi itu sesuai rumus?",
+            "Persen rugi dibandingkan dengan modal Dina. Modal itu harga yang mana?"
+          ],
+          "pembahasan": {
+            "benar": "Kamu memilih rumus yang membagi dengan harga beli.",
+            "kesalahanUmum": "Rumus persentase kerugian belum tepat.",
+            "konsep": "Persentase kerugian dihitung dari harga beli, yaitu modal Dina.",
+            "cara": "Pilih rumus dengan pembagi harga beli dan dikali 100%.",
+            "hasil": "Persentase kerugian = (kerugian ÷ harga beli) × 100%."
+          }
+        },
+        {
+          "no": 4, "bobot": 1, "kriteria": ["H"], "judul": "Persentase kerugian",
+          "perintah": "Hitung persentase kerugian Dina.",
+          "bagian": [
+            { "id": "persen", "jenis": "persen", "kunci": 15, "konsekuen": { "bagi": { "tahap": 2, "bagian": "rugi" }, "pembagi": 400000 } }
+          ],
+          "pola": [
+            { "kode": "D1", "nilai": { "persen": 17.65 }, "umpan": "Kamu memakai cara teman Dina. Bagi dengan 400.000." }
+          ],
+          "kodeUmum": "PERSEN", "saran": "M6",
+          "bantuan": [
+            "Pakai kerugian dari tahap 2 dan harga beli jaket.",
+            "% Rugi = Rugi ÷ HB × 100%."
+          ],
+          "pembahasan": {
+            "benar": "Kamu menghitung persentase kerugian dengan tepat.",
+            "kesalahanUmum": "Persentase kerugian belum tepat.",
+            "konsep": "Pembaginya harga beli, yaitu Rp400.000, bukan harga jual.",
+            "cara": "Coret nol yang sama: 60.000/400.000 = 6/40. Lalu sederhanakan.",
+            "hasil": "Persentase kerugian = (Rp60.000 ÷ Rp400.000) × 100% = 15%."
+          }
+        },
+        {
+          "no": 5, "bobot": 1, "kriteria": ["T"], "judul": "Menilai pernyataan",
+          "perintah": "Apakah pernyataan teman Dina benar?",
+          "bagian": [
+            { "id": "nilai", "jenis": "pilihan", "pilihan": [
+              { "teks": "Benar", "kode": "D1", "umpan": "Teman Dina membagi dengan harga jual. Itu tidak sesuai rumus." },
+              { "teks": "Tidak benar", "benar": true }
+            ] }
+          ],
+          "kodeUmum": "D1", "saran": "M6",
+          "bantuan": [
+            "Bandingkan hasil hitunganmu dengan angka teman Dina.",
+            "Apakah teman Dina memakai pembagi yang sama dengan rumus?"
+          ],
+          "pembahasan": {
+            "benar": "Kamu menilai pernyataan teman Dina dengan tepat.",
+            "kesalahanUmum": "Penilaianmu terhadap pernyataan teman Dina belum tepat.",
+            "konsep": "Pernyataan benar hanya jika rumus dan hitungannya benar.",
+            "cara": "Hitung ulang dengan pembagi harga beli. Lalu bandingkan dengan 17,65%.",
+            "hasil": "Pernyataan teman Dina tidak benar. Hasil yang tepat 15%, bukan 17,65%."
+          }
+        },
+        {
+          "no": 6, "bobot": 1, "kriteria": ["K"], "judul": "Alasan dan kesimpulan",
+          "perintah": "Pilih alasan yang tepat.",
+          "bagian": [
+            { "id": "alasan", "jenis": "pilihan", "pilihan": [
+              { "teks": "Tidak benar. Persentase kerugian dihitung dari harga beli, jadi 15%.", "benar": true },
+              { "teks": "Benar, karena 60.000 ÷ 340.000 × 100% = 17,65%.", "kode": "D1", "umpan": "Hitungannya tepat, tetapi pembaginya salah. Seharusnya harga beli." },
+              { "teks": "Tidak benar, karena kerugiannya bukan Rp60.000.", "kode": "ALASAN-SELISIH", "umpan": "Kerugiannya memang Rp60.000. Yang salah adalah pembaginya." },
+              { "teks": "Tidak benar, karena harus dibagi harga jual lalu dikali 2.", "kode": "ALASAN-ACAK", "umpan": "Tidak ada aturan dikali 2. Bagi kerugian dengan harga beli." }
+            ] }
+          ],
+          "kodeUmum": "ALASAN", "saran": "M5K5",
+          "bantuan": [
+            "Alasan yang baik menyebut bagian yang salah dari cara teman Dina.",
+            "Apa yang salah: besar kerugiannya atau pembaginya?"
+          ],
+          "pembahasan": {
+            "benar": "Alasanmu tepat: pembaginya harus harga beli.",
+            "kesalahanUmum": "Alasanmu belum menunjuk letak kesalahan teman Dina.",
+            "konsep": "Hitungan teman Dina tepat, tetapi pembaginya salah. Seharusnya harga beli.",
+            "cara": "Sebutkan pembagi yang benar dan hasil yang benar.",
+            "hasil": "Kesimpulan: Pernyataan teman Dina tidak benar. Persentase kerugian yang tepat adalah 15% karena perhitungan persentase kerugian menggunakan harga beli sebagai dasar perhitungan."
+          }
+        }
+      ]
+    }
+  ]
+}
