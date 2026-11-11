@@ -26,3 +26,22 @@ export function kodeTampil(kode) {
 export function kodeKeEmail(kode, domain) {
   return `${normalisasiKode(kode).toLowerCase()}@${domain}`;
 }
+
+/** 31 huruf/angka yang tidak mirip (tanpa I, L, O, 0, 1), sesuai POLA_KODE. */
+export const HURUF_KODE = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
+
+/**
+ * Membuat kode siswa acak, mis. "MS7K4PQ2XR" (DV-03, dipakai skrip buat-akun-siswa.js).
+ * @param {(n: number) => number} acakInt fungsi bilangan acak 0..n-1 (gunakan crypto.randomInt)
+ */
+export function buatKode(acakInt) {
+  let isi = '';
+  for (let i = 0; i < 8; i++) isi += HURUF_KODE[acakInt(HURUF_KODE.length)];
+  return `MS${isi}`;
+}
+
+/** "MS7K4PQ2XR" → "MS-7K4P-Q2XR" (format yang dibagikan guru) */
+export function formatKode(kode) {
+  const k = normalisasiKode(kode);
+  return `${k.slice(0, 2)}-${k.slice(2, 6)}-${k.slice(6, 10)}`;
+}

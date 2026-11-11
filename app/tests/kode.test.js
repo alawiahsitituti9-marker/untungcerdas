@@ -22,3 +22,24 @@ describe('kode siswa', () => {
     expect(kodeKeEmail('MS-7K4P-Q2XR', 'siswa.contoh.app')).toBe('ms7k4pq2xr@siswa.contoh.app');
   });
 });
+
+import { buatKode, formatKode, HURUF_KODE } from '../src/logika/kode.js';
+import { randomInt } from 'node:crypto';
+
+describe('buatKode dan formatKode (DV-03)', () => {
+  it('31 huruf tanpa I, L, O, 0, 1', () => {
+    expect(HURUF_KODE).toHaveLength(31);
+    expect(HURUF_KODE).not.toMatch(/[ILO01]/);
+  });
+  it('kode acak selalu lolos validasi dan bisa dipakai login', () => {
+    for (let i = 0; i < 500; i++) {
+      const k = buatKode(randomInt);
+      expect(validasiKode(k)).toEqual({ ok: true, kode: k });
+      expect(validasiKode(formatKode(k))).toEqual({ ok: true, kode: k });
+      expect(kodeTampil(k)).toMatch(/^MS-[A-Z0-9]{4}$/);
+    }
+  });
+  it('format kode untuk guru', () => {
+    expect(formatKode('MS7K4PQ2XR')).toBe('MS-7K4P-Q2XR');
+  });
+});

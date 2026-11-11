@@ -8,6 +8,9 @@ coverage/
 .env.*
 !.env.example
 
+# Daftar kode siswa hasil skrip: kode berfungsi sebagai kata sandi (DV-03)
+supabase/scripts/keluaran/
+
 # Dokumen wawancara memuat foto dan nama panggilan informan.
 # Tidak dimasukkan ke git untuk menjaga kerahasiaan informan (AGENTS.md §3).
 referensi/

@@ -39,8 +39,8 @@ Hanya dimulai setelah A-05, D-01, D-02, dan D-06 disetujui.
 | ID | Tugas | Prio | Bergantung | Kriteria selesai | Minggu |
 |---|---|---|---|---|---|
 | DV-01 | Inisialisasi proyek Vite, struktur folder, token CSS | P1 | D-06 | `npm run dev` berjalan; struktur sesuai architecture.md §8 | 1 · ✅ selesai 11 November 2026 |
-| DV-02 | Proyek Supabase, migrasi skema + RLS | P1 | D-06 | Uji RLS: siswa A tidak bisa membaca data siswa B | 1 |
-| DV-03 | Skrip pembuatan akun dan kode siswa | P1 | DV-02 | Menghasilkan CSV kode; akun bisa login | 1 |
+| DV-02 | Proyek Supabase, migrasi skema + RLS | P1 | D-06 | Uji RLS: siswa A tidak bisa membaca data siswa B | 1 · 🔶 migrasi `001_skema.sql` dibuat 12 November 2026 dan lulus uji di PGlite (RLS, trigger, `ringkasan_progres`); menunggu proyek Supabase (panduan: `supabase/README.md`) |
+| DV-03 | Skrip pembuatan akun dan kode siswa | P1 | DV-02 | Menghasilkan CSV kode; akun bisa login | 1 · 🔶 `supabase/scripts/buat-akun-siswa.js` dibuat 12 November 2026; mode `--coba` berjalan; menunggu proyek Supabase |
 | DV-04 | Logika `hitung.js`, `format.js`, `diagnosis.js` + uji unit | P1 | DV-01 | Semua uji lulus; D1–D5 dikenali | 2 · ✅ selesai 11 November 2026 (93 uji lulus) |
 | DV-05 | F01 Login + sesi + keluar | P1 | DV-02, DV-03 | KFN-01, KFN-02 | 2 · 🔶 sebagian: halaman Masuk + mode uji tanpa server; login Supabase menunggu DV-02 |
 | DV-06 | Kerangka navigasi + F02 Beranda | P1 | DV-05 | KFN-03 | 2 · ✅ selesai 11 November 2026 (kerangka navigasi, Beranda dengan progres sementara) |
@@ -140,7 +140,7 @@ Rancangan disetujui 12 November 2026. **Coding F14 dimulai setelah pemilik proye
 
 | ID | Tugas | Prio | Bergantung | Kriteria selesai | Status |
 |---|---|---|---|---|---|
-| LM-09 | Migrasi `002_literasi.sql`: 2 tabel, RLS, fungsi `simpan_evaluasi_literasi` | P1 | DV-02, LM-01 (KL-13) | Uji RLS: siswa A tidak bisa membaca hasil siswa B; paket tidak valid ditolak; kirim ulang tidak membuat data ganda | [ ] |
+| LM-09 | Migrasi `002_literasi.sql`: 2 tabel, RLS, fungsi `simpan_evaluasi_literasi` | P1 | DV-02, LM-01 (KL-13) | Uji RLS: siswa A tidak bisa membaca hasil siswa B; paket tidak valid ditolak; kirim ulang tidak membuat data ganda | [~] `002_literasi.sql` dibuat 12 November 2026 dan lulus uji di PGlite (RLS, idempoten, validasi paket); menunggu proyek Supabase |
 | LM-10 | `layanan/literasi.js`: kirim hasil lewat antrean luring; baca riwayat | P1 | LM-08, LM-09, DV-13 | KFN-24; data masuk setelah koneksi kembali | [ ] |
 | LM-11 | Hubungan dengan progres: bagian Literasi di P11, saran di P02, perluasan `ringkasan_progres` | P1 | LM-10, DV-16 | KFN-25 | [ ] |
 
