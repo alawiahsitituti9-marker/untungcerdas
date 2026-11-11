@@ -12,18 +12,20 @@ import LembarBawah from '../komponen/LembarBawah.jsx';
 import IsiKartuRumus from '../komponen/IsiKartuRumus.jsx';
 import { muatSoal, muatPembahasan, muatMateri } from '../layanan/konten.js';
 import { catatSesi } from '../layanan/progresLatihan.js';
+import KerjakanLevel4 from './SoalLevel4.jsx';
 import { bacaRupiah, bacaPersen } from '../logika/format.js';
 import {
   LAYAR, JUDUL_LANGKAH, BATAS_PERCOBAAN, SYARAT_BUKA, JUMLAH_SOAL_SESI,
   pilihSoalSesi, periksaLayar, pembahasanLangkah, jawabanBenarLangkah, teksSoalLangsung, perintahHitungBalik,
 } from '../logika/panduan.js';
 
-// P09 Mengerjakan Soal Level 1–3 (F05 Panduan Langkah, F09 Latihan; KFN-07, KFN-11; design.md §6, §8).
+// P09 Mengerjakan Soal Level 1–4 (F05 Panduan Langkah, F09 Latihan; KFN-07, KFN-11; design.md §6, §8).
+// Level 4 tanpa panduan: lihat SoalLevel4.jsx.
 // Setiap layar diperiksa sebelum lanjut. Salah pertama → pembahasan ①–③ + "Coba lagi";
 // salah kedua → jawaban benar ditampilkan dan soal dihitung salah (D-05 §3.1).
 // Petunjuk bertingkat (DV-11), penyelesaian lengkap ④ (DV-12), dan penyimpanan percobaan (DV-13) belum di sini.
 
-const LEVEL_PANDUAN = [1, 2, 3];
+const LEVEL_ADA = [1, 2, 3, 4];
 const LABEL_TANDAI = ['HB', 'HJ', 'DITANYA'];
 const JENIS = [{ teks: '▲ Untung', nilai: 'untung' }, { teks: '▼ Rugi', nilai: 'rugi' }];
 
@@ -274,7 +276,7 @@ export default function Soal() {
     }
   }, [data, level, putaran]);
 
-  if (!LEVEL_PANDUAN.includes(level)) return <Navigate to="/latihan" replace />;
+  if (!LEVEL_ADA.includes(level)) return <Navigate to="/latihan" replace />;
   if (galat) return <main className="halaman halaman--fokus"><KepalaFokus judul={`Level ${level}`} kembaliKe="/latihan" /><p className="pesan-galat" role="alert">{galat}</p></main>;
   if (!daftar) return <main className="halaman halaman--fokus"><p className="teks-redup">Memuat…</p></main>;
 
@@ -288,7 +290,7 @@ export default function Soal() {
     if (baru.length === daftar.length) catatSesi(sesi.kodeTampil, level, baru.filter(Boolean).length);
     window.scrollTo(0, 0);
   };
-  return (
-    <KerjakanSoal key={`${putaran}-${soal.id}`} soal={soal} nomor={hasil.length + 1} level={level} data={data} onSelesai={selesaiSoal} />
-  );
+  const kunci = `${putaran}-${soal.id}`;
+  const props = { soal, nomor: hasil.length + 1, data, onSelesai: selesaiSoal };
+  return level === 4 ? <KerjakanLevel4 key={kunci} {...props} /> : <KerjakanSoal key={kunci} {...props} level={level} />;
 }

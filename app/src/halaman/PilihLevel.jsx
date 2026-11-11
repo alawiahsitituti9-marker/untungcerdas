@@ -11,7 +11,7 @@ const LEVEL = [
   { n: 3, ket: 'Soal cerita pendek' },
   { n: 4, ket: 'Soal cerita penerapan' },
 ];
-const LEVEL_SIAP = [1, 2, 3]; // Level 4 dibuat di DV-10 bagian B
+const LEVEL_SIAP = [1, 2, 3, 4];
 
 export default function PilihLevel() {
   const { sesi } = useOutletContext();

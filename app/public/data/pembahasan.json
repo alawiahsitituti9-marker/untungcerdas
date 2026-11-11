@@ -1,5 +1,5 @@
 {
-  "versi": 2,
+  "versi": 3,
   "catatan": "Templat pembahasan D-05 §3.3, petunjuk D-05 §2.1–2.3 (disetujui 11 November 2026). Variabel templat: D-05 §1. Sel D-05 yang memuat dua varian (Level 1 / Level 2–3) dipisah menjadi dua templat tanpa mengubah kalimatnya.",
   "templat": {
     "D1": [
@@ -75,5 +75,92 @@
   "petunjukLevel3": [
     "Cari kata kunci di soal. \"{kata_HB}\" menunjuk harga beli. \"{kata_HJ}\" menunjuk harga jual.",
     "**% {Jenis} = {Jenis} ÷ Harga Beli × 100%.** Ingat, pembaginya selalu harga beli."
+  ],
+  "level4Khusus": [
+    {
+      "soal": "L4-01",
+      "kode": "D5",
+      "sebab": "pengecoh",
+      "kesalahan": "Memakai Rp150.000 sebagai harga beli",
+      "teks": [
+        "Rp150.000 adalah uang yang dibawa Bu Wati, bukan harga beli.",
+        "Harga beli adalah harga barang yang dibeli.",
+        "Harga 1 lusin gelas = Rp96.000."
+      ]
+    },
+    {
+      "soal": "L4-01",
+      "kode": "D5",
+      "sebab": "satuan",
+      "kesalahan": "HJ tidak dikalikan 12",
+      "teks": [
+        "Rp10.000 adalah harga **per buah**.",
+        "Harga jual seluruhnya = harga per buah × banyak barang.",
+        "1 lusin = 12 buah. Hitung 12 × 10.000."
+      ]
+    },
+    {
+      "soal": "L4-02",
+      "kode": "D6",
+      "pilihan": "Setrika",
+      "kesalahan": "Memilih setrika",
+      "teks": [
+        "Untung setrika memang lebih besar dalam **rupiah**. Tetapi yang ditanya adalah **persentase**.",
+        "Persen dihitung dari harga beli masing-masing barang.",
+        "Hitung persen kipas: 25.000 ÷ 100.000 × 100%. Lalu hitung persen setrika."
+      ]
+    },
+    {
+      "soal": "L4-03",
+      "kode": "D5",
+      "sebab": "satuan",
+      "kesalahan": "HB tidak dikalikan 20 (Rp3.000 dipakai sebagai harga beli, hasilnya \"untung\")",
+      "teks": [
+        "Rp3.000 adalah harga **per donat**.",
+        "Harga beli seluruhnya = harga per buah × banyak donat.",
+        "Hitung 20 × 3.000."
+      ]
+    },
+    {
+      "soal": "L4-04",
+      "kode": "D5",
+      "sebab": "pengecoh",
+      "kesalahan": "Memakai Rp1.000.000 sebagai harga beli",
+      "teks": [
+        "Rp1.000.000 adalah uang yang dibawa, bukan harga beli.",
+        "Harga beli = harga per kg × banyak kg.",
+        "Hitung 50 × 12.000."
+      ]
+    },
+    {
+      "soal": "L4-04",
+      "kode": "BENAR",
+      "kesalahan": "Menjawab benar dengan cara per kg",
+      "teks": [
+        "Cara cepatmu juga benar: untung per kg Rp1.500, lalu 1.500 ÷ 12.000 × 100% = 12,5%."
+      ]
+    },
+    {
+      "soal": "L4-05",
+      "kode": "D3",
+      "pernyataan": "Benar",
+      "kesalahan": "Memilih \"Benar\"",
+      "teks": [
+        "Coba periksa dulu: Rina untung atau rugi?",
+        "Harga jual lebih kecil dari harga beli → rugi.",
+        "Harga jual Rp60.000, harga beli Rp75.000."
+      ]
+    },
+    {
+      "soal": "L4-05",
+      "kode": "D1",
+      "jenisBenar": true,
+      "kesalahan": "Jenis benar (rugi), tetapi menjawab 25%",
+      "teks": [
+        "25% adalah hasil 15.000 ÷ 60.000. Itu dibagi harga jual.",
+        "Persen rugi dibagi harga beli.",
+        "Hitung 15.000 ÷ 75.000 × 100%."
+      ]
+    }
   ]
 }
