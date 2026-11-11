@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link, Navigate, useParams } from 'react-router-dom';
+import { Link, Navigate, useOutletContext, useParams } from 'react-router-dom';
 import KepalaFokus from '../komponen/KepalaFokus.jsx';
 import BilahLangkah from '../komponen/BilahLangkah.jsx';
 import TeksBertanda from '../komponen/TeksBertanda.jsx';
@@ -10,6 +10,7 @@ import InputRupiah from '../komponen/InputRupiah.jsx';
 import InputPersen from '../komponen/InputPersen.jsx';
 import { Gambar } from '../komponen/KartuMateri.jsx';
 import { muatMateri, muatPembahasan } from '../layanan/konten.js';
+import { tandaiMateri } from '../layanan/progres.js';
 import { bacaRupiah, bacaPersen } from '../logika/format.js';
 import { periksaIsianContoh, BATAS_PERCOBAAN } from '../logika/contoh.js';
 
@@ -85,6 +86,8 @@ function IsiContoh({ contoh, data }) {
   const stSekarang = status[iSekarang] ?? { percobaan: 0 };
   const menunggu = sekarang?.isian && !stSekarang.selesai;
   const selesaiSemua = tampil === jumlah && !menunggu;
+  const { sesi } = useOutletContext();
+  useEffect(() => { tandaiMateri(sesi.kodeTampil, contoh.id, selesaiSemua ? 'selesai' : 'dibuka'); }, [sesi.kodeTampil, contoh.id, selesaiSemua]);
 
   const label = tampil > 0 ? Object.fromEntries(contoh.segmen.map((s, i) => [i, s.peran]).filter(([, p]) => p)) : {};
   const ulangi = () => {

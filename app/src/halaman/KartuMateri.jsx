@@ -1,18 +1,21 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link, Navigate, useParams, useSearchParams } from 'react-router-dom';
+import { Link, Navigate, useOutletContext, useParams, useSearchParams } from 'react-router-dom';
 import KepalaFokus from '../komponen/KepalaFokus.jsx';
 import KartuMateri from '../komponen/KartuMateri.jsx';
 import CekCepat from '../komponen/CekCepat.jsx';
 import LembarBawah from '../komponen/LembarBawah.jsx';
 import IsiKartuRumus from '../komponen/IsiKartuRumus.jsx';
 import { muatMateri } from '../layanan/konten.js';
+import { tandaiMateri } from '../layanan/progres.js';
 
 // P04 Kartu Materi (F03; KFN-04, KFN-05; design.md §6).
 // Satu konsep per kartu. Tempo diatur siswa dengan "Lanjut" dan "Kembali".
 // Setelah kartu terakhir muncul satu soal cek cepat.
-// Status selesai belum disimpan; penyimpanan progres_materi dibuat di DV-13.
+// Status dibuka/selesai dicatat di HP (layanan/progres.js); dikirim ke server di DV-13.
 
 function IsiMateri({ data, id }) {
+  const { sesi } = useOutletContext();
+  useEffect(() => { tandaiMateri(sesi.kodeTampil, id, 'dibuka'); }, [sesi.kodeTampil, id]);
   const [param, setParam] = useSearchParams();
   const [selesai, setSelesai] = useState(false);
   const [rumusTerbuka, setRumusTerbuka] = useState(false);
@@ -53,7 +56,7 @@ function IsiMateri({ data, id }) {
 
       <div ref={fokusRef} tabIndex={-1} className="area-kartu" key={nomor}>
         {diCek ? (
-          <CekCepat cek={m.cek} onBenar={() => setSelesai(true)} />
+          <CekCepat cek={m.cek} onBenar={() => { setSelesai(true); tandaiMateri(sesi.kodeTampil, id, 'selesai'); }} />
         ) : (
           <section className="kartu" aria-label={`Kartu ${nomor} dari ${jumlahKartu}`}>
             <KartuMateri kartu={m.kartu[nomor - 1]} />

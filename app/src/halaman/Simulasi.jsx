@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
+import { tandaiMateri } from '../layanan/progres.js';
 import KepalaFokus from '../komponen/KepalaFokus.jsx';
 import BarangDuaDimensi from '../komponen/BarangDuaDimensi.jsx';
 import BatangBanding from '../komponen/BatangBanding.jsx';
@@ -99,6 +101,8 @@ function Hasil({ t }) {
 }
 
 export default function Simulasi() {
+  const { sesi } = useOutletContext();
+  useEffect(() => { tandaiMateri(sesi.kodeTampil, 'SIM', 'dibuka'); }, [sesi.kodeTampil]);
   const [hb, setHb] = useState(80_000);
   const [hj, setHj] = useState(100_000);
   const [aktif, setAktif] = useState(null);

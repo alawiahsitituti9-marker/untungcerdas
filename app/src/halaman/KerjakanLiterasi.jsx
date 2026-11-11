@@ -14,6 +14,8 @@ import { TombolBantuan, DaftarBantuan } from '../komponen/TombolBantuan.jsx';
 import { useKontenLiterasi } from './LatihanLiterasi.jsx';
 import { muatMateri } from '../layanan/konten.js';
 import { bacaDraf, simpanDraf, kunciTahap, catatBantuan } from '../layanan/literasi.js';
+import { catatHasilLiterasi } from '../layanan/progres.js';
+import { nilaiLatihan } from '../logika/penilaianLiterasi.js';
 import { daftarLangkah, isianAwal, tahapLengkap, bacaIsianTahap, tandaSiswa, ringkasTanda } from '../logika/alurLiterasi.js';
 
 // P13 Mengerjakan Soal Literasi Matematis (F14, design.md §17.4).
@@ -160,7 +162,11 @@ export default function KerjakanLiterasi() {
 
   if (draf.posisi >= langkah.length) {
     const selesai = () => {
-      perbarui({ ...draf, selesai: true, selesai_pada: new Date().toISOString() });
+      // id dipakai juga oleh antrean kirim di LM-10 agar hasil yang sama tidak tersimpan dua kali.
+      const id = draf.id ?? crypto.randomUUID();
+      const selesaiPada = new Date().toISOString();
+      perbarui({ ...draf, id, selesai: true, selesai_pada: selesaiPada });
+      catatHasilLiterasi(sesi.kodeTampil, id, nilaiLatihan(konten, draf.jawaban), selesaiPada);
       navigasi('/literasi/hasil', { replace: true });
     };
     return kepalaSaja(

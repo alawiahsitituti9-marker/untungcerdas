@@ -53,7 +53,7 @@ Hanya dimulai setelah A-05, D-01, D-02, dan D-06 disetujui.
 | DV-13 | Penyimpanan percobaan + antrean luring | P1 | DV-10, DV-02 | KFN-16; data masuk setelah koneksi kembali | 5 |
 | DV-14 | F07 Simulasi versi 2D | P1 | DV-04 | KFN-09 | 6 · ✅ selesai 11 November 2026 |
 | DV-15 | F08 Adegan 3D Three.js + cadangan 2D | P2 | DV-14 | KFN-10; dimuat hanya di P07 | 6 |
-| DV-16 | F13 Halaman Progres | P2 | DV-13 | KFN-17 | 6 |
+| DV-16 | F13 Halaman Progres | P2 | DV-13 | KFN-17 | 6 · 🔶 versi awal dibuat 12 November 2026 dari data di HP (status materi, hasil per level, riwayat Literasi Matematis; Beranda: jumlah materi dan saran berikutnya termasuk KL-09) disetujui; sumber server menyusul di DV-13 |
 
 ## 4. Testing
 
