@@ -24,10 +24,20 @@ Di **SQL Editor**, tempel lalu jalankan isi file berikut **berurutan**:
 1. `supabase/migrations/001_skema.sql`
 2. `supabase/migrations/002_literasi.sql`
 3. `supabase/migrations/003_id_klien.sql` (mencegah percobaan soal tercatat ganda dari antrean luring; api.md §4.2)
+4. `supabase/migrations/004_keamanan_literasi.sql` (hasil Literasi Matematis hanya bisa disimpan lewat RPC tervalidasi; api.md §4.3)
 
-Jalankan **masing-masing tepat satu kali, sesuai urutan**. File-file ini tidak dirancang untuk dijalankan ulang (misalnya `create table` akan gagal dan 002 mengganti nama fungsi). Jika muncul galat, berhenti dan catat pesannya; jangan menjalankan ulang. Jalankan 003 sebelum siswa mulai memakai aplikasi.
+Jalankan **masing-masing tepat satu kali, sesuai urutan**. File-file ini tidak dirancang untuk dijalankan ulang (misalnya `create table` akan gagal dan 002 mengganti nama fungsi). Jika muncul galat, berhenti dan catat pesannya; jangan menjalankan ulang. Jalankan 003 dan 004 sebelum siswa mulai memakai aplikasi.
 
-Ketiganya sudah diuji pada PostgreSQL (PGlite) dengan tiruan Supabase Auth: RLS antar-siswa, trigger status materi, `ringkasan_progres`, `simpan_evaluasi_literasi`, `id_klien` UNIQUE (termasuk dijalankan pada tabel yang sudah berisi), serta antrean luring aplikasi terhadap database itu (40 pemeriksaan lulus). Setelah dijalankan di Supabase, lakukan uji RLS sungguhan (task.md T-07).
+Keempatnya sudah diuji pada PostgreSQL (PGlite) dengan tiruan Supabase Auth (peran `anon`, `authenticated`, `service_role`, dan pemilik non-superuser):
+
+| Uji | Isi | Hasil |
+|---|---|---|
+| Rangkaian lengkap | 001 → 002 → uji → 003 dan 004 pada tabel yang sudah berisi → uji; antrean luring aplikasi terhadap database | 44 lulus |
+| Database kosong | 001 → 002 → 003 → 004 berturut-turut; objek, RLS, hak akses | 16 lulus |
+| Keamanan lintas akun | Siswa A dan B tidak bisa membaca, mengubah, atau menulis atas nama siswa lain | 27 lulus |
+| Migrasi 004 | Tulis langsung ditutup, RPC `SECURITY DEFINER` aman (termasuk uji pembajakan `search_path`), validasi paket, antrean luring | 39 lulus |
+
+Setelah dijalankan di Supabase, lakukan uji RLS sungguhan (task.md T-07).
 
 ## 4. Isi file `.env` (di komputer sendiri)
 

@@ -180,6 +180,7 @@ Aturan:
 - `percobaan_ke` dihitung di database (jumlah hasil sebelumnya + 1).
 - `id` dibuat di HP. Jika paket yang sama dikirim ulang dari antrean luring, fungsi mengembalikan hasil yang sudah ada tanpa membuat data ganda.
 - Fungsi menolak paket (400) jika jumlah tahap ≠ 23, ada skor di luar batas bobot, atau skor per indikator ≠ jumlah skor tahap soalnya.
+- **RPC ini satu-satunya jalan menyimpan hasil** (migrasi `004_keamanan_literasi.sql`, §4.3). Insert langsung ke `evaluasi_literasi` atau `jawaban_literasi` lewat REST ditolak. Hanya siswa yang login (`authenticated`) yang boleh memanggil RPC; `anon` tidak.
 
 Bentuk `jawaban` per jenis isian:
 
@@ -265,7 +266,7 @@ Siswa tidak dapat mengubah atau menghapus `percobaan_soal` (tidak ada kebijakan 
 
 ### 4.1 Usulan migrasi `002_literasi.sql` (F14) **[Usulan, KL-13]**
 
-Ditambahkan dan **disetujui 12 November 2026 (KL-13)**. Belum dibuat; dibuat di tugas LM-09 sebagai file migrasi baru (AGENTS.md §7).
+Ditambahkan dan **disetujui 12 November 2026 (KL-13)**. Sudah dibuat di tugas LM-09 sebagai `supabase/migrations/002_literasi.sql` (12 November 2026) dan lulus uji PGlite; belum dijalankan di proyek Supabase.
 
 Pemeriksaan skema saat ini: tabel `percobaan_soal` **tidak** cukup untuk F14. Tabel itu menyimpan satu baris per soal Level 1–4 dengan kolom benar/salah, tanpa skor per tahap, skor per indikator, atau pengelompokan per percobaan. Karena itu diusulkan dua tabel baru. Tabel lama tidak diubah.
 
@@ -313,12 +314,14 @@ create policy "tambah jawaban sendiri" on jawaban_literasi for insert with check
 -- Tidak ada kebijakan update/delete: hasil yang sudah tersimpan tidak bisa diubah siswa.
 ```
 
-Fungsi `simpan_evaluasi_literasi(p_hasil jsonb)` ditulis sebagai `SECURITY INVOKER` (RLS tetap berlaku). Isinya:
+Kedua kebijakan `tambah … sendiri` di atas **dihapus oleh migrasi 004** (§4.3); kebijakan baca tetap.
+
+Fungsi `simpan_evaluasi_literasi(p_hasil jsonb)` di 002 ditulis sebagai `SECURITY INVOKER`. Sejak 004 fungsi ini `SECURITY DEFINER` dengan pengaman (§4.3). Isinya:
 1. Jika `id` sudah ada untuk `auth.uid()`, kembalikan baris itu (idempoten).
 2. Validasi: tepat 23 tahap; pasangan soal–tahap sesuai daftar (ML-1 tahap 1–5, ML-2 sampai ML-4 tahap 1–6); `skor_maks` ML-1 tahap 3 = 2 dan lainnya 1; jumlah skor tahap per soal = skor indikatornya.
 3. Hitung `percobaan_ke`, lalu insert ke kedua tabel dalam satu transaksi.
 
-Kode lengkap fungsi ditulis di tugas LM-09 setelah skema disetujui.
+Kode lengkap fungsi ada di `supabase/migrations/002_literasi.sql`. Migrasi itu juga mengganti nama `ringkasan_progres` lama menjadi `ringkasan_progres_dasar` dan membuat `ringkasan_progres` baru dengan kunci `literasi` (§3.7).
 
 ### 4.2 Migrasi `003_id_klien.sql`: mencegah percobaan soal tercatat ganda
 
@@ -342,6 +345,21 @@ Pencegahan data ganda untuk semua kiriman antrean (`app/src/layanan/pengirimAntr
 | `percobaan_soal` | `id_klien` (UNIQUE) | Ditolak 409 → dianggap terkirim |
 | `evaluasi_literasi` | `p_hasil.id` | RPC mengembalikan hasil yang sudah ada |
 | `progres_materi` | Kunci (`siswa_id`, `materi_id`) | Upsert; tetap satu baris |
+
+### 4.3 Migrasi `004_keamanan_literasi.sql`: hasil literasi hanya lewat RPC tervalidasi
+
+Disetujui pemilik proyek 12 November 2026. Jalankan setelah 003. Menutup dua temuan pemeriksaan keamanan:
+- **A.** Siswa bisa menambah baris `jawaban_literasi` miliknya yang menunjuk `evaluasi_id` siswa lain (slot kosong seperti ML-1 tahap 6).
+- **B.** Siswa bisa menyimpan hasil langsung lewat REST tanpa validasi RPC.
+
+| Lapisan | Isi |
+|---|---|
+| Tulis langsung ditutup | Kebijakan INSERT kedua tabel dihapus; hak `INSERT`, `UPDATE`, `DELETE`, `TRUNCATE` dicabut dari `anon` dan `authenticated`. Kebijakan SELECT (baca data sendiri) tetap |
+| RPC aman | `simpan_evaluasi_literasi` menjadi `SECURITY DEFINER` dengan `set search_path = ''`, semua nama berkualifikasi skema (`public.…`, `auth.uid()`), wajib `auth.uid()`, dan `siswa_id` selalu `auth.uid()` (nilai dari paket diabaikan). `EXECUTE` dicabut dari `PUBLIC` dan `anon`, hanya untuk `authenticated` |
+| Validasi tambahan | `id` wajib ada; `urutan` harus memuat ML-1..ML-4 tepat sekali; skor tiap tahap 0..`skor_maks`; paket harus objek. Validasi lama (23 tahap, pasangan soal–tahap, bobot, skor indikator) tetap |
+| Skema | Foreign key `(evaluasi_id, siswa_id)` → `evaluasi_literasi (id, siswa_id)`: baris jawaban selalu milik siswa yang sama dengan evaluasinya, bahkan untuk kunci secret. Batasan `soal_id <> 'ML-1' or tahap <= 5` |
+
+Pemilik fungsi adalah pemilik tabel, sehingga fungsi dapat menulis walau tanpa kebijakan INSERT (RLS tidak berlaku untuk pemilik tabel selama tidak `FORCE ROW LEVEL SECURITY`). Antrean luring tidak berubah: kiriman ulang dengan `id` yang sama tetap mengembalikan hasil yang ada; paket tidak valid dibalas 400 dan dibuang (§7).
 
 ## 5. Struktur Konten Statis
 

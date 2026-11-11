@@ -140,7 +140,7 @@ Rancangan disetujui 12 November 2026. **Coding F14 dimulai setelah pemilik proye
 
 | ID | Tugas | Prio | Bergantung | Kriteria selesai | Status |
 |---|---|---|---|---|---|
-| LM-09 | Migrasi `002_literasi.sql`: 2 tabel, RLS, fungsi `simpan_evaluasi_literasi` | P1 | DV-02, LM-01 (KL-13) | Uji RLS: siswa A tidak bisa membaca hasil siswa B; paket tidak valid ditolak; kirim ulang tidak membuat data ganda | [~] `002_literasi.sql` dibuat 12 November 2026 dan lulus uji di PGlite (RLS, idempoten, validasi paket); menunggu proyek Supabase |
+| LM-09 | Migrasi `002_literasi.sql`: 2 tabel, RLS, fungsi `simpan_evaluasi_literasi` | P1 | DV-02, LM-01 (KL-13) | Uji RLS: siswa A tidak bisa membaca hasil siswa B; paket tidak valid ditolak; kirim ulang tidak membuat data ganda | [~] `002_literasi.sql` dibuat 12 November 2026 dan lulus uji di PGlite (RLS, idempoten, validasi paket); `004_keamanan_literasi.sql` (hasil hanya lewat RPC `SECURITY DEFINER` tervalidasi, jawaban terikat ke evaluasi pemiliknya, ML-1 tahap 1–5; disetujui 12 November 2026) lulus uji PGlite; belum dijalankan di proyek Supabase |
 | LM-10 | `layanan/literasi.js`: kirim hasil lewat antrean luring; baca riwayat | P1 | LM-08, LM-09, DV-13 | KFN-24; data masuk setelah koneksi kembali | [ ] |
 | LM-11 | Hubungan dengan progres: bagian Literasi di P11, saran di P02, perluasan `ringkasan_progres` | P1 | LM-10, DV-16 | KFN-25 | [ ] |
 

@@ -230,7 +230,8 @@ mathsave/
 │   └── tests/                    uji Vitest per modul logika dan konten (*.test.js)
 └── supabase/
     ├── README.md                 panduan menyiapkan proyek Supabase
-    ├── migrations/               001_skema.sql, 002_literasi.sql, 003_id_klien.sql
+    ├── migrations/               001_skema.sql, 002_literasi.sql, 003_id_klien.sql,
+    │                             004_keamanan_literasi.sql
     └── scripts/                  buat-akun-siswa.js, .env.example (kunci service_role hanya di sini)
 ```
 
