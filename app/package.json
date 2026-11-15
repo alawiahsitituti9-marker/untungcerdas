@@ -1,9 +1,9 @@
 {
-  "name": "mathsave",
+  "name": "untungcerdas",
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "MathSave: aplikasi web pembelajaran Persentase Untung dan Rugi untuk siswa SMP",
+  "description": "untungcerdas: aplikasi web pembelajaran Persentase Untung dan Rugi untuk siswa SMP",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

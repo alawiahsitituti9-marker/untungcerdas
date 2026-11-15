@@ -38,15 +38,22 @@ export function bacaKonfigurasi(env = {}) {
   const domain = bersih(env.VITE_SISWA_DOMAIN) || DOMAIN_BAWAAN;
   const salah = (masalah) => ({ mode: 'salah', domain, masalah });
 
+  
   if (!url && !kunci) return { mode: 'uji', domain, masalah: null };
   if (!url) return salah('VITE_SUPABASE_URL belum diisi di app/.env.');
   if (!kunci) return salah('VITE_SUPABASE_PUBLISHABLE_KEY belum diisi di app/.env.');
+
   if (kunciRahasia(kunci)) {
     return salah('Kunci rahasia (secret / service_role) tidak boleh dipakai di frontend. Pakai publishable key.');
   }
+
   if (!/^https:\/\//.test(url) && !/^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?/.test(url)) {
     return salah('VITE_SUPABASE_URL harus diawali https://.');
   }
-  if (!/^[a-z0-9.-]+\.[a-z]{2,}$/i.test(domain)) return salah('VITE_SISWA_DOMAIN bukan nama domain yang sah.');
+
+  if (!/^[a-z0-9.-]+\.[a-z]{2,}$/i.test(domain)) {
+    return salah('VITE_SISWA_DOMAIN bukan nama domain yang sah.');
+  }
+
   return { mode: 'supabase', url, kunci, domain, masalah: null };
 }

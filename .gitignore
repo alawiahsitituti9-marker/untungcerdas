@@ -20,3 +20,5 @@ referensi/
 Thumbs.db
 *.log
 .vscode/
+
+supabase/.temp/

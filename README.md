@@ -1,10 +1,10 @@
-# MathSave
+# Untungcerdas
 
 Aplikasi web pembelajaran **Persentase Untung dan Rugi** untuk siswa SMP, nyaman digunakan melalui HP Android.
 
 ## Deskripsi
 
-MathSave membantu siswa menyelesaikan soal persentase untung dan rugi secara bertahap: menandai informasi penting di soal cerita, menentukan untung atau rugi, menghitung besarnya, menghitung persentase terhadap **harga beli**, lalu memeriksa kembali hasilnya. Aplikasi juga menyediakan contoh bertahap, simulasi jual beli dengan visual 3D, latihan berjenjang dengan petunjuk yang berkurang secara bertahap, dan pembahasan yang menunjuk langkah yang keliru.
+Untungcerdas membantu siswa menyelesaikan soal persentase untung dan rugi secara bertahap: menandai informasi penting di soal cerita, menentukan untung atau rugi, menghitung besarnya, menghitung persentase terhadap **harga beli**, lalu memeriksa kembali hasilnya. Aplikasi juga menyediakan contoh bertahap, simulasi jual beli dengan visual 3D, latihan berjenjang dengan petunjuk yang berkurang secara bertahap, dan pembahasan yang menunjuk langkah yang keliru.
 
 ## Latar Belakang
 

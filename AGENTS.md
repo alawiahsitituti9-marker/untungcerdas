@@ -1,10 +1,10 @@
-# AGENTS.md — Pedoman untuk AI dan Pengembang MathSave
+# AGENTS.md — Pedoman untuk AI dan Pengembang Untungcerdas
 
 Baca file ini sebelum mengubah apa pun di repositori.
 
 ## 1. Gambaran Umum Proyek
 
-MathSave adalah aplikasi web responsif (nyaman di HP Android) untuk siswa SMP Kelas VIII–IX. Aplikasi ini membantu siswa mempelajari ulang **Persentase Untung dan Rugi** (Aritmetika Sosial). Desain pembelajarannya berbasis **Cognitive Load Theory** dan bertujuan meningkatkan **Mathematical Literacy**. Model pengembangan: **ADDIE**.
+Untungcerdas adalah aplikasi web responsif (nyaman di HP Android) untuk siswa SMP Kelas VIII–IX. Aplikasi ini membantu siswa mempelajari ulang **Persentase Untung dan Rugi** (Aritmetika Sosial). Desain pembelajarannya berbasis **Cognitive Load Theory** dan bertujuan meningkatkan **Mathematical Literacy**. Model pengembangan: **ADDIE**.
 
 Sumber kebenaran:
 

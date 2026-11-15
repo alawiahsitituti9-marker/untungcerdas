@@ -1,4 +1,4 @@
-# Architecture — MathSave
+# Architecture — UntungCerdas
 
 Versi: 0.2 · Acuan: [PRD.md](PRD.md) · [api.md](api.md)
 
@@ -8,14 +8,13 @@ Butir bertanda **[Keputusan K-xx]** sudah disetujui pada 11 November 2026 (PRD �
 
 ---
 
-## 1. Gambaran Arsitektur
-
-MathSave adalah aplikasi web statis (Single Page Application) yang berbicara langsung dengan Supabase. Tidak ada server backend buatan sendiri.
+## 1. Gambaran Arsi
+Untungcerdas adalah aplikasi web statis (Single Page Application) yang berbicara langsung dengan Supabase. Tidak ada server backend buatan sendiri.
 
 ```mermaid
 flowchart LR
     subgraph HP["HP Android: Chrome"]
-        UI[SPA MathSave<br/>React + Vite]
+        UI[SPA Untungcerdas <br/>React + Vite]
         DATA[(materi.json<br/>soal.json)]
         T3[Three.js<br/>dimuat di P07 saja]
     end
